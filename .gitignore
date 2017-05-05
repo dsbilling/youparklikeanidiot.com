@@ -1,0 +1,15 @@
+/node_modules
+.env
+lanms.sublime-workspace
+public/images/profilecover/1.jpg
+public/images/profilepicture/1.jpg
+public/images/profilepicture/1.png
+public/images/profilepicture/1_small.jpg
+public/images/profilepicture/1_small.png
+public/images/profilecover/2.jpg
+public/images/profilepicture/2.jpg
+public/images/profilepicture/2.png
+public/images/profilepicture/2_small.jpg
+public/images/profilepicture/2_small.png
+env-beta.txt
+lanms.zip

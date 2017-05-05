@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: DPSEI
+        psr4_prefix: DPSEI
+        src_path: app
