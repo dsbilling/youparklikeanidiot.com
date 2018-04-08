@@ -51,9 +51,7 @@
 							<h3>Info</h3>
 						</div>
 						<div class="card-action">
-							<p><b>Hvor: </b> @if(LANMS\Info::getContent('where_url')) {!! '<a href="'.LANMS\Info::getContent('where_url').'">'.LANMS\Info::getContent('where').'</a>' !!} @else {{ LANMS\Info::getContent('where') }} @endif</p>
-							<p><b>Når: </b> {{ LANMS\Info::getContent('when') }}</p>
-							<p><b>Pris: </b> {{ LANMS\Info::getContent('price') }}@if(LANMS\Info::getContent('price_alt')) {!! '<small><em>('.LANMS\Info::getContent('price_alt').')</em></small>' !!}@endif</p>
+							
 						</div>
 					</div>
 				</div>
@@ -64,18 +62,7 @@
 						<div class="card-content">
 							<h3>Sponsorer</h3>
 						</div>
-						@foreach(LANMS\Sponsor::thisYear()->get() as $sponsor)
-							<div class="card-action">
-								 @if($sponsor->url)
-									<a href="{{ $sponsor->url }}"><img class="responsive-img" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}" width="335px"></a>
-								@else
-									<img class="responsive-img" src="{{ asset($sponsor->image) }}" alt="{{ $sponsor->name }}" width="335px">
-								@endif
-								@if($sponsor->description)
-									<p>{{ $sponsor->description }}</p>
-								@endif
-							</div>
-						@endforeach
+						
 					</div>
 				</div>
 			</div>

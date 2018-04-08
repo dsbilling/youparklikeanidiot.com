@@ -49,7 +49,6 @@
 
 						<ul class="desktop-menu hide-on-med-and-down">
 							<li class="@if(Request::is('/')){{'active'}} @endif"><a href="{{ url('/') }}"><span>Home</span></a></li>
-							<li class="@if(Request::is('crew')){{'active'}} @endif"><a href="{{ route('crew') }}"><span>Crew</span></a></li>
 							@foreach(\LANMS\Page::forMenu() as $page)
 								<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
 							@endforeach
