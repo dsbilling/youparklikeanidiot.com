@@ -242,25 +242,12 @@ return [
 		/*
 		 * 3rd Party
 		 */
-		'User'					=> 'LANMS\User',
-		'News'					=> 'LANMS\News',
-		'NewsCategory'			=> 'LANMS\NewsCategory',
-		'Address'				=> 'LANMS\Address',
-		'Seats'					=> 'LANMS\Seats',
-		'SeatRows'				=> 'LANMS\SeatRows',
-		'SeatPayment'			=> 'LANMS\SeatPayment',
-		'SeatReservation'		=> 'LANMS\SeatReservation',
-		'SeatReservationStatus'	=> 'LANMS\SeatReservationStatus',
-		'SeatTicket'			=> 'LANMS\SeatTicket',
-		'Act'					=> 'LANMS\Act',
-		'Checkin'				=> 'LANMS\Checkin',
-		'Visitor'				=> 'LANMS\Visitor',
-		'Crew'					=> 'LANMS\Crew',
-		'CrewCategory'			=> 'LANMS\CrewCategory',
-		'CrewSkill'				=> 'LANMS\CrewSkill',
-		'CrewSkillAttached'		=> 'LANMS\CrewSkillAttached',
-		'Page'					=> 'LANMS\Page',
-		'BrokenBand'			=> 'LANMS\BrokenBand',
+		'User'					=> DPSEI\User::class,
+		'News'					=> DPSEI\News::class,
+		'NewsCategory'			=> DPSEI\NewsCategory::class,
+		'Address'				=> DPSEI\Address::class,
+		'Act'					=> DPSEI\Act::class,
+		'Page'					=> DPSEI\Page::class,
 		
 		/*
 		 * 3rd Party
