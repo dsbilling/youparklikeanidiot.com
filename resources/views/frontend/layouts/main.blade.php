@@ -17,32 +17,34 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
-		<a class="navbar-brand" href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-		<div class="collapse navbar-collapse" id="navbar">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item @if(Request::is('/')){{'active'}} @endif"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-				@foreach(Page::forMenu() as $page)
-					<li class="nav-item @if(Request::is($page->slug)){{'active'}} @endif"><a class="nav-link" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a></li>
-				@endforeach
-			</ul>
-			@if(Sentinel::Guest())
-				<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-					<li class="nav-item"><a class="nav-link" href="{{ route('account-login') }}">Login</a></li>
-					<li class="nav-item"><em>~ or ~</em></li>
-					<li class="nav-item"><a class="nav-link" href="{{ route('account-register') }}">Register</a></li>
+
+	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item @if(Request::is('/')){{'active'}} @endif"><a class="nav-link" href="{{ url('/') }}">Hjem</a></li>
+					@foreach(Page::forMenu() as $page)
+						<li class="nav-item @if(Request::is($page->slug)){{'active'}} @endif"><a class="nav-link" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a></li>
+					@endforeach
 				</ul>
-			@else
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a></li>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
-				</li>
-			@endif
+				@if(Sentinel::Guest())
+					<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+						<li class="nav-item"><a class="nav-link" href="{{ route('account-login') }}">Innlogging</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ route('account-register') }}">Registrer</a></li>
+					</ul>
+				@else
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a></li>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</li>
+				@endif
+			</div>
 		</div>
 	</nav>
 
@@ -55,20 +57,26 @@
 			<div class="row">
 				<div class="col-4 col-md">
 					<p>
-						&copy; {{ Setting::get('WEB_COPYRIGHT') }}
+						&copy; {!! Setting::get('WEB_COPYRIGHT') !!}
 						&middot;
 						<small class="text-muted"><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
+						&middot;
+						<small><a href="{{ url('/tos') }}">Terms of Service</a></small>
+						&middot;
+						<small><a href="{{ url('/privacy') }}">Privacy Policy</a></small>
 					</p>
 				</div>
-				<div class="col-6 col-md">
+				<div class="col-6 col-md text-right">
 					<p>
-						<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
-						@if(Config::get('app.debug'))
-							<b>&middot; <span class="text-danger">DEBUG MODE</span></b>
-						@endif
-						@if(Setting::get('APP_SHOW_RESETDB'))
-							<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
-						@endif
+						<small>
+							<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+							@if(Config::get('app.debug'))
+								<b>&middot; <span class="text-danger">DEBUG MODE</span></b>
+							@endif
+							@if(Setting::get('APP_SHOW_RESETDB'))
+								<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
+							@endif
+						</small>
 					</p>
 				</div>
 			</div>
