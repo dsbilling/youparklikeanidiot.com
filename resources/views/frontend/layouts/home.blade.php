@@ -24,15 +24,15 @@
 			<div class="inner">
 				<h3 class="masthead-brand"><a href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a></h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ url('/') }}">Home</a>
+					<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ url('/') }}">Hjem</a>
 					@foreach(Page::forMenu() as $page)
 						<a class="nav-link @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
 					@endforeach
 					@if(Sentinel::Guest())
-						<a class="nav-link" href="{{ route('account-login') }}">Login</a>
-						<a class="nav-link" href="{{ route('account-register') }}">Register</a>
+						<a class="nav-link @if(Request::is('account/login')){{'active'}} @endif" href="{{ route('account-login') }}">Innlogging</a>
+						<a class="nav-link @if(Request::is('account/register')){{'active'}} @endif" href="{{ route('account-register') }}">Registrer</a>
 					@else
-						<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a>
+						<a class="nav-link" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a>
 					@endif
 				</nav>
 			</div>
@@ -46,8 +46,11 @@
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
-					&copy; {{ Setting::get('WEB_COPYRIGHT') }}
+					&copy; {!! Setting::get('WEB_COPYRIGHT') !!}
 					<br/>
+					<a href="/tos">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a>
+				</p>
+				<p>
 					<small>
 						<i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s
 						&middot;
