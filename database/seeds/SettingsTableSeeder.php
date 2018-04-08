@@ -11,10 +11,6 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('APP_VERSION', '0.1.0');
 		Setting::set('APP_VERSION_TYPE', 'Dev');
 		Setting::set('APP_URL', 'http://jira.infihex.com/projects/DPSEI?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page&status=released-unreleased');
-		Setting::set('APP_LICENSE_STATUS', '');
-		Setting::set('APP_LICENSE_STATUS_DESC', '');
-		Setting::set('APP_LICENSE_LOCAL_KEY', '');
-		Setting::set('APP_LICENSE_KEY', '');
 
 		Setting::set('SHOW_RESETDB', true);
 
@@ -28,10 +24,10 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('WEB_PROTOCOL', 'http');
 		Setting::set('WEB_DOMAIN', 'dpsei.dev');
 		Setting::set('WEB_PORT', 80);
-		Setting::set('WEB_NAME', 'LANMS');
+		Setting::set('WEB_NAME', 'DPSEI');
 		Setting::set('WEB_LOGO', '/images/lanms.png');
 		Setting::set('WEB_LOGO_ALT', '/images/lanms_dark.png');
-		Setting::set('WEB_COPYRIGHT', '2015-2018, Infihex');
+		Setting::set('WEB_COPYRIGHT', '2017-2018, Infihex');
 
 		Setting::set('GOOGLE_MAPS_API_KEY', 'AIzaSyCJDbjolbvN7mYY3SiV6A7SLPCBlHlE-Ow');
 
