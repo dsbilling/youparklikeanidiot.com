@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LANMS\News;
-use LANMS\NewsCategory;
+use DPSEI\News;
+use DPSEI\NewsCategory;
 
 class NewsSeeder extends Seeder  {
 

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LANMS\Page;
+use DPSEI\Page;
 
 class PagesTableSeeder extends Seeder  {
 

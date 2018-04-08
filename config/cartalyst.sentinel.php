@@ -53,7 +53,7 @@ return [
 
     'users' => [
 
-        'model' => 'LANMS\User',
+        'model' => DPSEI\User::class,
         //'model' => 'Cartalyst\Sentinel\Users\EloquentUser',
 
     ],

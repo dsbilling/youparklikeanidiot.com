@@ -1,6 +1,4 @@
-<?php
-
-namespace DPSEI;
+<?php namespace DPSEI;
 
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;

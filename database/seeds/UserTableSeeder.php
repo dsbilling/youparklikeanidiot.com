@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LANMS\User;
+use DPSEI\User;
   
 class UserTableSeeder extends Seeder {
   
