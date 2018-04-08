@@ -1,74 +1,16 @@
-@extends('layouts.main')
+@extends('layouts.home')
 @section('title', 'Home')
 
 @section('content')
 
-<div class="container">
-
-	<div class="row latest-posts">
-		<div class="col m8">
-
-
-
-			@foreach($news as $article)
-				<div class="row post">
-					<div class="col s12">
-						<div class="card">
-							<div class="card-image">
-								<h2 class="card-title"><a href="{{ route('news-show', $article->slug) }}">{{ $article->title }}</a></h2>
-							</div>
-							<div class="card-content">
-								<p>
-									<small>Published: {{ date(User::getUserDateFormat(), strtotime($article->published_at)) .' at '. date(User::getUserTimeFormat(), strtotime($article->published_at)) }} by <a class="author" href="{{ URL::route('user-profile', $article->author->username) }}">{{ User::getFullnameByID($article->author->id) }}</a> &middot; Updated: {{ date(User::getUserDateFormat(), strtotime($article->updated_at))  .' at '. date(User::getUserTimeFormat(), strtotime($article->updated_at)) }} by <a href="{{ URL::route('user-profile', $article->editor->username) }}">{{ User::getFullnameByID($article->editor->id) }}</a></small>
-								</p>
-								<hr>
-								<p>{!! substr($article->content, 0, 1000) !!}@if(strlen($article->content) >= 1000)...@endif</p>
-							</div>
-							@if(strlen($article->content) >= 1000)
-								<div class="card-action">
-									<a href="{{ URL::route('news-show', $article->slug) }}" class="btn btn-primary btn-xs pull-right newsBtn"><i class="fa fa-arrow-circle-right"></i> Les mer</a>
-								</div>
-							@endif
-						</div>
-					</div>
-				</div>
-			@endforeach
-
-			<br>
-			<div class="row">
-				<div class="col s12">
-					<a href="{{ URL::route('news') }}" class="btn btn-primary btn-readmore"><span class="fa fa-long-arrow-left"></span> Les eldre nyheter</a>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="col m4">
-			<div class="row post">
-				<div class="col s12">
-					<div class="card">
-						<div class="card-content">
-							<h3>Info</h3>
-						</div>
-						<div class="card-action">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row post">
-				<div class="col s12">
-					<div class="card">
-						<div class="card-content">
-							<h3>Sponsorer</h3>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
+<h2 class="cover-heading">Lei av folk som parkerer som en idiot?</h2>
+<p class="lead">Vi også. Her finner haugevis med folk som har parkert som en idiot.</p>
+<p class="lead"><em>Kanskje</em> du er en av dem? Trykk på knappen nedenfor og se om du finner deg selv. <em>Kanskje</em> du ønsker å vise folket enda en idiot? Registrer deg og last opp bilde og litt info om feilparkeringen.</p>
+<p class="lead">Ønsker du å vise idioten at de har parkert feil? Da kan du laste ned PDF-en for å printe ut og henge på ruta.</p>
+<p class="lead">
+	<a href="{{ asset('pdf/duparkerersomenidiot_no.pdf') }}" class="btn btn-md btn-success"><i class="fas fa-download"></i> Last ned PDF</a>
+	<small class="text-muted"> ~ eller ~ </small>
+	<a href="#" class="btn btn-md btn-info"><i class="fas fa-car"></i> Se feilparkerte biler</a>
+</p>
 
 @endsection

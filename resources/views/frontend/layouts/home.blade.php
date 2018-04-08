@@ -6,6 +6,7 @@
 
 	<link href="{{ Theme::url('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ Theme::url('css/toastr.css') }}" rel="stylesheet">
+	<link href="{{ Theme::url('css/cover.css') }}" rel="stylesheet">
 	<link href="{{ Theme::url('css/custom.css') }}" rel="stylesheet">
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -15,65 +16,56 @@
 	<![endif]-->
 
 </head>
-<body>
+<body class="text-center" style="background: url('{{ asset('images/parking.jpg') }}') no-repeat center center fixed">
 
-	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
-		<a class="navbar-brand" href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-		<div class="collapse navbar-collapse" id="navbar">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item @if(Request::is('/')){{'active'}} @endif"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-				@foreach(Page::forMenu() as $page)
-					<li class="nav-item @if(Request::is($page->slug)){{'active'}} @endif"><a class="nav-link" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a></li>
-				@endforeach
-			</ul>
-			@if(Sentinel::Guest())
-				<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-					<li class="nav-item"><a class="nav-link" href="{{ route('account-login') }}">Login</a></li>
-					<li class="nav-item"><em>~ or ~</em></li>
-					<li class="nav-item"><a class="nav-link" href="{{ route('account-register') }}">Register</a></li>
-				</ul>
-			@else
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a></li>
-						<a class="dropdown-item" href="#">Another action</a>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
-				</li>
-			@endif
-		</div>
-	</nav>
+	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
 
-	<main role="main" class="container">
-		@yield('content')
-	</main>
+		<header class="masthead mb-auto">
+			<div class="inner">
+				<h3 class="masthead-brand"><a href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a></h3>
+				<nav class="nav nav-masthead justify-content-center">
+					<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ url('/') }}">Home</a>
+					@foreach(Page::forMenu() as $page)
+						<a class="nav-link @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
+					@endforeach
+					@if(Sentinel::Guest())
+						<a class="nav-link" href="{{ route('account-login') }}">Login</a>
+						<a class="nav-link" href="{{ route('account-register') }}">Register</a>
+					@else
+						<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a>
+					@endif
+				</nav>
+			</div>
+		</header>
 
-	<footer class="footer border-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-4 col-md">
-					<p>
-						&copy; {{ Setting::get('WEB_COPYRIGHT') }}
+		<main role="main" class="inner cover">
+			@yield('content')
+		</main>
+
+
+		<footer class="mastfoot mt-auto">
+			<div class="inner">
+				<p>
+					&copy; {{ Setting::get('WEB_COPYRIGHT') }}
+					<br/>
+					<small>
+						<i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s
 						&middot;
-						<small class="text-muted"><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
-					</p>
-				</div>
-				<div class="col-6 col-md">
-					<p>
-						<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+						<a href="{{ Setting::get('APP_URL') }}" target="_blank">Report a bug</a>
+						&middot;
+						{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}
 						@if(Config::get('app.debug'))
 							<b>&middot; <span class="text-danger">DEBUG MODE</span></b>
 						@endif
 						@if(Setting::get('APP_SHOW_RESETDB'))
 							<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 						@endif
-					</p>
-				</div>
+					</small>
+				</p>
 			</div>
-		</div>
-	</footer>
+		</footer>
+	
+	</div>
 
 	<script src="{{ Theme::url('js/jquery-slim.min.js') }}"></script>
 	<script src="{{ Theme::url('js/bootstrap.bundle.min.js') }}"></script>
