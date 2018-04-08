@@ -15,7 +15,7 @@ class HttpsProtocol {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if(Setting::get('WEB_PROTOCOL') <> null) {
+		if(\Schema::hasTable('settings')) {
 			if (!$request->secure() && Setting::get('WEB_PROTOCOL') === 'https') {
 				return redirect()->secure($request->getRequestUri());
 			} 
