@@ -13,8 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\CheckLicense::class,
-        Commands\DeleteExpiredSeatReservation::class
+        //
     ];
 
     /**
@@ -25,10 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('lanms:checklicense')
-                  ->daily();
-        $schedule->command('lanms:desr')
-                  ->hourly();
+        //
     }
 
     /**
