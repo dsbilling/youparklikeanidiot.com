@@ -1,6 +1,6 @@
 <?php 
 
-namespace LANMS\Http;
+namespace DPSEI\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -16,7 +16,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \LANMS\Http\Middleware\TrimStrings::class,
+        \DPSEI\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
@@ -27,12 +27,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \LANMS\Http\Middleware\EncryptCookies::class,
+            \DPSEI\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \LANMS\Http\Middleware\VerifyCsrfToken::class,
+            \DPSEI\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -54,11 +54,11 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \LANMS\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest' => \DPSEI\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-		'sentinel.auth' => 'LANMS\Http\Middleware\SentinelAuth',
-		'sentinel.guest' => 'LANMS\Http\Middleware\SentinelGuest',
-		'sentinel.admin' => 'LANMS\Http\Middleware\SentinelAdmin',
+		'sentinel.auth' => 'DPSEI\Http\Middleware\SentinelAuth',
+		'sentinel.guest' => 'DPSEI\Http\Middleware\SentinelGuest',
+		'sentinel.admin' => 'DPSEI\Http\Middleware\SentinelAdmin',
         'setTheme' => \Igaster\LaravelTheme\Middleware\setTheme::class,
 	];
 

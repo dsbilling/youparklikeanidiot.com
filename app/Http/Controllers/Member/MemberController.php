@@ -1,11 +1,11 @@
 <?php
 
-namespace LANMS\Http\Controllers\Member;
+namespace DPSEI\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
-use LANMS\User;
+use DPSEI\Http\Controllers\Controller;
+use DPSEI\User;
 
-use LANMS\Http\Requests\Member\SearchRequest;
+use DPSEI\Http\Requests\Member\SearchRequest;
 
 class MemberController extends Controller {
 

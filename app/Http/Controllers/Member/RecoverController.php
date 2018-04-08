@@ -1,6 +1,6 @@
-<?php namespace LANMS\Http\Controllers\Member;
+<?php namespace DPSEI\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -8,10 +8,10 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Mail;
 
-use LANMS\Http\Requests\Member\ForgotPasswordRequest;
-use LANMS\Http\Requests\Member\RecoverRequest;
+use DPSEI\Http\Requests\Member\ForgotPasswordRequest;
+use DPSEI\Http\Requests\Member\RecoverRequest;
 
-use LANMS\Rem;
+use DPSEI\Rem;
 
 class RecoverController extends Controller {
 

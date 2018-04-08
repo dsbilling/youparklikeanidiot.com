@@ -1,6 +1,6 @@
 <?php
 
-namespace LANMS\Providers;
+namespace DPSEI\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'LANMS\Model' => 'LANMS\Policies\ModelPolicy',
+        'DPSEI\Model' => 'DPSEI\Policies\ModelPolicy',
     ];
 
     /**

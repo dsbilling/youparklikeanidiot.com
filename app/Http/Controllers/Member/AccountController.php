@@ -1,22 +1,22 @@
 <?php
 
-namespace LANMS\Http\Controllers\Member;
+namespace DPSEI\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Controllers\Controller;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
 use Intervention\Image\Facades\Image;
 use Regulus\ActivityLog\Models\Activity;
 
-use LANMS\Http\Requests\Member\SettingsRequest;
-use LANMS\Http\Requests\Member\PasswordRequest;
-use LANMS\Http\Requests\Member\ProfileImageRequest;
-use LANMS\Http\Requests\Member\ProfileCoverRequest;
-use LANMS\Http\Requests\Member\ChangeUserDetailsRequest;
+use DPSEI\Http\Requests\Member\SettingsRequest;
+use DPSEI\Http\Requests\Member\PasswordRequest;
+use DPSEI\Http\Requests\Member\ProfileImageRequest;
+use DPSEI\Http\Requests\Member\ProfileCoverRequest;
+use DPSEI\Http\Requests\Member\ChangeUserDetailsRequest;
 
-use LANMS\User;
-use LANMS\News;
+use DPSEI\User;
+use DPSEI\News;
 
 class AccountController extends Controller {
 

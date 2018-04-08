@@ -1,4 +1,4 @@
-<?php namespace LANMS\Http\Middleware;
+<?php namespace DPSEI\Http\Middleware;
 
 use Closure;
 

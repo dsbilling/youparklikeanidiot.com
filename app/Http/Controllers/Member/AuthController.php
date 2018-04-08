@@ -1,12 +1,12 @@
 <?php
 
-namespace LANMS\Http\Controllers\Member;
+namespace DPSEI\Http\Controllers\Member;
 
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
 
-use LANMS\Act;
+use DPSEI\Act;
 
 class AuthController extends Controller {
 

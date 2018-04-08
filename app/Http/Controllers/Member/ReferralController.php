@@ -1,7 +1,7 @@
-<?php namespace LANMS\Http\Controllers\Member;
+<?php namespace DPSEI\Http\Controllers\Member;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Requests;
+use DPSEI\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
 use anlutro\LaravelSettings\Facade as Setting;

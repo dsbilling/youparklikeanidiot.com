@@ -1,4 +1,4 @@
-<?php namespace LANMS\Http\Requests;
+<?php namespace DPSEI\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

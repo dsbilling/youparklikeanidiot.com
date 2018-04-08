@@ -1,16 +1,16 @@
-<?php namespace LANMS\Http\Controllers\API;
+<?php namespace DPSEI\Http\Controllers\API;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Requests;
+use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use LANMS\News;
-use LANMS\Checkin;
-use LANMS\Visitor;
-use LANMS\SeatReservation;
-use LANMS\Seats;
-use LANMS\User;
+use DPSEI\News;
+use DPSEI\Checkin;
+use DPSEI\Visitor;
+use DPSEI\SeatReservation;
+use DPSEI\Seats;
+use DPSEI\User;
 
 class APIController extends Controller {
 	

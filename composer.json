@@ -31,7 +31,7 @@
             "database"
         ],
         "psr-4": {
-            "LANMS\\": "app/"
+            "DPSEI\\": "app/"
         }
     },
     "autoload-dev": {

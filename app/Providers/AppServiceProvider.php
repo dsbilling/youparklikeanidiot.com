@@ -1,4 +1,4 @@
-<?php namespace LANMS\Providers;
+<?php namespace DPSEI\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'LANMS\Services\Registrar'
+			'DPSEI\Services\Registrar'
 		);
 	}
 

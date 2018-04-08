@@ -1,14 +1,14 @@
-<?php namespace LANMS\Http\Controllers\Admin;
+<?php namespace DPSEI\Http\Controllers\Admin;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Requests;
+use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use anlutro\LaravelSettings\Facade as Setting;
 use Illuminate\Support\Facades\Redirect;
 
-use LANMS\Http\Requests\Admin\SettingEditRequest;
+use DPSEI\Http\Requests\Admin\SettingEditRequest;
 
 class SettingsController extends Controller {
 

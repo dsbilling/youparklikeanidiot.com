@@ -1,6 +1,6 @@
-<?php namespace LANMS\Http\Controllers\Admin;
+<?php namespace DPSEI\Http\Controllers\Admin;
 
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Controllers\Controller;
 
 class AdminController extends Controller {
 

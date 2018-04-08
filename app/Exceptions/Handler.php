@@ -1,4 +1,4 @@
-<?php namespace LANMS\Exceptions;
+<?php namespace DPSEI\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;

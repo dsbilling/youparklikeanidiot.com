@@ -1,4 +1,4 @@
-<?php namespace LANMS\Providers;
+<?php namespace DPSEI\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -11,8 +11,8 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'LANMS\Events\Event' => [
-			'LANMS\Listeners\EventListener',
+		'DPSEI\Events\Event' => [
+			'DPSEI\Listeners\EventListener',
 		],
 	];
 

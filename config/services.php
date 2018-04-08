@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => LANMS\User::class,
+        'model' => DPSEI\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

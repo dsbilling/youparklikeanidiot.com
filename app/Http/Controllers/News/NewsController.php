@@ -1,18 +1,18 @@
-<?php namespace LANMS\Http\Controllers\News;
+<?php namespace DPSEI\Http\Controllers\News;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Requests;
+use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
-use LANMS\News;
-use LANMS\NewsCategory;
-use LANMS\Page;
+use DPSEI\News;
+use DPSEI\NewsCategory;
+use DPSEI\Page;
 
-use LANMS\Http\Requests\Admin\News\NewsCreateRequest;
-use LANMS\Http\Requests\Admin\News\NewsEditRequest;
+use DPSEI\Http\Requests\Admin\News\NewsCreateRequest;
+use DPSEI\Http\Requests\Admin\News\NewsEditRequest;
 
 class NewsController extends Controller {
 

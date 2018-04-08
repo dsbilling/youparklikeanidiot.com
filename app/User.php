@@ -1,6 +1,6 @@
 <?php
 
-namespace LANMS;
+namespace DPSEI;
 
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;
@@ -493,11 +493,11 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	}
 
 	function stripecustomer() {
-		return $this->hasOne('LANMS\StripeCustomer', 'user_id', 'id');
+		return $this->hasOne('DPSEI\StripeCustomer', 'user_id', 'id');
 	}
 
 	function seatpayments() {
-		return $this->hasMany('LANMS\SeatPayment', 'user_id', 'id');
+		return $this->hasMany('DPSEI\SeatPayment', 'user_id', 'id');
 	}
 
 	public function scopeGetLastActivity($query, $id, $short = false) {

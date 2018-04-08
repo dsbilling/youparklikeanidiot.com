@@ -170,11 +170,11 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		LANMS\Providers\AppServiceProvider::class,
-		LANMS\Providers\AuthServiceProvider::class,
-		// LANMS\Providers\BroadcastServiceProvider::class,
-		LANMS\Providers\EventServiceProvider::class,
-		LANMS\Providers\RouteServiceProvider::class,
+		DPSEI\Providers\AppServiceProvider::class,
+		DPSEI\Providers\AuthServiceProvider::class,
+		// DPSEI\Providers\BroadcastServiceProvider::class,
+		DPSEI\Providers\EventServiceProvider::class,
+		DPSEI\Providers\RouteServiceProvider::class,
 
 		/*
 		 * 3rd Party

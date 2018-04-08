@@ -1,16 +1,16 @@
-<?php namespace LANMS\Http\Controllers\Page;
+<?php namespace DPSEI\Http\Controllers\Page;
 
-use LANMS\Http\Requests;
-use LANMS\Http\Controllers\Controller;
+use DPSEI\Http\Requests;
+use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
-use LANMS\Page;
+use DPSEI\Page;
 
-use LANMS\Http\Requests\Admin\Page\PageCreateRequest;
-use LANMS\Http\Requests\Admin\Page\PageEditRequest;
+use DPSEI\Http\Requests\Admin\Page\PageCreateRequest;
+use DPSEI\Http\Requests\Admin\Page\PageEditRequest;
 
 class PagesController extends Controller {
 

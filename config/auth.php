@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => LANMS\User::class,
+            'model' => DPSEI\User::class,
         ],
 
         // 'users' => [

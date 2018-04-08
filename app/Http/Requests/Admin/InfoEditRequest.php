@@ -1,6 +1,6 @@
-<?php namespace LANMS\Http\Requests\Admin;
+<?php namespace DPSEI\Http\Requests\Admin;
 
-use LANMS\Http\Requests\Request;
+use DPSEI\Http\Requests\Request;
 
 class InfoEditRequest extends Request {
 

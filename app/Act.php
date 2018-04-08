@@ -1,4 +1,4 @@
-<?php namespace LANMS;
+<?php namespace DPSEI;
 
 use Illuminate\Database\Eloquent\Model;
 

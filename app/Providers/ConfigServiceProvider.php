@@ -1,4 +1,4 @@
-<?php namespace LANMS\Providers;
+<?php namespace DPSEI\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,6 +1,6 @@
-<?php namespace LANMS\Http\Requests\Member;
+<?php namespace DPSEI\Http\Requests\Member;
 
-use LANMS\Http\Requests\Request;
+use DPSEI\Http\Requests\Request;
 
 class ChangeUserDetailsRequest extends Request {
 

@@ -10,7 +10,7 @@
 |
 */
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(LANMS\User::class, function (Faker\Generator $faker) {
+$factory->define(DPSEI\User::class, function (Faker\Generator $faker) {
     static $password;
     return [
         'name' => $faker->name,
