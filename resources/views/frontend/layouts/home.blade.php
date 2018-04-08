@@ -16,7 +16,7 @@
 	<![endif]-->
 
 </head>
-<body class="text-center" style="background: url('{{ asset('images/parking.jpg') }}') no-repeat center center fixed">
+<body class="text-center">
 
 	<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
 
