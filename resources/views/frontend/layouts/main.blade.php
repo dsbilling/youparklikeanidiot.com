@@ -30,7 +30,7 @@
 
 <div class="highlighted parallax-container">
 	<a class="logo" href="{{ url('/') }}">
-		<img src="{{ asset('images/downlink.png') }}" alt="logo" width="600">
+		<img src="{{ Setting::get('WEB_LOGO') }}" alt="logo" style="width: auto !important;height: auto !important;max-width: 600px !important;max-height: 150px !important;">
 	</a>
 	<div class="parallax"><img src="{{ asset('images/lan.jpg') }}" alt="mountain fog" /></div>
 </div>
@@ -49,20 +49,21 @@
 
 						<ul class="desktop-menu hide-on-med-and-down">
 							<li class="@if(Request::is('/')){{'active'}} @endif"><a href="{{ url('/') }}"><span>Home</span></a></li>
-							@foreach($pagesinmenu as $page)
+							<li class="@if(Request::is('crew')){{'active'}} @endif"><a href="{{ route('crew') }}"><span>Crew</span></a></li>
+							@foreach(\LANMS\Page::forMenu() as $page)
 								<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
 							@endforeach
 							@if(Sentinel::Guest())
 								<li><a href="{{ route('account-login') }}"><span>Login</span></a></li>
 								<li><a href="{{ route('account-register') }}"><span>Register</span></a></li>
 							@else
-								<li><a href="{{ route('account') }}"><span><em>Go to Dashboard</em></span></a></li>
+								<li><a href="{{ route('account') }}"><span><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></span></a></li>
 							@endif
 						</ul>
 
 						<ul class="side-nav" id="nav-mobile">
 							<li><a href="{{ url('/') }}"><span>Home</span></a></li>
-							@foreach($pagesinmenu as $page)
+							@foreach(\LANMS\Page::forMenu() as $page)
 								<li class="@if(Request::is($page->slug)){{'active'}} @endif"><a href="{{ route('page', $page->slug) }}"><span>{{ $page->title }}</span></a></li>
 							@endforeach
 							@if(Sentinel::Guest())
@@ -93,6 +94,8 @@
 				<p>
 						<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
 						<br>
+						@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
+						<br>
 						@if(Config::get('app.debug'))
 							<b><span class="text-danger">DEBUG MODE</span></b>
 						@endif
@@ -100,7 +103,8 @@
 							<b>&middot; <a href="/resetdb" class="text-danger">RESET DB AND SETTINGS</a></b>
 						@endif
 					<br>
-					<small class="text-muted">Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
+					<p>&copy; {{ Setting::get('WEB_COPYRIGHT') }}</p>
+					<small class="text-muted"><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small>
 				</p>
 				</div>
 			</div>

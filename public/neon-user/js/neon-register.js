@@ -85,8 +85,7 @@ var neonRegister = neonRegister || {};
 				},
 
 				birthdate: {
-					required: true,
-					age: true
+					required: true
 				},
 				
 				password: {
@@ -194,26 +193,27 @@ var neonRegister = neonRegister || {};
 							success: function(response)
 							{
 								
-								var reg_status = response.reg_status;
-								var reg_msg = response.reg_msg;
+								var status = response.status;
+								var msg = response.msg;
 								
 								
 								// Form is fully completed, we update the percentage
 								neonRegister.setPercentage(100);
-								
+								console.log(status);
+								console.log(msg);
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
 								setTimeout(function()
 								{
 
 									// If login is invalid
-									if(reg_status == 'invalid')
+									if(status == 'invalid')
 									{
 										$(".login-page").removeClass('logging-in');
 										neonRegister.resetProgressBar(true);
-										document.getElementById("reg_msg").innerHTML = response.reg_msg;
+										document.getElementById("msg").innerHTML = response.msg;
 									}
-									else if(reg_status == 'success')
+									else if(status == 'success')
 									{
 										// Hide the description title
 										$(".login-page .login-header .description").slideUp();

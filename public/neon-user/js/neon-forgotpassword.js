@@ -140,15 +140,15 @@ var neonForgotPassword = neonForgotPassword || {};
 							success: function(response)
 							{
 								// From response you can fetch the data object retured
-								var forgot_status = response.forgot_status;
-								var forgot_msg = response.forgot_msg;
+								var status = response.status;
+								var msg = response.msg;
 
-								console.log(forgot_status);
-								console.log(forgot_msg);
+								console.log(status);
+								console.log(msg);
 								
 								
 								// Form is fully completed, we update the percentage
-								neonForgotPassword.setPercentage(100);
+								neonForgotPassword.setPercentage(90);
 								
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
@@ -156,14 +156,15 @@ var neonForgotPassword = neonForgotPassword || {};
 								{
 
 									// If login is invalid
-									if(forgot_status == 'invalid')
+									if(status == 'invalid')
 									{
 										$(".login-page").removeClass('logging-in');
 										neonForgotPassword.resetProgressBar(true);
-										document.getElementById("forgot_msg").innerHTML = forgot_msg;
+										document.getElementById("msg").innerHTML = msg;
 									}
-									else if(forgot_status == 'success')
+									else if(status == 'success')
 									{
+										neonForgotPassword.setPercentage(100);
 										// Hide the description title
 										$(".login-page .login-header .description").slideUp();
 										

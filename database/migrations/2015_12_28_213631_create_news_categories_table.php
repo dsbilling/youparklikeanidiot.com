@@ -19,8 +19,8 @@ class CreateNewsCategoriesTable extends Migration {
 			$table->string('name');
 			$table->string('slug');
 
-			$table->integer('creator_id'); //who created it?
-			$table->integer('author_id'); //who updated it?
+			$table->integer('creator_id')->default(0); //who created it?
+			$table->integer('author_id')->default(0); //who updated it?
 
 			$table->timestamps();
 			$table->softDeletes();

@@ -1,4 +1,4 @@
-<?php namespace DPSEI\Providers;
+<?php namespace LANMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -11,7 +11,14 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+
+		// https://laravel-news.com/laravel-5-4-key-too-long-error
+		\Schema::defaultStringLength(191);
+
+		if (\Setting::get('WEB_PROTOCOL') == 'https') {
+			\URL::forceScheme('https');
+		}
+
 	}
 
 	/**
@@ -27,7 +34,7 @@ class AppServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Illuminate\Contracts\Auth\Registrar',
-			'DPSEI\Services\Registrar'
+			'LANMS\Services\Registrar'
 		);
 	}
 

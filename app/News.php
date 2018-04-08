@@ -1,4 +1,4 @@
-<?php namespace DPSEI;
+<?php namespace LANMS;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +16,7 @@ class News extends Model {
 		'category_id',
 		'creator_id',
 		'editor_id',
+		'active'
 	];
 	protected $table = 'news';
 
@@ -36,7 +37,7 @@ class News extends Model {
 	}
 
 	function scopeIsActive($query) {
-		return $query->where('active', '=', 1)->orderBy('published_at', 'desc');
+		return $query->where('active', '=', true)->orderBy('published_at', 'desc');
 	}
 
 }

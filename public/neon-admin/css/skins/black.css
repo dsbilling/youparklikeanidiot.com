@@ -9,7 +9,7 @@ body .profile-info.dropdown .dropdown-menu > li {
   border-bottom-color: transparent;
 }
 body .profile-info.dropdown .dropdown-menu li a {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .profile-info.dropdown .dropdown-menu li a:hover {
   background: #1f1f1f;
@@ -58,7 +58,7 @@ body .page-container .sidebar-menu #main-menu li {
   border-color: #282828;
 }
 body .page-container .sidebar-menu #main-menu li a {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container .sidebar-menu #main-menu li a:hover {
   background-color: #1f1f1f;
@@ -129,16 +129,16 @@ body.login-page {
   color: rgba(255, 255, 255, 0.5);
 }
 body.login-page .login-form .form-group .input-group .form-control::-webkit-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body.login-page .login-form .form-group .input-group .form-control:-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body.login-page .login-form .form-group .input-group .form-control::-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body.login-page .login-form .form-group .input-group .form-control:-ms-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body.login-page .login-form .form-group .input-group {
   background: #222222;
@@ -196,7 +196,7 @@ body .navbar-inverse {
   background: #222222;
 }
 body .navbar-inverse .navbar-nav > li > a {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .navbar-inverse .navbar-nav > .open > a,
 body .navbar-inverse .navbar-nav > .open > a:hover,
@@ -235,10 +235,10 @@ body.login-page .login-form .form-group.lockscreen-input .lockscreen-thumb img {
   border-color: #1f1f1f;
 }
 body.login-page .login-content a {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .input-group-addon {
-  color: #eeeeee;
+  color: #EEE;
 }
 body.page-left-in,
 body.page-right-in,
@@ -247,7 +247,7 @@ body.page-fade {
   background: #222222 !important;
 }
 body .page-container .sidebar-menu #main-menu li#search button i {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .btn-primary.btn-icon i {
   background-color: rgba(0, 0, 0, 0.2);
@@ -274,7 +274,7 @@ body .page-container.horizontal-menu.with-sidebar .sidebar-user-info {
 }
 body .page-container.horizontal-menu header.navbar .navbar-nav > li > a {
   border-right-color: #282828;
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container.horizontal-menu header.navbar .navbar-nav > li.active > a {
   background: #1f1f1f;
@@ -317,56 +317,56 @@ body .page-container.horizontal-menu header.navbar ul.nav > li.sep {
 }
 body .page-container.horizontal-menu header.navbar ul.nav > li > a,
 body .page-container.horizontal-menu header.navbar ul.nav > li > span {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .entypo-menu {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container .sidebar-menu #main-menu li#search .search-input {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container .sidebar-menu #main-menu li#search .search-input::-webkit-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container .sidebar-menu #main-menu li#search .search-input:-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container .sidebar-menu #main-menu li#search .search-input::-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container .sidebar-menu #main-menu li#search .search-input:-ms-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body #chat .chat-group > a {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .conversation-body,
 body #chat .entypo-cancel,
 body #chat .chat-conversation .chat-textarea:after {
-  color: #eeeeee;
+  color: #EEE;
 }
 body #chat .chat-conversation .chat-textarea textarea::-webkit-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body #chat .chat-conversation .chat-textarea textarea:-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body #chat .chat-conversation .chat-textarea textarea::-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body #chat .chat-conversation .chat-textarea textarea:-ms-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container.horizontal-menu header.navbar .navbar-nav > li ul li a {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container.horizontal-menu header.navbar .navbar-inner > ul > li#search button i,
 body .page-container.horizontal-menu header.navbar > ul > li#search button i {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .page-container.sidebar-collapsed .sidebar-menu #main-menu > li.has-sub:hover.has-sub > a:hover,
 body .page-container.sidebar-collapsed .sidebar-menu #main-menu > li:hover.has-sub > a:hover {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .panel-invert > .panel-heading,
 body .modal.invert .modal-dialog .modal-content .modal-header,
@@ -377,7 +377,7 @@ body .modal.invert .modal-dialog .modal-content .modal-footer {
 body .panel-invert > .panel-body,
 body .modal.invert .modal-dialog .modal-content {
   background: #222222;
-  color: #eeeeee;
+  color: #EEE;
 }
 body .modal.invert .modal-dialog .modal-content {
   border-color: #222222;
@@ -401,7 +401,7 @@ body a.list-group-item.active:focus {
 body a.list-group-item.active .list-group-item-text,
 body a.list-group-item.active:hover .list-group-item-text,
 body a.list-group-item.active:focus .list-group-item-text {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .popover.popover-primary {
   background-color: #222222;
@@ -469,7 +469,7 @@ body .popover.popover-secondary.left .arrow:after {
 }
 body .tooltip.tooltip-primary .tooltip-inner {
   background-color: #222222;
-  color: #eeeeee;
+  color: #EEE;
 }
 body .tooltip.tooltip-primary.top .tooltip-arrow {
   border-top-color: #222222;
@@ -497,7 +497,7 @@ body .tooltip.tooltip-primary.bottom-right .tooltip-arrow {
 }
 body .tooltip.tooltip-secondary .tooltip-inner {
   background-color: #ffba00;
-  color: #eeeeee;
+  color: #EEE;
 }
 body .tooltip.tooltip-secondary.top .tooltip-arrow {
   border-top-color: #ffba00;
@@ -525,17 +525,17 @@ body .tooltip.tooltip-secondary.bottom-right .tooltip-arrow {
 }
 body .horizontal-menu header.navbar .navbar-inner > ul > li#search .search-input::-webkit-input-placeholder,
 body .horizontal-menu header.navbar > ul > li#search .search-input::-webkit-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .horizontal-menu header.navbar .navbar-inner > ul > li#search .search-input:-moz-placeholder,
 body .horizontal-menu header.navbar > ul > li#search .search-input:-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .horizontal-menu header.navbar .navbar-inner > ul > li#search .search-input::-moz-placeholder,
 body .horizontal-menu header.navbar > ul > li#search .search-input::-moz-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }
 body .horizontal-menu header.navbar .navbar-inner > ul > li#search .search-input:-ms-input-placeholder,
 body .horizontal-menu header.navbar > ul > li#search .search-input:-ms-input-placeholder {
-  color: #eeeeee;
+  color: #EEE;
 }

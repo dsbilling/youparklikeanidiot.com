@@ -1,4 +1,4 @@
-<?php namespace DPSEI\Http\Middleware;
+<?php namespace LANMS\Http\Middleware;
 
 use Closure;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;

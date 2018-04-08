@@ -7,7 +7,8 @@
 	
 	<ol class="breadcrumb 2" >
 		<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
-		<li><a href="{{ route('account') }}">Dashboard</a></li>
+		<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+		<li><a href="{{ route('account') }}">Account</a></li>
 		<li class="active"><strong>Change Password</strong></li>
 	</ol>
 
@@ -52,24 +53,20 @@
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
 									<input class="form-control" type="password" name="password_confirmation" id="password_confirmation" placeholder="">
+									<span class="input-group-btn"><button type="submit" class="btn btn-warning"><i class="fa fa-asterisk"></i> Change Password</button></span>
 								</div>
 								@if($errors->has('password_confirmation'))
 									<p class="text-danger">{{ $errors->first('password_confirmation') }}</p>
 								@endif
 							</div>
 						</div>
-					
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					</div>
 					
 				</div>
 			
 			</div>
 
-		</div>
-
-		<div class="form-group default-padding">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<button type="submit" class="btn btn-warning"><i class="fa fa-asterisk"></i> Change Password</button>
 		</div>
 					
 	</form>

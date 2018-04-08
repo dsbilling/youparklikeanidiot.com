@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use DPSEI\News;
-use DPSEI\NewsCategory;
+use LANMS\News;
+use LANMS\NewsCategory;
 
 class NewsSeeder extends Seeder  {
 
@@ -19,6 +19,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -27,6 +28,7 @@ News::create(array(
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -39,6 +41,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -51,6 +54,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -63,6 +67,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -75,6 +80,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -87,6 +93,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -99,6 +106,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -111,6 +119,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -123,6 +132,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -135,6 +145,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -147,6 +158,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -159,6 +171,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -171,6 +184,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -183,6 +197,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 News::create(array(
 			'title' 		=> 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
@@ -195,6 +210,7 @@ Quisque magna sapien, suscipit vel enim ac, hendrerit bibendum sem. Vivamus ut d
 			'editor_id'		=> 2,
 			'author_id'		=> 1,
 			'category_id'	=> 1,
+			'published_at' 	=> \DB::raw('now()'),
 		));
 
 		NewsCategory::create([

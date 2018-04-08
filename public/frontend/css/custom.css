@@ -42,3 +42,14 @@ hr {
 	border: 0;
 	border-top: 1px solid #eee;
 }
+
+.logo img {
+	width: auto !important;
+	height: auto !important;
+	max-width: 600px !important;
+	max-height: 150px !important;
+}
+
+.text-danger {
+    color: #ac1818;
+}

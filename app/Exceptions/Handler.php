@@ -1,6 +1,8 @@
-<?php namespace DPSEI\Exceptions;
+<?php namespace LANMS\Exceptions;
 
 use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler {
@@ -11,98 +13,69 @@ class Handler extends ExceptionHandler {
 	 * @var array
 	 */
 	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException'
+		\Illuminate\Auth\AuthenticationException::class,
+		\Illuminate\Auth\Access\AuthorizationException::class,
+		\Symfony\Component\HttpKernel\Exception\HttpException::class,
+		\Illuminate\Database\Eloquent\ModelNotFoundException::class,
+		\Illuminate\Session\TokenMismatchException::class,
+		\Illuminate\Validation\ValidationException::class,
 	];
+	private $sentryID;
 
 	/**
 	 * Report or log an exception.
 	 *
 	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
 	 *
-	 * @param  \Exception  $e
+	 * @param  \Exception  $exception
 	 * @return void
 	 */
-	public function report(Exception $e)
+	public function report(Exception $exception)
 	{
-		return parent::report($e);
-
-		if(!Config::get('app.debug')) {
-			$this->sendErrorEmail(Request::instance(), $e);
+		if (!config('app.debug') && app()->bound('sentry') && $this->shouldReport($exception)) {
+			app('sentry')->captureException($exception);
 		}
+		parent::report($exception);
 	}
-
-	 /**
-     * Send an error email
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
-     * @return void
-     */
-    protected function sendErrorEmail($request, $e)
-    {
-        $code = $this->errorCodeFromException($e);
-
-        $data = [
-            'exception' 	=> (string)$e,
-            'code'      	=> $code,
-            'url'       	=> $request->fullUrl(),
-            'loggedIn'  	=> \Sentinel::check(),
-            'remoteIP'  	=> $request->getClientIp(),
-
-			'refferalurl'   => \URL::previous(),
-			'WEB_DOMAIN'    => \Setting::get('WEB_DOMAIN'),
-			'APP_NAME'      => \Setting::get('APP_NAME'),
-			'APP_VERSION'   => \Setting::get('APP_VERSION').' '.Setting::get('APP_VERSION_TYPE'),
-        ];
-
-        \Mail::send('emails.error', $data, function($message) use ($code)
-        {
-            $message->to(\Setting::get('MAIL_DEBUG_EMAIL'), \Setting::get('MAIL_DEBUG_EMAIL_NAME'));
-            $message->subject(\Setting::get('APP_NAME')." Error on ".\Setting::get('WEB_DOMAIN'));
-        }); 
-    }
-
-
-    /**
-     * Get the exception code
-     *
-     * @param \Exception $e
-     * @return string
-     */
-    protected function errorCodeFromException(Exception $e)
-    {
-        if ($this->isHttpException($e)) {
-            return $e->getStatusCode();
-        }
-        return $e->getCode();
-    }
 
 
 	/**
 	 * Render an exception into an HTTP response.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Exception  $e
+	 * @param  \Exception  $exception
 	 * @return \Illuminate\Http\Response
 	 */
-	public function render($request, Exception $e)
+	public function render($request, Exception $exception)
 	{
-		if($e instanceof NotFoundHttpException)
+		if($exception instanceof NotFoundHttpException)
 		{
 			return view('errors.404');
 		}
-		return parent::render($request, $e);
 
-		/*if($e instanceof NotFoundHttpException)
-		{
-			return view('errors.404');
+		// Convert all non-http exceptions to a proper 500 http exception
+        // if we don't do this exceptions are shown as a default template
+        // instead of our own view in resources/views/errors/500.blade.php
+        if (!config('app.debug') && $this->shouldReport($exception) && !$this->isHttpException($exception)) {
+            $exception = new HttpException(500, 'Whoops!');
+        }
+
+		return parent::render($request, $exception);
+	}
+	
+	/**
+	 * Convert an authentication exception into an unauthenticated response.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Illuminate\Auth\AuthenticationException  $exception
+	 * @return \Illuminate\Http\Response
+	 */
+	protected function unauthenticated($request, AuthenticationException $exception)
+	{
+		if ($request->expectsJson()) {
+			return response()->json(['error' => 'Unauthenticated.'], 401);
 		}
-		if (view()->exists('errors.'.$e->getStatusCode()))
-        {
-			return parent::render($request, $e);
-		} else {
-			return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
-		}*/
+		return redirect()->guest(route('login'));
 	}
 
 }

@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Sentinel
- * @version    2.0.9
+ * @version    2.0.17
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -26,11 +26,12 @@ use Cartalyst\Sentinel\Checkpoints\CheckpointInterface;
 use Cartalyst\Sentinel\Persistences\PersistenceRepositoryInterface;
 use Cartalyst\Sentinel\Reminders\ReminderRepositoryInterface;
 use Cartalyst\Sentinel\Roles\RoleRepositoryInterface;
+use Cartalyst\Sentinel\Throttling\ThrottleRepositoryInterface;
 use Cartalyst\Sentinel\Users\UserInterface;
 use Cartalyst\Sentinel\Users\UserRepositoryInterface;
 use Cartalyst\Support\Traits\EventTrait;
 use Closure;
-use Illuminate\Events\Dispatcher;
+use Illuminate\Contracts\Events\Dispatcher;
 use InvalidArgumentException;
 use RuntimeException;
 
@@ -116,13 +117,20 @@ class Sentinel
     protected $basicResponse;
 
     /**
+     * The Throttle repository.
+     *
+     * @var \Cartalyst\Sentinel\Throttling\ThrottleRepositoryInterface
+     */
+    protected $throttle;
+
+    /**
      * Create a new Sentinel instance.
      *
      * @param  \Cartalyst\Sentinel\Persistences\PersistenceRepositoryInterface  $persistence
      * @param  \Cartalyst\Sentinel\Users\UserRepositoryInterface  $users
      * @param  \Cartalyst\Sentinel\Roles\RoleRepositoryInterface  $roles
      * @param  \Cartalyst\Sentinel\Activations\ActivationRepositoryInterface  $activations
-     * @param  \Illuminate\Events\Dispatcher  $dispatcher
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      * @return void
      */
     public function __construct(
@@ -621,6 +629,19 @@ class Sentinel
     }
 
     /**
+     * Removes the given checkpoints.
+     *
+     * @param  array  $checkpoints
+     * @return void
+     */
+    public function removeCheckpoints(array $checkpoints = [])
+    {
+        foreach ($checkpoints as $checkpoint) {
+            $this->removeCheckpoint($checkpoint);
+        }
+    }
+
+    /**
      * Cycles through all the registered checkpoints for a user. Checkpoints
      * may throw their own exceptions, however, if just one returns false,
      * the cycle fails.
@@ -778,6 +799,27 @@ class Sentinel
     public function setReminderRepository(ReminderRepositoryInterface $reminders)
     {
         $this->reminders = $reminders;
+    }
+
+    /**
+     * Returns the throttle repository.
+     *
+     * @return \Cartalyst\Sentinel\Throttling\ThrottleRepositoryInterface
+     */
+    public function getThrottleRepository()
+    {
+        return $this->throttle;
+    }
+
+    /**
+     * Sets the throttle repository.
+     *
+     * @param  \Cartalyst\Sentinel\Throttling\ThrottleRepositoryInterface  $throttle
+     * @return void
+     */
+    public function setThrottleRepository(ThrottleRepositoryInterface $throttle)
+    {
+        $this->throttle = $throttle;
     }
 
     /**

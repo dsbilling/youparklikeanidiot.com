@@ -11,8 +11,8 @@
 	<title>@yield('title') - {{ Setting::get('WEB_NAME') }}</title>
 
 	<link rel="stylesheet" href="{{ Theme::url('js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 	<link rel="stylesheet" href="{{ Theme::url('css/font-icons/entypo/css/entypo.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/neon-core.css') }}">
@@ -42,8 +42,9 @@
 		<div class="sidebar-menu-inner">
 			<header class="logo-env">
 				<div class="logo">
-					<a href="{{ route('account') }}"><img src="{{ Setting::get('WEB_LOGO') }}" alt="" width="120"></a>
+					<a href="{{ route('dashboard') }}"><img src="{{ Setting::get('WEB_LOGO') }}" alt="" width="120"></a>
 				</div>
+				<div class="sidebar-collapse"> <a href="#" class="sidebar-collapse-icon"><i class="entypo-menu"></i> </a> </div>
 				<div class="sidebar-mobile-menu visible-xs">
 					<a href="#" class="with-animation">
 						<i class="entypo-menu"></i>
@@ -52,10 +53,19 @@
 			</header>
 			<div id="main-menu" class="main-menu">
 				<li class="@if(Request::is('admin')){{'active'}} @endif">
-					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Admin Dashboard</span></a>
+					<a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i> <span class="title">Dashboard</span></a>
 				</li>
 				<li class="@if(Request::is('admin/members')){{'active'}} @endif">
 					<a href="{{ route('admin') }}"><i class="fa fa-users"></i> <span class="title">Members</span></a>
+				</li>
+				<li class="@if(Request::is('admin/crew*')){{'active opened'}} @endif has-sub root-level">
+					<a><i class="fa fa-user-md"></i> <span class="title">Crew</span></a>
+					<ul>
+						<li class="@if(Request::is('admin/crew/categories*')){{'active'}} @endif"><a href="{{ route('admin-crew-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
+						<li class="@if(Request::is('admin/crew*') && !Request::is('admin/crew/categories*') && !Request::is('admin/crew/skill*')){{'active'}} @endif"><a href="{{ route('admin-crew') }}"><i class="fa fa-user-md"></i> <span class="title">Members</span></a></li>
+						<li class="@if(Request::is('admin/crew/skill*') && !Request::is('admin/crew/skill/attachment*')){{'active'}} @endif"><a href="{{ route('admin-crew-skill') }}"><i class="fa fa-briefcase"></i> <span class="title">Skills</span></a></li>
+						<li class="@if(Request::is('admin/crew/skill/attachment*')){{'active'}} @endif"><a href="{{ route('admin-crew-skill-attachment') }}"><i class="fa fa-paperclip"></i> <span class="title">Skill Attachment</span></a></li>
+					</ul>
 				</li>
 				<li class="@if(Request::is('admin/news*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-newspaper-o"></i> <span class="title">News</span></a>
@@ -64,24 +74,38 @@
 						<li class="@if(Request::is('admin/news/categories*')){{'active'}} @endif"><a href="{{ route('admin-news-category') }}"><i class="fa fa-tag"></i> <span class="title">Categories</span></a></li>
 					</ul>
 				</li>
-				<li><a href="#"><i class="fa fa-shopping-basket"></i> <span class="title">Webshop</span></a></li>
 				<li class="@if(Request::is('admin/seating*')){{'active opened'}} @endif has-sub root-level">
 					<a><i class="fa fa-street-view"></i> <span class="title">Seating</span></a>
 					<ul>
-						<li class="@if(Request::is('admin/seating/reservation*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper-o"></i> <span class="title">Reservations</span></a></li>
-						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-check"></i> <span class="title">Check-in</span></a></li>
+						<li class="@if(Request::is('admin/seating/row*')){{'active'}} @endif"><a href="{{ route('admin-seating-rows') }}"><i class="fa fa-align-justify"></i> <span class="title">Rows</span></a></li>
+						<li class="@if(Request::is('admin/seating/seat*')){{'active'}} @endif"><a href="{{ route('admin-seating-seats') }}"><i class="fa fa-wheelchair"></i> <span class="title">Seats</span></a></li>
+						<li class="@if(Request::is('admin/seating/reservation*') && !Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-reservations') }}"><i class="fa fa-hand-paper-o"></i> <span class="title">Reservations</span></a></li>
+						<li class="@if(Request::is('admin/seating/checkin*') && !Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin') }}"><i class="fa fa-ticket"></i> <span class="title">Check-in</span></a></li>
 						<li class="@if(Request::is('admin/seating/checkin/visitor*')){{'active'}} @endif"><a href="{{ route('admin-seating-checkin-visitor') }}"><i class="fa fa-reddit-alien"></i> <span class="title">Visitor Check-in</span></a></li>
+						<li class="@if(Request::is('admin/seating/reservation/brokenband*')){{'active'}} @endif"><a href="{{ route('admin-seating-brokenband') }}"><i class="fa fa-chain-broken"></i> <span class="title">Broken Band</span></a></li>
+						<li class="@if(Request::is('admin/seating/print')){{'active'}} @endif"><a href="{{ route('admin-seating-print') }}"><i class="fa fa-print"></i> <span class="title">Print Seats</span></a></li>
 					</ul>
 				</li>
-				<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>
+				{{--<li><a href="#"><i class="fa fa-sitemap"></i> <span class="title">Compo</span></a></li>--}}
 				<li class="@if(Request::is('admin/pages')){{'active'}} @endif">
 					<a href="{{ route('admin-pages') }}"><i class="fa fa-file-text"></i> <span class="title">Pages</span></a>
 				</li>
-				<li class="@if(Request::is('admin/print')){{'active'}} @endif">
-					<a href="{{ route('admin-print') }}"><i class="fa fa-print"></i> <span class="title">Print</span></a>
+				<li class="@if(Request::is('admin/info')){{'active'}} @endif">
+					<a href="{{ route('admin-info') }}"><i class="fa fa-info-circle"></i> <span class="title">Info</span></a>
 				</li>
-				<li class="@if(Request::is('admin/settings*')){{'active opened'}} @endif">
-					<a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a>
+				<li class="@if(Request::is('admin/sponsor')){{'active'}} @endif">
+					<a href="{{ route('admin-sponsor') }}"><i class="fa fa-money"></i> <span class="title">Sponsor</span></a>
+				</li>
+				<li class="@if(Request::is('admin/system*')){{'active opened'}} @endif has-sub root-level">
+					<a><i class="fa fa-microchip"></i> <span class="title">System</span></a>
+					<ul>
+						<li class="@if(Request::is('admin/system/whatsnew')){{'active'}} @endif"><a href="{{ route('admin-whatsnew') }}"><i class="fa fa-lightbulb-o"></i> <span class="title">What's New?</span></a></li>
+						@if(Sentinel::inRole('superadmin'))
+							<li class="@if(Request::is('admin/system/settings*')){{'active'}} @endif"><a href="{{ route('admin-settings') }}"><i class="fa fa-cog"></i> <span class="title">Settings</span></a></li>
+							<li class="@if(Request::is('admin/system/logs*')){{'active'}} @endif"><a href="{{ route('admin-logs') }}"><i class="fa fa-calendar "></i> <span class="title">Logs</span></a></li>
+							<li class="@if(Request::is('admin/system/license*')){{'active'}} @endif"><a href="{{ route('admin-license') }}"><i class="fa fa-id-card-o"></i> <span class="title">License Status</span></a></li>
+						@endif
+					</ul>
 				</li>
 			</div>
 		</div>
@@ -122,6 +146,12 @@
 		
 		<hr />
 
+		@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")
+			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Unlicensed version of this software! Please check your license key on the <a href="{{ route('admin-license') }}">License Status page</a>.</div>
+		@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")
+			<div class="alert alert-danger" role="alert"><strong>IMPORTANT!</strong> Your license has expired! Please contact your provider.</div>
+		@endif
+
 		@yield('content')
 
 		<div class="row">
@@ -130,11 +160,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							<p>&copy; {{ Setting::get('WEB_COPYRIGHT') }}</p>
-							<p class="text-muted"><small>Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+							<p class="text-muted"><small><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
 						</div>
 						<div class="col-md-6 text-right">
 							<p>
 								<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+								<br>
+								@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
 							</p>
 							<p>
 								@if(Config::get('app.debug'))
@@ -169,11 +201,11 @@
 		var opts = {
 			"closeButton": true,
 			"debug": false,
-			"positionClass": "toast-bottom-right",
+			"positionClass": "toast-bottom-left",
 			"onclick": null,
 			"showDuration": "300",
 			"hideDuration": "1000",
-			"timeOut": "5000",
+			"timeOut": "10000",
 			"extendedTimeOut": "1000",
 			"showEasing": "swing",
 			"hideEasing": "linear",

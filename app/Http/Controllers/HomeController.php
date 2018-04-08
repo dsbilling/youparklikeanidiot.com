@@ -1,7 +1,7 @@
-<?php namespace DPSEI\Http\Controllers;
+<?php namespace LANMS\Http\Controllers;
 
-use DPSEI\Page;
-use DPSEI\News;
+use LANMS\Page;
+use LANMS\News;
 
 class HomeController extends Controller {
 

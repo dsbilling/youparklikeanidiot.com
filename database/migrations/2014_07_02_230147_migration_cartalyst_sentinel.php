@@ -103,9 +103,9 @@ class MigrationCartalystSentinel extends Migration
 			$table->timestamps();
 
 			$table->string('username');
-			$table->string('gender');
-			$table->string('location');
-			$table->string('occupation');
+			$table->string('gender')->nullable();
+			$table->string('location')->nullable();
+			$table->string('occupation')->nullable();
 			$table->date('birthdate')->nullable();
 			$table->timestamp('last_activity')->nullable();
 

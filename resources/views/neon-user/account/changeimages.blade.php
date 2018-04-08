@@ -1,14 +1,15 @@
 @extends('layouts.main')
-@section('title', 'Change Images')
+@section('title', 'Change Profile Images')
 
 @section('content')
 <div class="container">
-	<h2>Account Settings</h2>
+	<h2>Change Profile Images</h2>
 	
 	<ol class="breadcrumb 2" >
 		<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
-		<li><a href="{{ route('account') }}">Dashboard</a></li>
-		<li class="active"><strong>Change Images</strong></li>
+		<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+		<li><a href="{{ route('account') }}">Account</a></li>
+		<li class="active"><strong>Change Profile Images</strong></li>
 	</ol>
 
 	<div class="form-horizontal form-groups-bordered validate">

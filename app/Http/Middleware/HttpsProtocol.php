@@ -1,4 +1,4 @@
-<?php namespace DPSEI\Http\Middleware;
+<?php namespace LANMS\Http\Middleware;
 
 use Closure;
 
@@ -15,11 +15,11 @@ class HttpsProtocol {
 	 */
 	public function handle($request, Closure $next)
 	{
-		/*if(Setting::get('WEB_PROTOCOL') <> null) {
+		if(Setting::get('WEB_PROTOCOL') <> null) {
 			if (!$request->secure() && Setting::get('WEB_PROTOCOL') === 'https') {
 				return redirect()->secure($request->getRequestUri());
 			} 
-		}*/
+		}
 
 		return $next($request); 
 	}

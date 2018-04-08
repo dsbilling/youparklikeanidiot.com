@@ -112,7 +112,7 @@ h6,
   }
 }
 .nav-tabs {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid #ddd;
 }
 .nav-tabs > li {
   float: right;
@@ -236,7 +236,7 @@ h6,
   border-top-left-radius: 0;
 }
 .input-group-addon:first-child {
-  border-right: 1px solid #cccccc;
+  border-right: 1px solid #ccc;
   border-left: 0px;
 }
 .input-group .form-control:last-child,
@@ -250,7 +250,7 @@ h6,
   border-top-right-radius: 0;
 }
 .input-group-addon:last-child {
-  border-left: 1px solid #cccccc;
+  border-left: 1px solid #ccc;
   border-right: 0px;
 }
 .input-group-btn:first-child > .btn {
@@ -946,10 +946,8 @@ th {
   margin-right: 0px;
 }
 .carousel-inner > .item {
-  -webkit-transition: 0.6s, ease-in-out, left;
-  -moz-transition: 0.6s, ease-in-out, left;
-  -o-transition: 0.6s, ease-in-out, left;
-  transition: 0.6s, ease-in-out, left;
+  -moz-transition: 0.6s ease-in-out left;
+  -o-transition: 0.6s ease-in-out left;
   -webkit-transition: 0.6s ease-in-out left;
   transition: 0.6s ease-in-out left;
 }
@@ -1041,20 +1039,20 @@ th {
   padding-right: 0;
 }
 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-  -webkit-border-radius: 0px 4px 4px 0px;
+  -webkit-border-radius: 0 4px 4px 0;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 0px 4px 4px 0px;
+  -moz-border-radius: 0 4px 4px 0;
   -moz-background-clip: padding;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 0 4px 4px 0;
   background-clip: padding-box;
 }
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
-  -webkit-border-radius: 4px 0px 0px 4px;
+  -webkit-border-radius: 4px 0 0 4px;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 4px 0px 0px 4px;
+  -moz-border-radius: 4px 0 0 4px;
   -moz-background-clip: padding;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px 0 0 4px;
   background-clip: padding-box;
 }
 #chat .chat-header .chat-close {
@@ -1125,20 +1123,20 @@ th {
   float: left;
 }
 .calendar-env .calendar-body .fc-header .fc-button.fc-corner-left {
-  -webkit-border-radius: 0px 4px 4px 0px;
+  -webkit-border-radius: 0 4px 4px 0;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 0px 4px 4px 0px;
+  -moz-border-radius: 0 4px 4px 0;
   -moz-background-clip: padding;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 0 4px 4px 0;
   background-clip: padding-box;
   border-left: 1px solid #ebebeb;
 }
 .calendar-env .calendar-body .fc-header .fc-button.fc-corner-right {
-  -webkit-border-radius: 4px 0px 0px 4px;
+  -webkit-border-radius: 4px 0 0 4px;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 4px 0px 0px 4px;
+  -moz-border-radius: 4px 0 0 4px;
   -moz-background-clip: padding;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px 0 0 4px;
   background-clip: padding-box;
   border-right: 0;
 }
@@ -1200,11 +1198,11 @@ th {
   float: left;
 }
 .search-results-env .search-bar .form-control + .input-group-btn {
-  -webkit-border-radius: 0px;
+  -webkit-border-radius: 0;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 0px;
+  -moz-border-radius: 0;
   -moz-background-clip: padding;
-  border-radius: 0px;
+  border-radius: 0;
   background-clip: padding-box;
 }
 .search-results-env .search-bar .form-control + .input-group-btn {
@@ -1324,19 +1322,19 @@ blockquote.blockquote-danger {
 }
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
-  -webkit-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0 3px 3px 0;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0 3px 3px 0;
   -moz-background-clip: padding;
-  border-radius: 0px 3px 3px 0px;
+  border-radius: 0 3px 3px 0;
   background-clip: padding-box;
 }
 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-  -webkit-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0 0 3px;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0 0 3px;
   -moz-background-clip: padding;
-  border-radius: 3px 0px 0px 3px;
+  border-radius: 3px 0 0 3px;
   background-clip: padding-box;
 }
 .mail-env .mail-body .mail-info .mail-sender.mail-date,
@@ -1410,19 +1408,19 @@ body .select2-container .select2-choice > .select2-chosen {
   direction: rtl;
 }
 .input-group > .twitter-typeahead:first-child .typeahead {
-  -webkit-border-radius: 0px 3px 3px 0px;
+  -webkit-border-radius: 0 3px 3px 0;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 0px 3px 3px 0px;
+  -moz-border-radius: 0 3px 3px 0;
   -moz-background-clip: padding;
-  border-radius: 0px 3px 3px 0px;
+  border-radius: 0 3px 3px 0;
   background-clip: padding-box;
 }
 .input-group > .twitter-typeahead:last-child .typeahead {
-  -webkit-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 3px 0 0 3px;
   -webkit-background-clip: padding-box;
-  -moz-border-radius: 3px 0px 0px 3px;
+  -moz-border-radius: 3px 0 0 3px;
   -moz-background-clip: padding;
-  border-radius: 3px 0px 0px 3px;
+  border-radius: 3px 0 0 3px;
   background-clip: padding-box;
 }
 .input-spinner {
@@ -1577,8 +1575,8 @@ body .cke_toolbar_break {
 .page-container.sidebar-is-collapsing .sidebar-menu #main-menu li > a i {
   -webkit-transform: translateX(-219px);
   -moz-transform: translateX(-219px);
-  -o-transform: translateX(-219px);
   -ms-transform: translateX(-219px);
+  -o-transform: translateX(-219px);
   transform: translateX(-219px);
   -moz-transition: all 300ms;
   -o-transition: all 300ms;
@@ -1586,6 +1584,7 @@ body .cke_toolbar_break {
   transition: all 300ms;
 }
 .page-container.sidebar-is-collapsing .sidebar-menu #main-menu li > a:before {
+  zoom: 1;
   -webkit-opacity: 0;
   -moz-opacity: 0;
   opacity: 0;

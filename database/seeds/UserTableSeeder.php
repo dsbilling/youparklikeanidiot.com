@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use DPSEI\User;
+use LANMS\User;
   
 class UserTableSeeder extends Seeder {
   
@@ -81,6 +81,21 @@ class UserTableSeeder extends Seeder {
 
 		$role->addPermission('admin');//admin panel access
 
+		$role->addPermission('admin.crew.create');
+		$role->addPermission('admin.crew.update');
+		$role->addPermission('admin.crew.destroy');
+		$role->addPermission('admin.crew.restore');
+
+		$role->addPermission('admin.crew-category.create');
+		$role->addPermission('admin.crew-category.update');
+		$role->addPermission('admin.crew-category.destroy');
+		$role->addPermission('admin.crew-category.restore');
+
+		$role->addPermission('admin.crew-skill.create');
+		$role->addPermission('admin.crew-skill.update');
+		$role->addPermission('admin.crew-skill.destroy');
+		$role->addPermission('admin.crew-skill.restore');
+
 		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy');
@@ -96,7 +111,40 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.pages.destroy');
 		$role->addPermission('admin.pages.restore');
 
+		$role->addPermission('admin.seating.row.create');
+		$role->addPermission('admin.seating.row.update');
+		$role->addPermission('admin.seating.row.destroy');
+		$role->addPermission('admin.seating.row.restore');
+
+		$role->addPermission('admin.seating.seat.create');
+		$role->addPermission('admin.seating.seat.update');
+		$role->addPermission('admin.seating.seat.destroy');
+		$role->addPermission('admin.seating.seat.restore');
+
+		$role->addPermission('admin.reservation.create');
+		$role->addPermission('admin.reservation.update');
+		$role->addPermission('admin.reservation.destroy');
+		$role->addPermission('admin.reservation.restore');
+
+		$role->addPermission('admin.checkin.create');
+		$role->addPermission('admin.checkin.update');
+		$role->addPermission('admin.checkin.destroy');
+		$role->addPermission('admin.checkin.restore');
+
+		$role->addPermission('admin.print.create');
+		$role->addPermission('admin.print.update');
+		$role->addPermission('admin.print.destroy');
+		$role->addPermission('admin.print.restore');
+
+		$role->addPermission('admin.info.update');
+
+		$role->addPermission('admin.sponsor.create');
+		$role->addPermission('admin.sponsor.update');
+		$role->addPermission('admin.sponsor.destroy');
+		$role->addPermission('admin.sponsor.restore');
+
 		$role->addPermission('admin.settings.update');
+		$role->addPermission('admin.license.update');
 
 		$role->save();
 
@@ -104,6 +152,21 @@ class UserTableSeeder extends Seeder {
 		$role = Sentinel::findRoleByName('Administrators');
 
 		$role->addPermission('admin');//admin panel access
+
+		$role->addPermission('admin.crew.create');
+		$role->addPermission('admin.crew.update');
+		$role->addPermission('admin.crew.destroy');
+		$role->addPermission('admin.crew.restore', false);
+
+		$role->addPermission('admin.crew-category.create');
+		$role->addPermission('admin.crew-category.update');
+		$role->addPermission('admin.crew-category.destroy');
+		$role->addPermission('admin.crew-category.restore', false);
+
+		$role->addPermission('admin.crew-skill.create');
+		$role->addPermission('admin.crew-skill.update');
+		$role->addPermission('admin.crew-skill.destroy');
+		$role->addPermission('admin.crew-skill.restore', false);
 
 		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');
@@ -120,7 +183,40 @@ class UserTableSeeder extends Seeder {
 		$role->addPermission('admin.pages.destroy');
 		$role->addPermission('admin.pages.restore', false);
 
+		$role->addPermission('admin.seating.row.create');
+		$role->addPermission('admin.seating.row.update');
+		$role->addPermission('admin.seating.row.destroy');
+		$role->addPermission('admin.seating.row.restore', false);
+
+		$role->addPermission('admin.seating.seat.create');
+		$role->addPermission('admin.seating.seat.update');
+		$role->addPermission('admin.seating.seat.destroy');
+		$role->addPermission('admin.seating.seat.restore', false);
+
+		$role->addPermission('admin.reservation.create');
+		$role->addPermission('admin.reservation.update');
+		$role->addPermission('admin.reservation.destroy');
+		$role->addPermission('admin.reservation.restore', false);
+
+		$role->addPermission('admin.checkin.create');
+		$role->addPermission('admin.checkin.update');
+		$role->addPermission('admin.checkin.destroy');
+		$role->addPermission('admin.checkin.restore', false);
+
+		$role->addPermission('admin.print.create');
+		$role->addPermission('admin.print.update');
+		$role->addPermission('admin.print.destroy');
+		$role->addPermission('admin.print.restore', false);
+
+		$role->addPermission('admin.info.update');
+
+		$role->addPermission('admin.sponsor.create');
+		$role->addPermission('admin.sponsor.update');
+		$role->addPermission('admin.sponsor.destroy');
+		$role->addPermission('admin.sponsor.restore', false);
+
 		$role->addPermission('admin.settings.update', false);
+		$role->addPermission('admin.license.update', false);
 
 		$role->save();
 
@@ -129,22 +225,70 @@ class UserTableSeeder extends Seeder {
 
 		$role->addPermission('admin');//admin panel access
 
-		$role->addPermission('admin.news.create', false);
+		$role->addPermission('admin.crew.create');
+		$role->addPermission('admin.crew.update');
+		$role->addPermission('admin.crew.destroy', false);
+		$role->addPermission('admin.crew.restore', false);
+
+		$role->addPermission('admin.crew-category.create');
+		$role->addPermission('admin.crew-category.update');
+		$role->addPermission('admin.crew-category.destroy', false);
+		$role->addPermission('admin.crew-category.restore', false);
+
+		$role->addPermission('admin.crew-skill.create');
+		$role->addPermission('admin.crew-skill.update');
+		$role->addPermission('admin.crew-skill.destroy', false);
+		$role->addPermission('admin.crew-skill.restore', false);
+
+		$role->addPermission('admin.news.create');
 		$role->addPermission('admin.news.update');
 		$role->addPermission('admin.news.destroy', false);
 		$role->addPermission('admin.news.restore', false);
 
-		$role->addPermission('admin.newscategory.create', false);
-		$role->addPermission('admin.newscategory.update', false);
+		$role->addPermission('admin.newscategory.create');
+		$role->addPermission('admin.newscategory.update');
 		$role->addPermission('admin.newscategory.destroy', false);
 		$role->addPermission('admin.newscategory.restore', false);
 
-		$role->addPermission('admin.pages.create', false);
+		$role->addPermission('admin.pages.create');
 		$role->addPermission('admin.pages.update');
 		$role->addPermission('admin.pages.destroy', false);
 		$role->addPermission('admin.pages.restore', false);
 
+		$role->addPermission('admin.seating.row.create');
+		$role->addPermission('admin.seating.row.update');
+		$role->addPermission('admin.seating.row.destroy', false);
+		$role->addPermission('admin.seating.row.restore', false);
+
+		$role->addPermission('admin.reservation.create');
+		$role->addPermission('admin.reservation.update');
+		$role->addPermission('admin.reservation.destroy', false);
+		$role->addPermission('admin.reservation.restore', false);
+
+		$role->addPermission('admin.seating.seat.create');
+		$role->addPermission('admin.seating.seat.update');
+		$role->addPermission('admin.seating.seat.destroy', false);
+		$role->addPermission('admin.seating.seat.restore', false);
+
+		$role->addPermission('admin.checkin.create');
+		$role->addPermission('admin.checkin.update');
+		$role->addPermission('admin.checkin.destroy', false);
+		$role->addPermission('admin.checkin.restore', false);
+
+		$role->addPermission('admin.print.create');
+		$role->addPermission('admin.print.update');
+		$role->addPermission('admin.print.destroy', false);
+		$role->addPermission('admin.print.restore', false);
+
+		$role->addPermission('admin.info.update', false);
+
+		$role->addPermission('admin.sponsor.create');
+		$role->addPermission('admin.sponsor.update');
+		$role->addPermission('admin.sponsor.destroy', false);
+		$role->addPermission('admin.sponsor.restore', false);
+
 		$role->addPermission('admin.settings.update', false);
+		$role->addPermission('admin.license.update', false);
 
 		$role->save();
 

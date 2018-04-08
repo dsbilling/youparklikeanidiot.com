@@ -1,15 +1,15 @@
-<?php namespace DPSEI\Http\Controllers\Member;
+<?php namespace LANMS\Http\Controllers\Member;
 
-use DPSEI\Http\Requests;
-use DPSEI\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
-use DPSEI\Address;
+use LANMS\Address;
 
-use DPSEI\Http\Requests\Member\AddressCreateRequest;
+use LANMS\Http\Requests\Member\AddressCreateRequest;
 
 class AddressBookController extends Controller {
 
@@ -21,7 +21,7 @@ class AddressBookController extends Controller {
 	public function index()
 	{
 		$addresses = Sentinel::getUser()->addresses;
-		return view('addressbook.index')->with('addresses', $addresses);
+		return view('account.addressbook.index')->with('addresses', $addresses);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class AddressBookController extends Controller {
 	 */
 	public function create()
 	{
-		return view('addressbook.create');
+		return view('account.addressbook.create');
 	}
 
 	/**
@@ -47,18 +47,18 @@ class AddressBookController extends Controller {
 		];
 
 		if (Sentinel::authenticate($credentials)) {
-			$primary = 0;
-			if($request->get('primary') == "on") {
-				$primary = 1;
+			$main_address = 0;
+			if($request->get('main_address') == "on") {
+				$main_address = 1;
 			}
 
-			if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('primary', '=', 1)->count() == 0) {
-				$primary = 1;
+			if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('main_address', '=', 1)->count() == 0) {
+				$main_address = 1;
 			}
 
-			if($primary == 1) {
-				// Set all other addresses to non-primary
-				Address::where('user_id', '=', Sentinel::getUser()->id)->update(['primary' => 0]);
+			if($main_address == 1) {
+				// Set all other addresses to non-main_address
+				Address::where('user_id', '=', Sentinel::getUser()->id)->update(['main_address' => 0]);
 			}
 
 			$address 				= new Address;
@@ -68,7 +68,7 @@ class AddressBookController extends Controller {
 			$address->city 			= $request->get('city');
 			$address->county 		= $request->get('county');
 			$address->country 		= $request->get('country');
-			$address->primary 		= $primary;
+			$address->main_address 		= $main_address;
 			$address->user_id		= Sentinel::getUser()->id;
 
 			$adresssave = $address->save();
@@ -106,7 +106,7 @@ class AddressBookController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['address.'.$id.'.edit'])) {
 			$address = Address::find($id);
-			return view('addressbook.edit')->with($address->toArray());
+			return view('account.addressbook.edit')->with($address->toArray());
 		} else {
 			return Redirect::back()->with('messagetype', 'warning')
 								->with('message', 'You do not have access to this page!');
@@ -130,18 +130,18 @@ class AddressBookController extends Controller {
 
 			if (Sentinel::authenticate($credentials)) {
 
-				$primary = 0;
-				if($request->get('primary') == "on") {
-					$primary = 1;
+				$main_address = 0;
+				if($request->get('main_address') == "on") {
+					$main_address = 1;
 				}
 
-				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('primary', '=', 1)->count() == 0) {
-					$primary = 1;
+				if($main_address == 1) {
+					// Set all other addresses to non-main_address
+					Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '!=', $id)->update(['main_address' => false]);
 				}
 
-				if($primary == 1) {
-					// Set all other addresses to non-primary
-					Address::where('user_id', '=', Sentinel::getUser()->id)->update(['primary' => 0]);
+				if(Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '!=', $id)->where('main_address', '=', 1)->count() < 1) {
+					$main_address = 1;
 				}
 
 				$address 				= Address::find($id);
@@ -151,7 +151,7 @@ class AddressBookController extends Controller {
 				$address->city 			= $request->get('city');
 				$address->county 		= $request->get('county');
 				$address->country 		= $request->get('country');
-				$address->primary 		= $primary;
+				$address->main_address 	= $main_address;
 
 				if($address->save()) {
 					return Redirect::route('account-addressbook')
@@ -192,10 +192,10 @@ class AddressBookController extends Controller {
 
 			$address = Address::find($id);
 			
-			if($address->primary) {
+			if($address->main_address) {
 				$uaddress = Address::where('user_id', '=', Sentinel::getUser()->id)->where('id', '<>', $id)->first();
 				if($uaddress <> null) {
-					$uaddress->primary = 1;
+					$uaddress->main_address = 1;
 					$uaddress->save();
 				}
 			}
@@ -211,7 +211,6 @@ class AddressBookController extends Controller {
 			}
 			//Remove User Permissions
 			$user = Sentinel::getUser();
-			$user->removePermission('address.'.$id.'.destroy');
 			$user->removePermission('address.'.$id.'.destroy');
 			$user->save();
 		} else {

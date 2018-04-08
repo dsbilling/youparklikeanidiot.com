@@ -1,23 +1,14 @@
 <?php
 
-namespace DPSEI\Http\Controllers\Member;
+namespace LANMS\Http\Controllers\Member;
 
-use DPSEI\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Registrar;
-
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
 
-use DPSEI\Act;
+use LANMS\Act;
 
 class AuthController extends Controller {
- 
-	public function __construct(Sentinel $auth, Registrar $registrar) {
- 
-		$this->beforeFilter('csrf', ['on' => ['post']]);
-		$this->middleware('sentinel.guest', ['except' => ['getLogout']]);
-	}
 
 	public function getLogin() {
 		return view('auth.login');
@@ -27,7 +18,7 @@ class AuthController extends Controller {
 		return view('auth.register');
 	}
 	public function getLogout() {
-		Sentinel::logout();
+		\Sentinel::logout();
 		return Redirect::route('home')
 						->with('messagetype', 'success')
 						->with('message', 'You have now been successfully been logged out!');

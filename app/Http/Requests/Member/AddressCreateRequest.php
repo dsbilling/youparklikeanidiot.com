@@ -1,6 +1,6 @@
-<?php namespace DPSEI\Http\Requests\Member;
+<?php namespace LANMS\Http\Requests\Member;
 
-use DPSEI\Http\Requests\Request;
+use LANMS\Http\Requests\Request;
 
 class AddressCreateRequest extends Request {
 

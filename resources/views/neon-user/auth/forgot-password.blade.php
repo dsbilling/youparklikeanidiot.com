@@ -31,7 +31,7 @@
 		
 		<div class="form-login-error">
 			<h3>Reminder Unsuccessful</h3>
-			<p id="forgot_msg">Oooops...</p>
+			<p id="msg">Oooops...</p>
 		</div>
 		
 		<form method="post" role="form" id="form_forgot_password">
@@ -90,5 +90,5 @@
 
 @section('javascript')
 	<script src="{{ Theme::url('js/neon-forgotpassword.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
+	<script src="{{ Theme::url('js/jquery.inputmask.bundle.js') }}"></script>
 @stop

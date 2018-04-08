@@ -4,6 +4,30 @@ return [
 
 	/*
 	|--------------------------------------------------------------------------
+	| Application Name
+	|--------------------------------------------------------------------------
+	|
+	| This value is the name of your application. This value is used when the
+	| framework needs to place the application's name in a notification or
+	| any other location as required by the application or its packages.
+	*/
+	'name' => env('APP_NAME', 'Laravel'),
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application Environment
+	|--------------------------------------------------------------------------
+	|
+	| This value determines the "environment" your application is currently
+	| running in. This may determine how you prefer to configure various
+	| services your application utilizes. Set this in your ".env" file.
+	|
+	*/
+
+	'env' => env('APP_ENV', 'production'),
+
+	/*
+	|--------------------------------------------------------------------------
 	| Application Debug Mode
 	|--------------------------------------------------------------------------
 	|
@@ -13,7 +37,7 @@ return [
 	|
 	*/
 
-	'debug' => env('APP_DEBUG'),
+	'debug' => env('APP_DEBUG', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,7 +50,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://duparkerersomenidiot.dev',
+	'url' => env('APP_URL', 'http://localhost'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,9 +102,9 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY'),
 
-	'cipher' => MCRYPT_RIJNDAEL_128,
+	'cipher' => 'AES-256-CBC',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -95,7 +119,9 @@ return [
 	|
 	*/
 
-	'log' => 'daily',
+	'log' => env('APP_LOG', 'single'),
+
+	'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,46 +139,56 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-		'Illuminate\Auth\AuthServiceProvider',
-		'Illuminate\Bus\BusServiceProvider',
-		'Illuminate\Cache\CacheServiceProvider',
-		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-		'Illuminate\Routing\ControllerServiceProvider',
-		'Illuminate\Cookie\CookieServiceProvider',
-		'Illuminate\Database\DatabaseServiceProvider',
-		'Illuminate\Encryption\EncryptionServiceProvider',
-		'Illuminate\Filesystem\FilesystemServiceProvider',
-		'Illuminate\Foundation\Providers\FoundationServiceProvider',
-		'Illuminate\Hashing\HashServiceProvider',
-		'Illuminate\Mail\MailServiceProvider',
-		'Illuminate\Pagination\PaginationServiceProvider',
-		'Illuminate\Pipeline\PipelineServiceProvider',
-		'Illuminate\Queue\QueueServiceProvider',
-		'Illuminate\Redis\RedisServiceProvider',
-		'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
-		'Illuminate\Session\SessionServiceProvider',
-		'Illuminate\Translation\TranslationServiceProvider',
-		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
+		Illuminate\Auth\AuthServiceProvider::class,
+		Illuminate\Broadcasting\BroadcastServiceProvider::class,
+		Illuminate\Bus\BusServiceProvider::class,
+		Illuminate\Cache\CacheServiceProvider::class,
+		Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+		Illuminate\Cookie\CookieServiceProvider::class,
+		Illuminate\Database\DatabaseServiceProvider::class,
+		Illuminate\Encryption\EncryptionServiceProvider::class,
+		Illuminate\Filesystem\FilesystemServiceProvider::class,
+		Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+		Illuminate\Hashing\HashServiceProvider::class,
+		Illuminate\Mail\MailServiceProvider::class,
+		Illuminate\Pagination\PaginationServiceProvider::class,
+		Illuminate\Pipeline\PipelineServiceProvider::class,
+		Illuminate\Queue\QueueServiceProvider::class,
+		Illuminate\Redis\RedisServiceProvider::class,
+		Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+		Illuminate\Session\SessionServiceProvider::class,
+		Illuminate\Translation\TranslationServiceProvider::class,
+		Illuminate\Validation\ValidationServiceProvider::class,
+		Illuminate\View\ViewServiceProvider::class,
+		Illuminate\Notifications\NotificationServiceProvider::class,
+
+		 /*
+		 * Package Service Providers...
+		 */
+		Laravel\Tinker\TinkerServiceProvider::class,
 
 		/*
 		 * Application Service Providers...
 		 */
-		'DPSEI\Providers\AppServiceProvider',
-		'DPSEI\Providers\BusServiceProvider',
-		'DPSEI\Providers\ConfigServiceProvider',
-		'DPSEI\Providers\EventServiceProvider',
-		'DPSEI\Providers\RouteServiceProvider',
+		LANMS\Providers\AppServiceProvider::class,
+		LANMS\Providers\AuthServiceProvider::class,
+		// LANMS\Providers\BroadcastServiceProvider::class,
+		LANMS\Providers\EventServiceProvider::class,
+		LANMS\Providers\RouteServiceProvider::class,
 
 		/*
-		 * Third-party
+		 * 3rd Party
 		 */
-		'Intervention\Image\ImageServiceProvider',
-		'igaster\laravelTheme\themeServiceProvider',
-		'DPSEI\Providers\ThemeSelectServiceProvider',
-		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
-		'anlutro\LaravelSettings\ServiceProvider',
+		Intervention\Image\ImageServiceProvider::class,
+		Igaster\LaravelTheme\themeServiceProvider::class,
+		Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
+		anlutro\LaravelSettings\ServiceProvider::class,
+		Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+		Milon\Barcode\BarcodeServiceProvider::class,
+		Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+		Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+		TomLingham\Searchy\SearchyServiceProvider::class,
+		Barryvdh\DomPDF\ServiceProvider::class,
 
 	],
 
@@ -169,58 +205,79 @@ return [
 
 	'aliases' => [
 
-		'App'       => 'Illuminate\Support\Facades\App',
-		'Artisan'   => 'Illuminate\Support\Facades\Artisan',
-		'Auth'      => 'Illuminate\Support\Facades\Auth',
-		'Blade'     => 'Illuminate\Support\Facades\Blade',
-		'Bus'       => 'Illuminate\Support\Facades\Bus',
-		'Cache'     => 'Illuminate\Support\Facades\Cache',
-		'Config'    => 'Illuminate\Support\Facades\Config',
-		'Cookie'    => 'Illuminate\Support\Facades\Cookie',
-		'Crypt'     => 'Illuminate\Support\Facades\Crypt',
-		'DB'        => 'Illuminate\Support\Facades\DB',
-		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
-		'Event'     => 'Illuminate\Support\Facades\Event',
-		'File'      => 'Illuminate\Support\Facades\File',
-		'Hash'      => 'Illuminate\Support\Facades\Hash',
-		'Input'     => 'Illuminate\Support\Facades\Input',
-		'Inspiring' => 'Illuminate\Foundation\Inspiring',
-		'Lang'      => 'Illuminate\Support\Facades\Lang',
-		'Log'       => 'Illuminate\Support\Facades\Log',
-		'Mail'      => 'Illuminate\Support\Facades\Mail',
-		'Password'  => 'Illuminate\Support\Facades\Password',
-		'Queue'     => 'Illuminate\Support\Facades\Queue',
-		'Redirect'  => 'Illuminate\Support\Facades\Redirect',
-		'Redis'     => 'Illuminate\Support\Facades\Redis',
-		'Request'   => 'Illuminate\Support\Facades\Request',
-		'Response'  => 'Illuminate\Support\Facades\Response',
-		'Route'     => 'Illuminate\Support\Facades\Route',
-		'Schema'    => 'Illuminate\Support\Facades\Schema',
-		'Session'   => 'Illuminate\Support\Facades\Session',
-		'Storage'   => 'Illuminate\Support\Facades\Storage',
-		'URL'       => 'Illuminate\Support\Facades\URL',
-		'Validator' => 'Illuminate\Support\Facades\Validator',
-		'View'      => 'Illuminate\Support\Facades\View',
+		'App' => Illuminate\Support\Facades\App::class,
+		'Artisan' => Illuminate\Support\Facades\Artisan::class,
+		'Auth' => Illuminate\Support\Facades\Auth::class,
+		'Blade' => Illuminate\Support\Facades\Blade::class,
+		'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+		'Bus' => Illuminate\Support\Facades\Bus::class,
+		'Cache' => Illuminate\Support\Facades\Cache::class,
+		'Config' => Illuminate\Support\Facades\Config::class,
+		'Cookie' => Illuminate\Support\Facades\Cookie::class,
+		'Crypt' => Illuminate\Support\Facades\Crypt::class,
+		'DB' => Illuminate\Support\Facades\DB::class,
+		'Eloquent' => Illuminate\Database\Eloquent\Model::class,
+		'Event' => Illuminate\Support\Facades\Event::class,
+		'File' => Illuminate\Support\Facades\File::class,
+		'Gate' => Illuminate\Support\Facades\Gate::class,
+		'Hash' => Illuminate\Support\Facades\Hash::class,
+		'Lang' => Illuminate\Support\Facades\Lang::class,
+		'Log' => Illuminate\Support\Facades\Log::class,
+		'Mail' => Illuminate\Support\Facades\Mail::class,
+		'Notification' => Illuminate\Support\Facades\Notification::class,
+		'Password' => Illuminate\Support\Facades\Password::class,
+		'Queue' => Illuminate\Support\Facades\Queue::class,
+		'Redirect' => Illuminate\Support\Facades\Redirect::class,
+		'Redis' => Illuminate\Support\Facades\Redis::class,
+		'Request' => Illuminate\Support\Facades\Request::class,
+		'Response' => Illuminate\Support\Facades\Response::class,
+		'Route' => Illuminate\Support\Facades\Route::class,
+		'Schema' => Illuminate\Support\Facades\Schema::class,
+		'Session' => Illuminate\Support\Facades\Session::class,
+		'Storage' => Illuminate\Support\Facades\Storage::class,
+		'URL' => Illuminate\Support\Facades\URL::class,
+		'Validator' => Illuminate\Support\Facades\Validator::class,
+		'View' => Illuminate\Support\Facades\View::class,
 
-		//Hehe
-		'User'					=> 'DPSEI\User',
-		'News'					=> 'DPSEI\News',
-		'NewsCategory'			=> 'DPSEI\NewsCategory',
-		'Address'				=> 'DPSEI\Address',
-		'Act'					=> 'DPSEI\Act',
-		'Checkin'				=> 'DPSEI\Checkin',
-		'Visitor'				=> 'DPSEI\Visitor',
+		/*
+		 * 3rd Party
+		 */
+		'User'					=> 'LANMS\User',
+		'News'					=> 'LANMS\News',
+		'NewsCategory'			=> 'LANMS\NewsCategory',
+		'Address'				=> 'LANMS\Address',
+		'Seats'					=> 'LANMS\Seats',
+		'SeatRows'				=> 'LANMS\SeatRows',
+		'SeatPayment'			=> 'LANMS\SeatPayment',
+		'SeatReservation'		=> 'LANMS\SeatReservation',
+		'SeatReservationStatus'	=> 'LANMS\SeatReservationStatus',
+		'SeatTicket'			=> 'LANMS\SeatTicket',
+		'Act'					=> 'LANMS\Act',
+		'Checkin'				=> 'LANMS\Checkin',
+		'Visitor'				=> 'LANMS\Visitor',
+		'Crew'					=> 'LANMS\Crew',
+		'CrewCategory'			=> 'LANMS\CrewCategory',
+		'CrewSkill'				=> 'LANMS\CrewSkill',
+		'CrewSkillAttached'		=> 'LANMS\CrewSkillAttached',
+		'Page'					=> 'LANMS\Page',
+		'BrokenBand'			=> 'LANMS\BrokenBand',
 		
 		/*
-		 * Third-party
+		 * 3rd Party
 		 */
-		'Image' 		=> 'Intervention\Image\Facades\Image',
-		'Theme'  		=> 'igaster\laravelTheme\Facades\Theme',
-		'Activation'	=> 'Cartalyst\Sentinel\Laravel\Facades\Activation',
-		'Reminder'		=> 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
-		'Sentinel'		=> 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
+		'Image' 		=> Intervention\Image\Facades\Image::class,
+		'Theme' 		=> Igaster\LaravelTheme\Facades\Theme::class,
+		'Activation' 	=> Cartalyst\Sentinel\Laravel\Facades\Activation::class,
+		'Reminder'   	=> Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
+		'Sentinel'   	=> Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'Setting' 		=> 'anlutro\LaravelSettings\Facade',
-
+		'Stripe' 		=> Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+		'DNS1D' 		=> Milon\Barcode\Facades\DNS1DFacade::class,
+    	'DNS2D' 		=> Milon\Barcode\Facades\DNS2DFacade::class,
+    	'Sentry' 		=> Sentry\SentryLaravel\SentryFacade::class,
+    	'Carbon' 		=> 'Carbon\Carbon',
+    	'Searchy' 		=> TomLingham\Searchy\Facades\Searchy::class,
+    	'PDF' 			=> Barryvdh\DomPDF\Facade::class,
 	],
 
 ];

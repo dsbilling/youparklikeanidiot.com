@@ -1,31 +1,26 @@
 <?php
 
-namespace DPSEI\Http\Controllers\Member;
+namespace LANMS\Http\Controllers\Member;
 
-use DPSEI\Http\Controllers\Controller;
+use LANMS\Http\Controllers\Controller;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
 use Intervention\Image\Facades\Image;
 use Regulus\ActivityLog\Models\Activity;
 
-use DPSEI\Http\Requests\Member\SettingsRequest;
-use DPSEI\Http\Requests\Member\PasswordRequest;
-use DPSEI\Http\Requests\Member\ProfileImageRequest;
-use DPSEI\Http\Requests\Member\ProfileCoverRequest;
-use DPSEI\Http\Requests\Member\ChangeUserDetailsRequest;
+use LANMS\Http\Requests\Member\SettingsRequest;
+use LANMS\Http\Requests\Member\PasswordRequest;
+use LANMS\Http\Requests\Member\ProfileImageRequest;
+use LANMS\Http\Requests\Member\ProfileCoverRequest;
+use LANMS\Http\Requests\Member\ChangeUserDetailsRequest;
 
-use DPSEI\User;
-use DPSEI\News;
+use LANMS\User;
+use LANMS\News;
 
 class AccountController extends Controller {
 
-	public function __construct() {
-		$this->beforeFilter('csrf', ['on' => ['post']]);
-		$this->beforeFilter('sentinel.auth');
-	}
-
-	public function index() {
+	public function getDashboard() {
 		$authuser = Sentinel::getUser();
 		$onlinestatus = User::getOnlineStatus($authuser->id);
 		$userarray = $authuser->toArray();
@@ -33,9 +28,13 @@ class AccountController extends Controller {
 
 		$news = News::isPublished()->get()->take(2);
 
-		return view('account.index')
+		return view('dashboard')
 					->with($userarray)
 					->withNews($news);
+	}
+
+	public function getAccount() {
+		return view('account.index');
 	}
 
 	public function getSettings(Sentinel $auth) {
@@ -132,6 +131,7 @@ class AccountController extends Controller {
 				'gender' 		=> $request->get('gender'),
 				'location' 		=> $request->get('location'),
 				'occupation' 	=> $request->get('occupation'),
+				'birthdate' 	=> $request->get('birthdate'),
 			];
 
 			$updateuser = Sentinel::update($finduser, $info);
@@ -179,7 +179,7 @@ class AccountController extends Controller {
 		$path_small 		= public_path() . '/images/profilepicture/' . $filename_small;
 		$webpath_small		= '/images/profilepicture/' . $filename_small;
 
-		$imagesave 			= Image::make($image->getRealPath())->resize(115, null, function($constraint){ $constraint->aspectRatio(); })->save($path);
+		$imagesave 			= Image::make($image->getRealPath())->fit(115)->save($path);
 		$imagesave_small 	= Image::make($image->getRealPath())->fit(75)->save($path_small);
 
 		$info = [

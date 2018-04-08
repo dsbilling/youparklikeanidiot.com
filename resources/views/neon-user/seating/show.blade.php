@@ -34,39 +34,39 @@
 
 				</div>
 				<div class="col-md-8">
-					@if($currentseat->reservations->count() >=1)
+					@if($currentseat->reservationsThisYear()->first())
 						<div class="alert alert-info" role="alert">
-							<strong>Information:</strong> This seat is {{ strtolower($currentseat->reservations->first()->status->name) }}.
+							<strong>Information:</strong> This seat is {{ strtolower($currentseat->reservationsThisYear()->first()->status->name) }}.
 						</div>
 						<div class="member-entry">
-							<a href="{{ route('user-profile', $currentseat->reservations->first()->reservedfor->username) }}" class="member-img">
-								<img src="{{ $currentseat->reservations->first()->reservedfor->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
+							<a href="{{ route('user-profile', $currentseat->reservationsThisYear()->first()->reservedfor->username) }}" class="member-img">
+								<img src="{{ $currentseat->reservationsThisYear()->first()->reservedfor->profilepicture or '/images/profilepicture/0.png' }}" class="img-rounded" />
 								<i class="fa fa-share" style="text-shadow:#000 0 0 10px"></i>
 							</a>
 							<div class="member-details">
 								<h4>
-									<a href="{{ route('user-profile', $currentseat->reservations->first()->reservedfor->username) }}">{{ $currentseat->reservations->first()->reservedfor->firstname }}@if($currentseat->reservations->first()->reservedfor->showname) {{ $currentseat->reservations->first()->reservedfor->lastname }}@endif</a>
+									<a href="{{ route('user-profile', $currentseat->reservationsThisYear()->first()->reservedfor->username) }}">{{ User::getFullnameAndNicknameByID($currentseat->reservationsThisYear()->first()->reservedfor->id) }}</a>
 								</h4>
 								<div class="row info-list">
-									@if($currentseat->reservations->first()->reservedfor->occupation)
+									@if($currentseat->reservationsThisYear()->first()->reservedfor->occupation)
 										<div class="col-sm-6">
-											<i class="fa fa-briefcase"></i> {{ $currentseat->reservations->first()->reservedfor->occupation }}
+											<i class="fa fa-briefcase"></i> {{ $currentseat->reservationsThisYear()->first()->reservedfor->occupation }}
 										</div>
 									@endif
-									@if($currentseat->reservations->first()->reservedfor->location)
+									@if($currentseat->reservationsThisYear()->first()->reservedfor->location)
 										<div class="col-sm-6">
-											<i class="fa fa-map-marker"></i> {{ $currentseat->reservations->first()->reservedfor->location or '<em>Unkown</em>' }}
+											<i class="fa fa-map-marker"></i> {{ $currentseat->reservationsThisYear()->first()->reservedfor->location or '<em>Unkown</em>' }}
 										</div>
 									@endif
 									<div class="clear"></div>
-									@if($currentseat->reservations->first()->reservedfor->gender)
+									@if($currentseat->reservationsThisYear()->first()->reservedfor->gender)
 										<div class="col-sm-6">
-											<i class="fa fa-genderless"></i> {{ $currentseat->reservations->first()->reservedfor->gender }}
+											<i class="fa fa-genderless"></i> {{ $currentseat->reservationsThisYear()->first()->reservedfor->gender }}
 										</div>
 									@endif
-									@if($currentseat->reservations->first()->reservedfor->birthdate)
+									@if($currentseat->reservationsThisYear()->first()->reservedfor->birthdate)
 										<div class="col-sm-6">
-											<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($currentseat->reservations->first()->reservedfor->birthdate), date_create('today'))->y }}
+											<i class="fa fa-birthday-cake"></i> {{ date_diff(date_create($currentseat->reservationsThisYear()->first()->reservedfor->birthdate), date_create('today'))->y }}
 										</div>
 									@endif
 								</div>
@@ -76,10 +76,12 @@
 						<div class="alert alert-info" role="alert">
 							<strong>Information:</strong> This seat cannot be reserved!
 						</div>
-					@elseif(Sentinel::getUser()->reservations->count() >= 5)
+					@elseif(Sentinel::getUser()->reservationsThisYear()->count() >= 5)
 						<div class="alert alert-warning" role="alert">
 							<strong>Warning!</strong> You are not allowed to reserve more than <em>five</em> seats.
 						</div>
+					@elseif(!Setting::get('SEATING_OPEN'))
+						<div class="alert alert-info" role="alert"> <strong>INFO!</strong> Seating is closed at this moment, you cannot reserve seats or change reservations.</div>
 					@else
 						<form class="form-horizontal" method="post" action="{{ route('seating-reserve', $currentseat->slug) }}">
 							<div class="form-group">
@@ -87,13 +89,13 @@
 									Reserved for
 								</label>
 								<div class="col-sm-10 @if($errors->has('reservedfor')) has-error @endif">
-									<input type="text" class="form-control" id="username" value="{{ Sentinel::getUser()->username.' ('.Sentinel::getUser()->firstname.')' }}" autocomplete="off">
+									<input type="text" class="form-control" id="username" value="{{ User::getFullnameAndNicknameByID(Sentinel::getUser()->id) }}" autocomplete="off">
 									<input type="text" class="hidden" id="reservedfor" name="reservedfor" value="{{ Sentinel::getUser()->id }}">
 									@if($errors->has('reservedfor'))
 										<p class="text-danger">{{ $errors->first('reservedfor') }}</p>
 									@endif
 									<div class="checkbox">
-										<label><input type="checkbox" id="tos"> I have read, accepted and agreed to the <a href="/tos" target="_blank">Terms of Service</a>.</label>
+										<label><input type="checkbox" id="tos"> I have read, accepted and agreed to the <a href="{{ url('tos') }}" target="_blank">Terms of Service</a>.</label>
 									</div>
 								</div>
 							</div>

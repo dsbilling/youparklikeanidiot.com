@@ -1,13 +1,13 @@
 <?php
 
-namespace DPSEI\Http\Requests\Member;
+namespace LANMS\Http\Requests\Member;
  
 use Illuminate\Foundation\Http\FormRequest;
  
 class ProfileImageRequest extends FormRequest {
 	public function rules() {
 		return [
-			'profileimage' 		=> 'image',
+			'profileimage' => 'image|size:5000',
 		];
 	}
 	

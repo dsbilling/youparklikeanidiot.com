@@ -23,6 +23,8 @@
 					<th>Title</th>
 					<th>Created at</th>
 					<th>Created by</th>
+					<th>Edited at</th>
+					<th>Edited by</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -34,6 +36,8 @@
 						<td>{{ $page->title }}</td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($page->created_at)) .' at '. date(User::getUserTimeFormat(), strtotime($page->created_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $page->author->username) }}">{{ User::getFullnameByID($page->author->id) }}</a></td>
+						<td>{{ date(User::getUserDateFormat(), strtotime($page->edited_at)) .' at '. date(User::getUserTimeFormat(), strtotime($page->edited_at)) }}</td>
+						<td><a href="{{ URL::route('user-profile', $page->editor->username) }}">{{ User::getFullnameByID($page->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-pages-edit', $page->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.pages.destroy'))

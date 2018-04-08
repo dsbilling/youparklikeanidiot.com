@@ -41,7 +41,7 @@
 			],
 			[
 				"auto",
-				"autofocus	Attr"
+				"autofocus\tAttr"
 			],
 			[
 				"chek",
@@ -117,7 +117,7 @@
 			],
 			[
 				"for",
-				"foreach	foreach …"
+				"foreach\tforeach …"
 			],
 			[
 				"card",
@@ -165,7 +165,7 @@
 			],
 			[
 				"ta",
-				"target	Attr"
+				"target\tAttr"
 			],
 			[
 				"end",
@@ -173,7 +173,7 @@
 			],
 			[
 				"on",
-				"onclick	Attr"
+				"onclick\tAttr"
 			],
 			[
 				"html",
@@ -225,18 +225,19 @@
 			],
 			[
 				"ac",
-				"action	Attr"
+				"action\tAttr"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "resources/views/bootstrapextended/layouts/main.blade.php",
+			"file": ".env",
 			"settings":
 			{
-				"buffer_size": 6791,
-				"line_ending": "Windows"
+				"buffer_size": 476,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -290,20 +291,11 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/public",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/public/bootstrapextended",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/public/bootstrapextended/js",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views/bootstrapextended",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views/bootstrapextended/emails",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views/bootstrapextended/layouts",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views/neon-admin",
-		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views/neon-admin/layouts"
+		"/E/Users/RTRD/Bitbucket/duparkerersomenidiot.no"
 	],
 	"file_history":
 	[
+		"/E/Users/RTRD/Bitbucket/duparkerersomenidiot.no/resources/views/bootstrapextended/layouts/main.blade.php",
 		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/public/bootstrapextended/css/bootstrap-material-design.min.css",
 		"/C/Users/Daniel'RTRD'/AppData/Local/Temp/Rar$DIa0.948/bootstrap-material-design.css",
 		"/D/Users/RTRD/Bitbucket/duparkerersomenidiot.no/public/bootstrapextended/css/material-fullpalette.min.css",
@@ -430,8 +422,7 @@
 		"/D/Users/RTRD/Documents/BitBucket/downlink-dg/app/controllers/SeatController.php",
 		"/D/Users/RTRD/Documents/BitBucket/pkmn.cards/app/routes.php",
 		"/D/Users/RTRD/Documents/BitBucket/pkmn.cards/app/views/home.blade.php",
-		"/D/Users/RTRD/Documents/BitBucket/pkmn.cards/app/controllers/HomeController.php",
-		"/D/Users/RTRD/Documents/BitBucket/pkmn.cards/app/views/errors/default.blade.php"
+		"/D/Users/RTRD/Documents/BitBucket/pkmn.cards/app/controllers/HomeController.php"
 	],
 	"find":
 	{
@@ -498,7 +489,7 @@
 			"cards-error",
 			"$card",
 			"=> 'required|max:",
-			"cardcode' 			=> 'required|max:",
+			"cardcode' \t\t\t=> 'required|max:",
 			"$card",
 			"admin-card-error",
 			"errorcard-d",
@@ -531,7 +522,7 @@
 			"full art",
 			"route",
 			"col-md-6 col-md-offset-3",
-			"	<img src=\"/img/slowpoke.jpg\" class=\"img-auto\">",
+			"\t<img src=\"/img/slowpoke.jpg\" class=\"img-auto\">",
 			"col-md-6 col-md-offset-3",
 			"</strong></p>",
 			"<p class=\"text-danger\"><strong>",
@@ -544,8 +535,8 @@
 			"create",
 			"Add",
 			"thecard",
-			"'author_id' 	=> 1",
-			"'author_id' 			=> 1",
+			"'author_id' \t=> 1",
+			"'author_id' \t\t\t=> 1",
 			"')}}\n",
 			"3",
 			"if",
@@ -570,9 +561,9 @@
 			"../fonts/glyphicons",
 			"glyphicon ",
 			"placeholder=\"\" ",
-			"				));",
-			"					'uses'",
-			"					'as'",
+			"\t\t\t\t));",
+			"\t\t\t\t\t'uses'",
+			"\t\t\t\t\t'as'",
 			"Like",
 			"member",
 			"members",
@@ -633,8 +624,8 @@
 			"<p>",
 			"fa fa-",
 			"theset",
-			"'creator_id' 	=> 1,\n			'author_id' 	=> 1",
-			"'creator_id' 			=> 1,\n			'author_id' 			=> 1",
+			"'creator_id' \t=> 1,\n\t\t\t'author_id' \t=> 1",
+			"'creator_id' \t\t\t=> 1,\n\t\t\t'author_id' \t\t\t=> 1",
 			"title",
 			"article",
 			"News",
@@ -668,11 +659,11 @@
 			"$artist",
 			"Artist::",
 			"->where('active','=', 1)",
-			"'setcategorylanguage'	=>",
-			"'author_id' 			=>",
-			"'sortorder' 			=>",
-			"'setcategoryyear' 		=>",
-			"'setcategoryname' 		=>",
+			"'setcategorylanguage'\t=>",
+			"'author_id' \t\t\t=>",
+			"'sortorder' \t\t\t=>",
+			"'setcategoryyear' \t\t=>",
+			"'setcategoryname' \t\t=>",
 			"$thecard",
 			" <small class=\"text-muted\">",
 			"",
@@ -680,7 +671,7 @@
 			"Colorless",
 			"set",
 			"setcategorylanguage",
-			"'setlanguage'		=> 'EN',\n			'author_id' 		=> 1"
+			"'setlanguage'\t\t=> 'EN',\n\t\t\t'author_id' \t\t=> 1"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -696,25 +687,24 @@
 			[
 				{
 					"buffer": 0,
-					"file": "resources/views/bootstrapextended/layouts/main.blade.php",
+					"file": ".env",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6791,
+						"buffer_size": 476,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								593,
-								593
+								106,
+								106
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

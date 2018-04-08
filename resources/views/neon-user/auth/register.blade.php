@@ -31,7 +31,7 @@
 
 			<div class="form-login-error">
 				<h3>Registration Unsuccessful</h3>
-				<p id="reg_msg">Oooops...</p>
+				<p id="msg">Oooops...</p>
 			</div>
 
 			<form method="post" accept-charset="utf-8" role="form" id="form_register">
@@ -188,5 +188,5 @@
 		} 
 	</script>
 	<script src="{{ Theme::url('js/neon-register.js') }}"></script>
-	<script src="{{ Theme::url('js/jquery.inputmask.bundle.min.js') }}"></script>
+	<script src="{{ Theme::url('js/jquery.inputmask.bundle.js') }}"></script>
 @stop

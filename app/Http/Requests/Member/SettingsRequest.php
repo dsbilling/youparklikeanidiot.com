@@ -1,6 +1,6 @@
 <?php
 
-namespace DPSEI\Http\Requests\Member;
+namespace LANMS\Http\Requests\Member;
  
 use Illuminate\Foundation\Http\FormRequest;
  

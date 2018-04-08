@@ -168,7 +168,7 @@ body.login-page.logging-in .login-progressbar {
   height: 2px;
 }
 body.login-page.logging-in .login-progressbar div {
-  background: #222222;
+  background: #222;
 }
 body .tile-primary {
   background: #e8b51b;
@@ -214,7 +214,7 @@ body .label-primary {
 }
 body .badge.badge-secondary,
 body .label-secondary {
-  background-color: #222222;
+  background-color: #222;
 }
 body .pagination > .active > a,
 body .pagination > .active > span,
@@ -436,36 +436,36 @@ body .popover.popover-primary.left .arrow:after {
   border-left-color: #e8b51b;
 }
 body .popover.popover-secondary {
-  background-color: #222222;
-  border-color: #222222;
+  background-color: #222;
+  border-color: #222;
 }
 body .popover.popover-secondary .popover-title {
-  background-color: #222222;
-  border-color: #222222;
+  background-color: #222;
+  border-color: #222;
 }
 body .popover.popover-secondary.top .arrow {
-  border-top-color: #222222;
+  border-top-color: #222;
 }
 body .popover.popover-secondary.top .arrow:after {
-  border-top-color: #222222;
+  border-top-color: #222;
 }
 body .popover.popover-secondary.right .arrow {
-  border-right-color: #222222;
+  border-right-color: #222;
 }
 body .popover.popover-secondary.right .arrow:after {
-  border-right-color: #222222;
+  border-right-color: #222;
 }
 body .popover.popover-secondary.bottom .arrow {
-  border-bottom-color: #222222;
+  border-bottom-color: #222;
 }
 body .popover.popover-secondary.bottom .arrow:after {
-  border-bottom-color: #222222;
+  border-bottom-color: #222;
 }
 body .popover.popover-secondary.left .arrow {
-  border-left-color: #222222;
+  border-left-color: #222;
 }
 body .popover.popover-secondary.left .arrow:after {
-  border-left-color: #222222;
+  border-left-color: #222;
 }
 body .tooltip.tooltip-primary .tooltip-inner {
   background-color: #e8b51b;
@@ -496,32 +496,32 @@ body .tooltip.tooltip-primary.bottom-right .tooltip-arrow {
   border-bottom-color: #e8b51b;
 }
 body .tooltip.tooltip-secondary .tooltip-inner {
-  background-color: #222222;
+  background-color: #222;
   color: #fbf1df;
 }
 body .tooltip.tooltip-secondary.top .tooltip-arrow {
-  border-top-color: #222222;
+  border-top-color: #222;
 }
 body .tooltip.tooltip-secondary.top-left .tooltip-arrow {
-  border-top-color: #222222;
+  border-top-color: #222;
 }
 body .tooltip.tooltip-secondary.top-right .tooltip-arrow {
-  border-top-color: #222222;
+  border-top-color: #222;
 }
 body .tooltip.tooltip-secondary.right .tooltip-arrow {
-  border-right-color: #222222;
+  border-right-color: #222;
 }
 body .tooltip.tooltip-secondary.left .tooltip-arrow {
-  border-left-color: #222222;
+  border-left-color: #222;
 }
 body .tooltip.tooltip-secondary.bottom .tooltip-arrow {
-  border-bottom-color: #222222;
+  border-bottom-color: #222;
 }
 body .tooltip.tooltip-secondary.bottom-left .tooltip-arrow {
-  border-bottom-color: #222222;
+  border-bottom-color: #222;
 }
 body .tooltip.tooltip-secondary.bottom-right .tooltip-arrow {
-  border-bottom-color: #222222;
+  border-bottom-color: #222;
 }
 body .horizontal-menu header.navbar .navbar-inner > ul > li#search .search-input::-webkit-input-placeholder,
 body .horizontal-menu header.navbar > ul > li#search .search-input::-webkit-input-placeholder {

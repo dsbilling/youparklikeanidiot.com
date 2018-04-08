@@ -1,6 +1,6 @@
 <?php
 
-namespace DPSEI;
+namespace LANMS;
 
 use Cartalyst\Sentinel\Permissions\PermissibleInterface;
 use Cartalyst\Sentinel\Permissions\PermissibleTrait;
@@ -196,19 +196,23 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	 */
 	public function inRole($role)
 	{
-		$role = array_first($this->roles, function ($index, $instance) use ($role) {
+		if ($role instanceof RoleInterface) {
+			$roleId = $role->getRoleId();
+		}
+
+		foreach ($this->roles as $instance) {
 			if ($role instanceof RoleInterface) {
-				return ($instance->getRoleId() === $role->getRoleId());
+				if ($instance->getRoleId() === $roleId) {
+					return true;
+				}
+			} else {
+				if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
+					return true;
+				}
 			}
+		}
 
-			if ($instance->getRoleId() == $role || $instance->getRoleSlug() == $role) {
-				return true;
-			}
-
-			return false;
-		});
-
-		return $role !== null;
+		return false;
 	}
 
 	/**
@@ -401,7 +405,9 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 	 */
 	public function delete()
 	{
-		if ($this->exists) {
+		$isSoftDeleted = array_key_exists('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
+
+		if ($this->exists && ! $isSoftDeleted) {
 			$this->activations()->delete();
 			$this->persistences()->delete();
 			$this->reminders()->delete();
@@ -409,7 +415,7 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 			$this->throttle()->delete();
 		}
 
-		parent::delete();
+		return parent::delete();
 	}
 
 	/**
@@ -458,12 +464,40 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 		return $this->hasMany('SeatReservation', 'reservedby_id', 'id');
 	}
 
-	public function ownreservations() {
+	public function ownReservations() {
 		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id');
 	}
 
-	public function stripecustomer() {
-		return $this->hasOne('StripeCustomer', 'user_id', 'id');
+	public function reservationsThisYear() {
+		return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->thisYear();
+	}
+
+	public function ownReservationsThisYear() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->thisYear();
+	}
+
+	public function ownReservationsThisYearDecending() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->thisYearDecending();
+	}
+
+	public function reservationsLastYear() {
+		return $this->hasMany('SeatReservation', 'reservedby_id', 'id')->lastYear();
+	}
+
+	public function ownReservationsLastYear() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->lastYear();
+	}
+
+	public function ownReservationsLastYearDecending() {
+		return $this->hasMany('SeatReservation', 'reservedfor_id', 'id')->lastYearDecending();
+	}
+
+	function stripecustomer() {
+		return $this->hasOne('LANMS\StripeCustomer', 'user_id', 'id');
+	}
+
+	function seatpayments() {
+		return $this->hasMany('LANMS\SeatPayment', 'user_id', 'id');
 	}
 
 	public function scopeGetLastActivity($query, $id, $short = false) {
@@ -638,6 +672,35 @@ class User extends Model implements RoleableInterface, PermissibleInterface, Per
 			return $user->username . ' (' . $user->firstname . ')';
 		}
 		
+	}
+
+	public function scopeGetFullnameAndNicknameByID($query, $id) {
+		$user = $query->where('id', '=', $id)->first();
+		if($user->showname) {
+			return $user->firstname . ' "' . $user->username . '" ' . $user->lastname;
+		} else {
+			return $user->firstname . ' "' . $user->username . '"';
+		}
+		
+	}
+
+	public function age() {
+		return \Carbon::parse($this->birthdate)->diff(\Carbon::now())->format('%y');
+	}
+
+	public function scopeGetGenderIcon($query, $gender) {
+		switch ($gender) {
+			case 'Male':
+				return "mars";
+			case 'Female':
+				return "venus";
+			case 'Transgender':
+				return "transgender";
+			case 'Genderless':
+				return "genderless";
+			default:
+				return "genderless";
+		}
 	}
 
 }

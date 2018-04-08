@@ -118,27 +118,29 @@ var neonResetPassword = neonResetPassword || {};
 							success: function(response)
 							{
 								// From response you can fetch the data object retured
-								var resetpw_status = response.resetpw_status;
-								var resetpw_msg = response.resetpw_msg;
+								var status = response.status;
+								var msg = response.msg;
 								
 								// Form is fully completed, we update the percentage
 								neonResetPassword.setPercentage(100);
+								console.log(status);
+								console.log(msg);
 								
 								// We will give some time for the animation to finish, then execute the following procedures	
 								setTimeout(function()
 								{
 
 									// If login is invalid
-									if(resetpw_status == 'invalid')
+									if(status == 'invalid')
 									{
 										$(".login-page").removeClass('logging-in');
 										document.getElementById("step-1").className = 'step current';
 										document.getElementById("step-2").className = 'step';
 										neonResetPassword.resetProgressBar(true);
-										document.getElementById("resetpw_msg").innerHTML = resetpw_msg;
+										document.getElementById("msg").innerHTML = msg;
 										neonResetPassword.step = 'step-1';
 									}
-									else if(resetpw_status == 'success')
+									else if(status == 'success')
 									{
 										// Hide the description title
 										$(".login-page .login-header .description").slideUp();

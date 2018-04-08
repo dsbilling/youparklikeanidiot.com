@@ -24,6 +24,8 @@
 					<th>Category</th>
 					<th>Published at</th>
 					<th>Created by</th>
+					<th>Edited at</th>
+					<th>Edited by</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -36,6 +38,8 @@
 						<td><a href="{{ route('admin-news-category') }}"><div class="label label-info"><i class="fa fa-tag"></i> {{ $article->category->name }}</div></a></td>
 						<td>{{ date(User::getUserDateFormat(), strtotime($article->published_at)) .' at '. date(User::getUserTimeFormat(), strtotime($article->published_at)) }}</td>
 						<td><a href="{{ URL::route('user-profile', $article->author->username) }}">{{ User::getFullnameByID($article->author->id) }}</a></td>
+						<td>{{ date(User::getUserDateFormat(), strtotime($article->edited_at)) .' at '. date(User::getUserTimeFormat(), strtotime($article->edited_at)) }}</td>
+						<td><a href="{{ URL::route('user-profile', $article->editor->username) }}">{{ User::getFullnameByID($article->editor->id) }}</a></td>
 						<td>
 							<a href="{{ route('admin-news-edit', $article->id) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="entypo-pencil"></i>Edit</a>
 							@if(Sentinel::hasAccess('admin.news.destroy'))

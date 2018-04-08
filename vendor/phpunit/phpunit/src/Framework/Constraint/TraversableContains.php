@@ -11,8 +11,6 @@
 /**
  * Constraint that asserts that the Traversable it is applied to contains
  * a given value.
- *
- * @since Class available since Release 3.0.0
  */
 class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework_Constraint
 {
@@ -73,7 +71,7 @@ class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework
             foreach ($other as $element) {
                 if ($this->checkForObjectIdentity && $element === $this->value) {
                     return true;
-                } else if (!$this->checkForObjectIdentity && $element == $this->value) {
+                } elseif (!$this->checkForObjectIdentity && $element == $this->value) {
                     return true;
                 }
             }
@@ -81,7 +79,7 @@ class PHPUnit_Framework_Constraint_TraversableContains extends PHPUnit_Framework
             foreach ($other as $element) {
                 if ($this->checkForNonObjectIdentity && $element === $this->value) {
                     return true;
-                } else if (!$this->checkForNonObjectIdentity && $element == $this->value) {
+                } elseif (!$this->checkForNonObjectIdentity && $element == $this->value) {
                     return true;
                 }
             }

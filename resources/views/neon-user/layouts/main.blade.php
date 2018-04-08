@@ -11,8 +11,8 @@
 	<title>@yield('title') - {{ Setting::get('WEB_NAME') }}</title>
 
 	<link rel="stylesheet" href="{{ Theme::url('js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 	<link rel="stylesheet" href="{{ Theme::url('css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/neon-core.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/neon-theme.css') }}">
@@ -42,14 +42,14 @@
 		<div class="navbar-inner">
 		
 			<div class="navbar-brand">
-				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO') }}" width="90" alt="" /></a>
+				<a href="{{ route('home') }}"><img src="{{ Setting::get('WEB_LOGO') }}" height="30" alt="" /></a>
 			</div>
 
 			<ul class="navbar-nav">
-				<li class="@if(Request::is('user')){{'active'}} @endif"><a href="{{ route('account') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-				<li class="@if(Request::is('user/members')){{'active'}} @endif"><a href="{{ route('members') }}"><i class="fa fa-users"></i> Members</a></li>
+				<li class="@if(Request::is('user')){{'active'}} @endif"><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+				<li class="@if(Request::is('user/members*')){{'active'}} @endif"><a href="{{ route('members') }}"><i class="fa fa-users"></i> Members</a></li>
+				<li class="@if(Request::is('user/crew')){{'active'}} @endif"><a href="{{ route('user-crew') }}"><i class="fa fa-user-md"></i> Crew</a></li>
 				<li class="@if(Request::is('user/seating')){{'active'}} @endif"><a href="{{ route('seating') }}"><i class="fa fa-street-view"></i> Seating</a></li>
-				<!--<li><a href="#"><i class="fa fa-sitemap"></i> Compo</a></li>-->
 				@if(Sentinel::hasAccess('admin'))
 					<li class="visible-xs"><a href="{{ URL::Route('admin') }}"><i class="fa fa-user-secret"></i> Admin Panel</a></li>
 				@endif
@@ -86,11 +86,13 @@
 					<div class="row">
 						<div class="col-md-6">
 							<p>&copy; {{ Setting::get('WEB_COPYRIGHT') }}</p>
-							<p class="text-muted"><small>Load time: {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+							<p class="text-muted"><small><i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
 						</div>
 						<div class="col-md-6 text-right">
 							<p>
 								<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+								<br>
+								@if(Setting::get('APP_LICENSE_STATUS') == "Invalid")<b class="text-danger">Unlicensed version of this software!</b>@elseif(Setting::get('APP_LICENSE_STATUS') == "Expired")<b class="text-danger">License has expired for this software!</b>@endif
 							</p>
 							<p>
 								@if(Config::get('app.debug'))
@@ -115,7 +117,7 @@
 	<!-- Bottom scripts (common) -->
 	<script src="{{ Theme::url('js/gsap/main-gsap.js') }}"></script>
 	<script src="{{ Theme::url('js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}"></script>
-	<script src="{{ Theme::url('js/bootstrap.js') }}"></script>
+	<script src="{{ Theme::url('js/bootstrap.min.js') }}"></script>
 	<script src="{{ Theme::url('js/joinable.js') }}"></script>
 	<script src="{{ Theme::url('js/resizeable.js') }}"></script>
 	<script src="{{ Theme::url('js/neon-api.js') }}"></script>

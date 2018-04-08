@@ -1,16 +1,16 @@
-<?php namespace DPSEI\Http\Controllers\Page;
+<?php namespace LANMS\Http\Controllers\Page;
 
-use DPSEI\Http\Requests;
-use DPSEI\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 
-use DPSEI\Page;
+use LANMS\Page;
 
-use DPSEI\Http\Requests\Page\PageCreateRequest;
-use DPSEI\Http\Requests\Page\PageEditRequest;
+use LANMS\Http\Requests\Admin\Page\PageCreateRequest;
+use LANMS\Http\Requests\Admin\Page\PageEditRequest;
 
 class PagesController extends Controller {
 
@@ -65,14 +65,14 @@ class PagesController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.pages.create'])){
 			
-			$active = 0;
+			$active = false;
 			if($request->get('active') == "on") {
-				$active = 1;
+				$active = true;
 			}
 
-			$showinmenu = 0;
+			$showinmenu = false;
 			if($request->get('showinmenu') == "on") {
-				$showinmenu = 1;
+				$showinmenu = true;
 			}
 
 			$slug 	= $request->get('slug');
@@ -88,7 +88,7 @@ class PagesController extends Controller {
 			$page->content 		= $request->get('content');
 			$page->active 		= $active;
 			$page->showinmenu 	= $showinmenu;
-			$page->creator_id	= Sentinel::getUser()->id;
+			$page->editor_id	= Sentinel::getUser()->id;
 			$page->author_id	= Sentinel::getUser()->id;
 
 			$pagesave 		= $page->save();
@@ -152,14 +152,14 @@ class PagesController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.pages.update'])){
 
-			$active = 0;
+			$active = false;
 			if($request->get('active') == "on") {
-				$active = 1;
+				$active = true;
 			}
 
-			$showinmenu = 0;
+			$showinmenu = false;
 			if($request->get('showinmenu') == "on") {
-				$showinmenu = 1;
+				$showinmenu = true;
 			}
 			
 			$page 				= Page::find($id);
@@ -168,7 +168,7 @@ class PagesController extends Controller {
 			$page->slug 		= $request->get('slug');
 			$page->active 		= $active;
 			$page->showinmenu 	= $showinmenu;
-			$page->author_id	= Sentinel::getUser()->id;
+			$page->editor_id	= Sentinel::getUser()->id;
 
 			if($page->save()) {
 				return Redirect::route('admin-pages-edit', $id)

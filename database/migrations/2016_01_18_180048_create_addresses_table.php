@@ -16,15 +16,15 @@ class CreateAddressesTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->string('address1');
-			$table->string('address2');
-			$table->string('postalcode');
-			$table->string('city');
-			$table->string('county');
-			$table->string('country');
-			$table->enum('primary', array(0, 1));
+			$table->string('address1')->nullable();
+			$table->string('address2')->nullable();
+			$table->string('postalcode')->nullable();
+			$table->string('city')->nullable();
+			$table->string('county')->nullable();
+			$table->string('country')->nullable();
+			$table->boolean('main_address')->default(0);
 
-			$table->integer('user_id');
+			$table->integer('user_id')->default(0);
 
 			$table->softDeletes();
 			$table->timestamps();

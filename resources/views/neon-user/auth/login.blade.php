@@ -32,7 +32,7 @@
 		
 		<div class="form-login-error">
 			<h3>Login Unsuccessful</h3>
-			<p id="login_msg">Oooops...</p>
+			<p id="msg">Oooops...</p>
 		</div>
 		
 		<form method="post" role="form" id="form_login">
@@ -81,7 +81,7 @@
 		
 		<div class="login-bottom-links">
 			
-			<p><a href="{{ route('account-forgot-password') }}" class="link">Forgot your credentials?</a> &middot; <a href="{{ route('account-register') }}" class="link">Need an account?</a></p>
+			<p><a href="{{ route('account-forgot-password') }}" class="link">Forgot your credentials?</a> &middot; <a href="{{ route('account-register') }}" class="link">Need an account?</a><br/><a href="{{ route('account-resendverification') }}" class="link">Did not get the activation email?</a></p>
 
 			<p><a href="/tos">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a></p>
 			
@@ -94,4 +94,5 @@
 
 @section('javascript')
 	<script src="{{ Theme::url('js/neon-login.js') }}"></script>
+	<script>setTimeout(function(){location.reload();},600*1000);/*10min*/</script>
 @stop

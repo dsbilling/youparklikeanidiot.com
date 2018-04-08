@@ -30,7 +30,7 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
-			<li><a href="{{ route('admin-seating') }}">Seating</a></li>
+			<li>Seating</li>
 			<li class="active"><strong>Check-in</strong></li>
 		</ol>
 
@@ -60,7 +60,7 @@
 						<div class="col-sm-4">
 							@if(is_null($ticket->reservation->payment))
 								<div class="checkbox">
-									<label><input type="checkbox" id="paid"> Atendee has paid the total amount in cash.</label>
+									<label><input type="checkbox" id="paid"> Atendee has paid the total amount</label>
 								</div>
 							@else
 								<div class="checkbox">

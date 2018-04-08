@@ -115,24 +115,26 @@ var neonLogin = neonLogin || {};
 						success: function(response)
 						{
 							// Login status [success|invalid]
-							var login_status = response.login_status;
-							var login_msg = response.login_msg;
+							var status = response.status;
+							var msg = response.msg;
 															
 							// Form is fully completed, we update the percentage
 							neonLogin.setPercentage(80);
-							
+							console.log(status);
+							console.log(msg);
+							console.log(response.redirect_url);
 							
 							// We will give some time for the animation to finish, then execute the following procedures	
 							setTimeout(function()
 							{
 								// If login is invalid, we store the 
-								if(login_status == 'invalid')
+								if(status == 'invalid')
 								{
 									$(".login-page").removeClass('logging-in');
 									neonLogin.resetProgressBar(true);
-									document.getElementById("login_msg").innerHTML = login_msg;
+									document.getElementById("msg").innerHTML = msg;
 								}
-								else if(login_status == 'success')
+								else if(status == 'success')
 								{
 									neonLogin.setPercentage(100);
 									// Redirect to login page

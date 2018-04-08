@@ -1,14 +1,14 @@
-<?php namespace DPSEI\Http\Controllers\Admin;
+<?php namespace LANMS\Http\Controllers\Admin;
 
-use DPSEI\Http\Requests;
-use DPSEI\Http\Controllers\Controller;
+use LANMS\Http\Requests;
+use LANMS\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use anlutro\LaravelSettings\Facade as Setting;
 use Illuminate\Support\Facades\Redirect;
 
-use DPSEI\Http\Requests\Admin\SettingEditRequest;
+use LANMS\Http\Requests\Admin\SettingEditRequest;
 
 class SettingsController extends Controller {
 
@@ -21,7 +21,7 @@ class SettingsController extends Controller {
 	{
 		if (Sentinel::getUser()->hasAccess(['admin.settings.*'])){
 			$settings = Setting::all();
-			$removesettings = array_splice($settings, 0, 4);
+    		$settings = array_diff_key($settings, array_flip((array) array("APP_LICENSE_KEY", "APP_LICENSE_LOCAL_KEY", "APP_LICENSE_STATUS", "APP_LICENSE_STATUS_DESC", "APP_NAME", "APP_VERSION", "APP_VERSION_TYPE", "APP_URL")));
 			return view('settings.index')
 						->withSettings($settings);
 		} else {

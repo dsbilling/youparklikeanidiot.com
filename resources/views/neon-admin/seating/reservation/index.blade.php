@@ -13,7 +13,7 @@
 		<ol class="breadcrumb">
 			<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
 			<li><a href="{{ route('admin') }}">Admin</a></li>
-			<li><a href="{{ route('admin-seating') }}">Seating</a></li>
+			<li>Seating</li>
 			<li class="active"><strong>Reservations</strong></li>
 		</ol>
 
@@ -49,7 +49,10 @@
 									@if(Sentinel::hasAccess('admin.reservation.destroy'))
 										<a href="javascript:;" onclick="jQuery('#reservation-destroy-{{ $reservation->id }}').modal('show', {backdrop: 'static'});" class="btn btn-danger btn-sm btn-icon icon-left"><i class="entypo-cancel"></i>Delete</a>
 									@endif
-									<a href="{{ route('seating-show', $reservation->seat->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
+									<a href="{{ route('admin-seating-reservation-show', $reservation->seat->slug) }}" class="btn btn-info btn-sm btn-icon icon-left"><i class="entypo-info"></i>View</a>
+									@if($reservation->ticket)
+										<a href="{{ route('admin-seating-reservation-pdf', $reservation->seat->slug) }}" class="btn btn-default btn-sm btn-icon icon-left"><i class="fa fa-file-pdf-o"></i>Ticket</a>
+									@endif
 								</td>
 							</tr>
 						@endforeach

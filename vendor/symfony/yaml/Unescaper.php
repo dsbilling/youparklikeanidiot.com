@@ -31,11 +31,11 @@ class Unescaper
     /**
      * Unescapes a single quoted string.
      *
-     * @param string $value A single quoted string.
+     * @param string $value A single quoted string
      *
-     * @return string The unescaped string.
+     * @return string The unescaped string
      */
-    public function unescapeSingleQuotedString($value)
+    public function unescapeSingleQuotedString(string $value): string
     {
         return str_replace('\'\'', '\'', $value);
     }
@@ -43,11 +43,11 @@ class Unescaper
     /**
      * Unescapes a double quoted string.
      *
-     * @param string $value A double quoted string.
+     * @param string $value A double quoted string
      *
-     * @return string The unescaped string.
+     * @return string The unescaped string
      */
-    public function unescapeDoubleQuotedString($value)
+    public function unescapeDoubleQuotedString(string $value): string
     {
         $callback = function ($match) {
             return $this->unescapeCharacter($match[0]);
@@ -64,7 +64,7 @@ class Unescaper
      *
      * @return string The unescaped character
      */
-    private function unescapeCharacter($value)
+    private function unescapeCharacter(string $value): string
     {
         switch ($value[1]) {
             case '0':
@@ -120,12 +120,8 @@ class Unescaper
 
     /**
      * Get the UTF-8 character for the given code point.
-     *
-     * @param int $c The unicode code point
-     *
-     * @return string The corresponding UTF-8 character
      */
-    private static function utf8chr($c)
+    private static function utf8chr(int $c): string
     {
         if (0x80 > $c %= 0x200000) {
             return chr($c);

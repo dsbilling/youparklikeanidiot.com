@@ -134,7 +134,7 @@
 					
 				</div>
 				
-				<div class="col-sm-4">
+				<!--<div class="col-sm-4">
 					
 					<div class="panel panel-primary @if($errors->has('image')) panel-danger @endif" data-collapsed="0">
 				
@@ -170,7 +170,7 @@
 					
 					</div>
 					
-				</div>
+				</div>-->
 
 				<div class="col-sm-4">
 					

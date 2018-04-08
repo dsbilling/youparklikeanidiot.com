@@ -12,7 +12,7 @@
 
 	<link rel="stylesheet" href="{{ Theme::url('js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
 	<link rel="stylesheet" href="{{ Theme::url('css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/neon-core.css') }}">
 	<link rel="stylesheet" href="{{ Theme::url('css/neon-theme.css') }}">

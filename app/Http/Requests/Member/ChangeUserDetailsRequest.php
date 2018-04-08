@@ -1,6 +1,6 @@
-<?php namespace DPSEI\Http\Requests\Member;
+<?php namespace LANMS\Http\Requests\Member;
 
-use DPSEI\Http\Requests\Request;
+use LANMS\Http\Requests\Request;
 
 class ChangeUserDetailsRequest extends Request {
 
@@ -23,11 +23,12 @@ class ChangeUserDetailsRequest extends Request {
 	{
 		return [
 			/*'email' 		=> 'required|max:50|email|unique:users',*/
-			'firstname' 	=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
-			'lastname' 		=> 'required|min:3|max:250|regex:/^[A-Za-z \']+$/',
+			'firstname' 	=> 'required|between:3,250|alpha_dash',
+			'lastname' 		=> 'required|between:3,250|alpha_dash',
+			'birthdate'		=> 'date_format:Y-m-d',
 			'gender' 		=> '',
-			'location' 		=> 'regex:/^[A-Za-z ,\']+$/',
-			'occupation' 	=> 'regex:/^[A-Za-z ,\']+$/',
+			'location' 		=> 'regex:/^[A-Za-z ,\']+$/|nullable',
+			'occupation' 	=> 'regex:/^[A-Za-z ,\']+$/|nullable',
 		];
 	}
 

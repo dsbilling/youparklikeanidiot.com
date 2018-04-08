@@ -7,7 +7,8 @@
 	
 	<ol class="breadcrumb 2" >
 		<li><a href="{{ route('home') }}"><i class="fa fa-home"></i>Home</a></li>
-		<li><a href="{{ route('account') }}">Dashboard</a></li>
+		<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+		<li><a href="{{ route('account') }}">Account</a></li>
 		<li class="active"><strong>Change Account Details</strong></li>
 	</ol>
 
@@ -67,14 +68,29 @@
 						</div>
 
 						<div class="row">
+							<label class="col-sm-5 control-label">Birthdate</label>
+							<div class="col-sm-5 form-group @if ($errors->has('birthdate')) has-error @endif">
+								<div class="input-group">
+									<span class="input-group-addon"><span class="fa fa-birthday-cake"></span></span>
+									<input class="form-control" type="text" name="birthdate" placeholder="1970-01-30" value="{{ $birthdate }}">
+								</div>
+								@if($errors->has('birthdate'))
+									<p class="text-danger">{{ $errors->first('birthdate') }}</p>
+								@endif
+							</div>
+						</div>
+
+						<div class="row">
 							<label class="col-sm-5 control-label">Gender</label>
 							<div class="col-sm-5 form-group @if ($errors->has('gender')) has-error @endif">
 								<div class="input-group">
-									<span class="input-group-addon"><span class="fa fa-genderless"></span></span>
+									<span class="input-group-addon"><span class="fa fa-{{ User::getGenderIcon($gender) }}"></span></span>
 									<select class="form-control" name="gender">
 										<option value="">-- Please select --</option>
 										<option value="Male" {{ ($gender == 'Male') ? 'selected' : '' }}>Male</option>
 										<option value="Female" {{ ($gender == 'Female') ? 'selected' : '' }}>Female</option>
+										<option value="Transgender" {{ ($gender == 'Transgender') ? 'selected' : '' }}>Transgender</option>
+										<option value="Genderless" {{ ($gender == 'Genderless') ? 'selected' : '' }}>Genderless</option>
 									</select>
 								</div>
 								@if($errors->has('gender'))
@@ -152,22 +168,19 @@
 								<div class="input-group">
 									<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
 									<input class="form-control" type="password" name="password">
+									<span class="input-group-btn"><button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Save Changes</button></span>
 								</div>
 								@if($errors->has('password'))
 									<p class="text-danger">{{ $errors->first('password') }}</p>
 								@endif
 							</div>
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						</div>
 						
 					</div>
 				
 				</div>
 			</div>
-		</div>
-											
-		<div class="form-group default-padding">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save Changes</button>
 		</div>
 					
 	</form>
