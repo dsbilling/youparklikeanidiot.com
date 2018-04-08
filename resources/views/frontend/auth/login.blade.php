@@ -7,7 +7,7 @@
 
 	<h1 class="h3 mb-3 font-weight-normal">Innlogging</h1>
 
-	<label for="email" class="sr-only">E-post adresse</label>
+	<label for="email" class="sr-only">Brukernavn eller E-postadresse</label>
 	<div class="input-group">
 		<div class="input-group-prepend">
 			<span class="input-group-text" style="border-top-left-radius:0.25rem;border-bottom-left-radius:0;"><i class="fas fa-user"></i></span>
