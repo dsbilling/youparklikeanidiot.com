@@ -55,7 +55,7 @@
 	<footer class="footer border-top">
 		<div class="container">
 			<div class="row">
-				<div class="col-4 col-md">
+				<div class="col-6 col-md">
 					<p>
 						&copy; {!! Setting::get('WEB_COPYRIGHT') !!}
 						&middot;
