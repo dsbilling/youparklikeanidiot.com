@@ -28,7 +28,6 @@ html, body {
 }
 
 body {
-  height: auto;
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -117,6 +116,12 @@ body {
   margin: auto; 
   min-width: 50%;
   min-height: 50%;
+}
+
+@media (max-width: 48em) {
+  body {
+    height: auto;
+  }
 }
 
 
