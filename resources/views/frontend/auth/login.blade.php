@@ -33,7 +33,7 @@
 
 	<p class="mt-5 mb-3 text-muted">
 		<small>
-			<a href="{{ route('account-forgot-password') }}" class="link">Glemt brukernavn/passord?</a>
+			<a href="{{ route('account-credentials-forgot') }}" class="link">Glemt brukernavn/passord?</a>
 			&middot;
 			<a href="{{ route('account-register') }}" class="link">Trenger du en konto?</a>
 			<br/>

@@ -5,8 +5,13 @@ namespace DPSEI\Http\Controllers\Member;
 use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+
+use DPSEI\Http\Requests\Member\ForgotPasswordRequest;
+use DPSEI\Http\Requests\Member\RecoverRequest;
 
 use DPSEI\Act;
+use DPSEI\Rem;
 
 class AuthController extends Controller {
 
@@ -34,6 +39,25 @@ class AuthController extends Controller {
 		} else {
 			return view('auth.activate')->with('activation_code', $activation_code);
 		}
+	}
+
+	public function getCredentialsForgot() {
+		return view('auth.credentials-forgot');
+	}
+
+	public function getResetPassword($resetpassword_code) {
+		$act = Rem::where('code', '=', $resetpassword_code)->where('completed', '=', 0)->first();
+		if($act == null) {
+			return Redirect::route('home')
+				->with('messagetype', 'warning')
+				->with('message', 'We couldn\'t find your reminder code. Please try again.');
+		} else {
+			return view('auth.resetpassword')->with('resetpassword_code', $resetpassword_code);
+		}
+	}
+
+	public function getResendVerification() {
+		return view('auth.resendverification');
 	}
 
 	public function postRegister() {
@@ -226,10 +250,10 @@ class AuthController extends Controller {
 
 	}
 
-	public function postForgotPassword() {
+	public function postForgotCredentials() {
 
 		if(!Setting::get('LOGIN_ENABLED')) {
-			return Redirect::route('account-forgot-password')
+			return Redirect::route('account-credentials-forgot')
 							->with('messagetype', 'warning')
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
@@ -239,7 +263,7 @@ class AuthController extends Controller {
 			$user = Sentinel::findByCredentials($credentials);
 
 			if ($user == null) {
-				return Redirect::route('account-forgot-password')
+				return Redirect::route('account-credentials-forgot')
 							->with('messagetype', 'warning')
 							->with('message', 'User not found!');
 			} else {
@@ -260,11 +284,11 @@ class AuthController extends Controller {
 				}
 
 				if ($active == false) {
-					return Redirect::route('account-forgot-password')
+					return Redirect::route('account-credentials-forgot')
 							->with('messagetype', 'warning')
 							->with('message', 'Your user is not active! Please check your inbox for the activation email.');
 				} elseif ($reminder == true) {
-					return Redirect::route('account-forgot-password')
+					return Redirect::route('account-credentials-forgot')
 							->with('messagetype', 'warning')
 							->with('message', 'You have already asked for a reminder! Please check your inbox for the reminder email.');
 				} elseif ($active == true && $reminder == false) {
@@ -273,7 +297,7 @@ class AuthController extends Controller {
 					$reminder_code 	= $reminder->code;
 
 					if(!$reminder) {
-						return Redirect::route('account-forgot-password')
+						return Redirect::route('account-credentials-forgot')
 										->with('messagetype', 'warning')
 										->with('message', 'Couldn\'t create a reminder email for you. Please try again or contact the system administrator.');
 					}
@@ -288,11 +312,11 @@ class AuthController extends Controller {
 					});
 					
 					if(count(Mail::failures()) > 0) {
-						return Redirect::route('account-forgot-password')
+						return Redirect::route('account-credentials-forgot')
 										->with('messagetype', 'warning')
 										->with('message', 'Something went wrong while trying to send you an email.');
 					} else {
-						return Redirect::route('account-forgot-password')
+						return Redirect::route('account-credentials-forgot')
 										->with('messagetype', 'success')
 										->with('message', 'We have sent you an email! Please check your inbox for the reminder email to reset your password.');
 					}
