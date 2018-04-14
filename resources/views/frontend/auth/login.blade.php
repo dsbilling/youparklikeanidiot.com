@@ -3,7 +3,7 @@
 
 @section('content')
 
-<form class="form-signin">
+<form class="form-signin" method="post" action="{{ route('account-login-post') }}">
 
 	<h1 class="h3 mb-3 font-weight-normal">Innlogging</h1>
 
@@ -20,7 +20,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text" style="border-top-left-radius:0;border-bottom-left-radius:0.25rem;"><i class="fas fa-key"></i></span>
 		</div>
-		<input type="text" class="form-control" style="border-top-right-radius:0;" name="password" id="password" placeholder="Passord" required>
+		<input type="password" class="form-control" style="border-top-right-radius:0;" name="password" id="password" placeholder="Passord" required>
 	</div>
 
 	<div class="checkbox mt-3 mb-3">
@@ -28,7 +28,9 @@
 			<input type="checkbox" value="remember-me"> Husk meg
 		</label>
 	</div>
-
+	
+	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+	
 	<button class="btn btn-secondary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Logg inn</button>
 
 	<p class="mt-5 mb-3 text-muted">
