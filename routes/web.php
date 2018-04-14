@@ -180,21 +180,21 @@ Route::group([
 	'middleware' => ['sentinel.guest', 'setTheme:frontend'],
 	'prefix' => 'account',
 	], function() {
-		Route::get('/forgot/password', [
-			'as' => 'account-forgot-password' ,
-			'uses' => 'Member\RecoverController@getForgotPassword'
+		Route::get('/credentials/forgot', [
+			'as' => 'account-credentials-forgot' ,
+			'uses' => 'Member\AuthController@getCredentialsPassword'
 		]);
-		Route::post('/forgot/password', [
-			'as' => 'account-forgot-password-post' ,
-			'uses' => 'Member\RecoverController@postForgotPassword'
+		Route::post('/credentials/forgot', [
+			'as' => 'account-credentials-forgot-post' ,
+			'uses' => 'Member\AuthController@postCredentialsPassword'
 		]);
-		Route::get('/resetpassword/{code}', [
-			'as' => 'account-recover' ,
-			'uses' => 'Member\RecoverController@getResetPassword'
+		Route::get('/password/reset/{code}', [
+			'as' => 'account-password-reset' ,
+			'uses' => 'Member\AuthController@getResetPassword'
 		]);
-		Route::post('/resetpassword/{code}', [
-			'as' => 'account-recover-post' ,
-			'uses' => 'Member\RecoverController@postResetPassword'
+		Route::post('/password/reset/{code}', [
+			'as' => 'account-password-reset-post' ,
+			'uses' => 'Member\AuthController@postResetPassword'
 		]);
 		Route::get('/register', [
 			'as' => 'account-register',
@@ -222,11 +222,11 @@ Route::group([
 		]);
 		Route::get('/resendverification', [
 			'as' => 'account-resendverification' ,
-			'uses' => 'Member\RecoverController@getResendVerification'
+			'uses' => 'Member\AuthController@getResendVerification'
 		]);
 		Route::post('/resendverification', [
 			'as' => 'account-resendverification-post' ,
-			'uses' => 'Member\RecoverController@postResendVerification'
+			'uses' => 'Member\AuthController@postResendVerification'
 		]);
 		
 });
