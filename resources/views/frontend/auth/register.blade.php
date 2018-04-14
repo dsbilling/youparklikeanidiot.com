@@ -3,7 +3,7 @@
 
 @section('content')
 
-<form class="form-signin">
+<form class="form-signin" method="post" action="{{ route('account-register-post') }}">
 
 	<h1 class="h3 mb-3 font-weight-normal">Register Konto</h1>
 
@@ -60,7 +60,9 @@
 			<input type="checkbox" name="tospp" id="tospp"> Jeg har lest, akseptert og godkjent <strong>Terms of Service</strong> og <strong>Privacy Policy</strong>.
 		</label>
 	</div>
-
+	
+	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+	
 	<button class="btn btn-secondary btn-block" type="submit"><i class="fas fa-pencil-alt"></i> Registrer</button>
 
 	<p class="mt-5 text-muted">
