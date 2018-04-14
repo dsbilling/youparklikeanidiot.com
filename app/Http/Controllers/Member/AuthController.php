@@ -1,6 +1,4 @@
-<?php
-
-namespace DPSEI\Http\Controllers\Member;
+<?php namespace DPSEI\Http\Controllers\Member;
 
 use DPSEI\Http\Controllers\Controller;
 
