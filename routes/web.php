@@ -23,7 +23,7 @@ if(Config::get('app.debug')) {
 	});
 	/*Route::get('/mailtest', function() {
 		Mail::send('emails.auth.activate', ['link'=>route('account-activate', 'derp'),'firstname'=>'Daniel'], function($message) {
-			$message->to("daniel@retardedtech.com", "Daniel")->subject('Test Email');
+			$message->to("daniel@infihex.com", "Daniel")->subject('Test Email');
 		});
 		if(count(Mail::failures()) > 0) {
 			dd('Mail Failure.');
@@ -33,9 +33,7 @@ if(Config::get('app.debug')) {
 		return view('emails.auth.activate', ['link'=>route('account-activate', 'derp'), 'firstname'=>'Daniel']);
 	});*/
 	Route::get('/test', function() {
-		return Redirect::route('account-login')
-							->with('messagetype', 'success')
-							->with('message', 'Your account has been registered!');
+		App::abort(503);
 	});
 	/*Route::get('/aau', function() {
 		echo "AAU - Activate All Users<br><br>";
