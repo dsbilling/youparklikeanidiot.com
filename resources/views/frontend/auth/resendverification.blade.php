@@ -7,13 +7,17 @@
 
 	<h1 class="h3 mb-3 font-weight-normal">Fikk du ikke<br>aktiverings-e-posten?</h1>
 
-	<label for="email" class="sr-only">Brukernavn eller E-postadresse</label>
+	<label for="email" class="sr-only">E-postadresse</label>
 	<div class="input-group">
 		<div class="input-group-prepend">
 			<span class="input-group-text"><i class="fas fa-user"></i></span>
 		</div>
-		<input type="text" class="form-control" name="email" id="email" placeholder="Brukernavn eller E-postadresse" required autofocus>
+		<input type="text" class="form-control" name="email" id="email" placeholder="E-postadresse" required autofocus>
 	</div>
+
+	@foreach($errors->all() as $message)
+		<p class="text-danger">{{ $message }}</p>
+	@endforeach
 
 	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 	
