@@ -5,8 +5,12 @@ use DPSEI\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Mail;
 
-use DPSEI\Http\Requests\Member\ForgotPasswordRequest;
-use DPSEI\Http\Requests\Member\RecoverRequest;
+use DPSEI\Http\Requests\Auth\ActivateRequest;
+use DPSEI\Http\Requests\Auth\ForgotCredentialsRequest;
+use DPSEI\Http\Requests\Auth\LoginRequest;
+use DPSEI\Http\Requests\Auth\RegisterRequest;
+use DPSEI\Http\Requests\Auth\ResendVerificationRequest;
+use DPSEI\Http\Requests\Auth\ResetPasswordRequest;
 
 use DPSEI\Act;
 use DPSEI\Rem;
@@ -58,7 +62,7 @@ class AuthController extends Controller {
 		return view('auth.resendverification');
 	}
 
-	public function postRegister() {
+	public function postRegister(RegisterRequest $request) {
 
 		if(!Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-register')
@@ -139,7 +143,7 @@ class AuthController extends Controller {
 
 	}
 
-	public function postActivate() {
+	public function postActivate(ActivateRequest $request) {
 
 		if(!Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-activate')
@@ -179,7 +183,7 @@ class AuthController extends Controller {
 
 	}
 
-	public function postLogin() {
+	public function postLogin(LoginRequest $request) {
 
 		$username 		= Request::input('username');
 		$password 		= Request::input('password');
@@ -248,7 +252,7 @@ class AuthController extends Controller {
 
 	}
 
-	public function postForgotCredentials() {
+	public function postForgotCredentials(ForgotCredentialsRequest $request) {
 
 		if(!Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-credentials-forgot')
@@ -327,7 +331,7 @@ class AuthController extends Controller {
 
 	}
 
-	public function postResetPassword() {
+	public function postResetPassword(ResetPasswordRequest $request) {
 
 		if(!Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-recover')
@@ -359,7 +363,7 @@ class AuthController extends Controller {
 
 	}
 
-	public function postResendVerification() {
+	public function postResendVerification(ResendVerificationRequest $request) {
 
 		if(!Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-resendverification')
