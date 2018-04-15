@@ -7,12 +7,12 @@
 
 	<h1 class="h3 mb-3 font-weight-normal">Innlogging</h1>
 
-	<label for="email" class="sr-only">Brukernavn eller E-postadresse</label>
+	<label for="login" class="sr-only">Brukernavn eller E-postadresse</label>
 	<div class="input-group">
 		<div class="input-group-prepend">
 			<span class="input-group-text" style="border-top-left-radius:0.25rem;border-bottom-left-radius:0;"><i class="fas fa-user"></i></span>
 		</div>
-		<input type="text" class="form-control" style="border-bottom-right-radius:0;" name="email" id="email" placeholder="Brukernavn eller E-postadresse" required autofocus>
+		<input type="text" class="form-control" style="border-bottom-right-radius:0;" name="login" id="login" placeholder="Brukernavn eller E-postadresse" required autofocus>
 	</div>
 
 	<label for="password" class="sr-only">Passord</label>

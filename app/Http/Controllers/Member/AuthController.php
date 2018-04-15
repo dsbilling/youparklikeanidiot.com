@@ -256,8 +256,8 @@ class AuthController extends Controller {
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$username = Request::input('username');
-			$credentials 	= ['login' => $username];
+			$login 			= Request::input('login');
+			$credentials 	= ['login' => $login];
 			$user = Sentinel::findByCredentials($credentials);
 
 			if ($user == null) {
@@ -335,10 +335,10 @@ class AuthController extends Controller {
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$username 			= Request::input('username');
+			$login 				= Request::input('login');
 			$password 			= Request::input('password');
 			$resetpassword_code	= Request::input('resetpassword_code');
-			$credentials 		= ['login' => $username];
+			$credentials 		= ['login' => $login];
 			$user 				= Sentinel::findByCredentials($credentials);
 
 			if($user == null) {
