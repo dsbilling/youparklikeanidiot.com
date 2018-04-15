@@ -73,6 +73,10 @@ body {
   border-bottom-color: #fff;
 }
 
+.dropdown-item {
+  text-shadow: none;
+}
+
 @media (min-width: 48em) {
   .masthead-brand {
     float: left;

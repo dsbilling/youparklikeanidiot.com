@@ -36,7 +36,16 @@
 						<a class="nav-link @if(Request::is('account/login')){{'active'}} @endif" href="{{ route('account-login') }}">Innlogging</a>
 						<a class="nav-link @if(Request::is('account/register')){{'active'}} @endif" href="{{ route('account-register') }}">Registrer</a>
 					@else
-						<a class="nav-link" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a>
+						<li class="nav-item dropdown" style="margin-left: 1rem;">
+							<a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}</a>
+							<div class="dropdown-menu" aria-labelledby="userMenu">
+								<a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ route('logout') }}"><span class="fa fa-sign-out-alt"></span> Logg ut</a>
+							</div>
+						</li>
 					@endif
 				</nav>
 			</div>
