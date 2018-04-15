@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
 			'firstname'				=> 'required',
 			'lastname'				=> 'required',
 			'username'				=> 'required',
-			'birthday'				=> 'required|date',
+			'birthdate'				=> 'required|date',
 			'email'					=> 'required|email',
 			'password'				=> 'required|different:firstname|different:lastname|different:username|confirmed',
 			'accept'				=> 'accepted'
