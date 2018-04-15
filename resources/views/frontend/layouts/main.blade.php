@@ -83,7 +83,7 @@
 		</div>
 	</footer>
 
-	<script src="{{ Theme::url('js/jquery-slim.min.js') }}"></script>
+	<script src="{{ Theme::url('js/jquery.min.js') }}"></script>
 	<script src="{{ Theme::url('js/bootstrap.bundle.min.js') }}"></script>
 	<script src="{{ Theme::url('js/custom.js') }}"></script>
 	<script src="{{ Theme::url('js/toastr.js') }}"></script>
