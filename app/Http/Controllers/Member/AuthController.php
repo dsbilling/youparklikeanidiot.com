@@ -18,6 +18,7 @@ use DPSEI\Http\Requests\Auth\ResetPasswordRequest;
 
 use DPSEI\Act;
 use DPSEI\Rem;
+use DPSEI\User;
 
 class AuthController extends Controller {
 
@@ -79,11 +80,9 @@ class AuthController extends Controller {
 			$lastname 			= $request->input('lastname');
 			$username 			= $request->input('username');
 			$password 			= $request->input('password');
+			$birthdate 			= $request->input('birthdate');
 
-			$originalDate 		= $request->input('birthdate');
-			$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
-
-			$referral			= Session::get('referral');
+			$referral			= \Session::get('referral');
 			$referral_code 		= str_random(15);
 
 			$checkusername 		= User::where('username', '=', $username)->first();
@@ -92,13 +91,13 @@ class AuthController extends Controller {
 			if(!is_null($checkusername)) { 
 				return Redirect::route('account-register')
 						->with('messagetype', 'warning')
-						->with('message', 'Username is already taken.');
+						->with('message', 'Username has already been taken.')->withInput($request->all());
 			}
 
 			if(!is_null($checkemail)) { 
 				return Redirect::route('account-register')
 						->with('messagetype', 'warning')
-						->with('message', 'Email is already taken.');
+						->with('message', 'Email has already been taken.')->withInput($request->all());
 			}
 
 			if(is_null($checkusername) && is_null($checkemail)) {
@@ -119,7 +118,7 @@ class AuthController extends Controller {
 					$activation = Activation::create($user);
 					$activation_code = $activation->code;
 
-					Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
+					Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation_code), 'firstname' => $firstname), function($message) use ($user) {
 						$message->to($user->email, $user->firstname)->subject('Activate your account');
 					});
 
@@ -310,7 +309,7 @@ class AuthController extends Controller {
 
 					Mail::send('emails.auth.forgot-password', 
 						array(
-							'link' => URL::route('account-recover', $reminder_code),
+							'link' => \URL::route('account-recover', $reminder_code),
 							'firstname' => $user->firstname,
 							'username' => $user->username,
 						), function($message) use ($user) {
@@ -321,11 +320,11 @@ class AuthController extends Controller {
 						return Redirect::route('account-credentials-forgot')
 										->with('messagetype', 'warning')
 										->with('message', 'Something went wrong while trying to send you an email.');
-					} else {
-						return Redirect::route('account-credentials-forgot')
-										->with('messagetype', 'success')
-										->with('message', 'We have sent you an email! Please check your inbox for the reminder email to reset your password.');
 					}
+
+					return Redirect::route('account-credentials-forgot')
+									->with('messagetype', 'success')
+									->with('message', 'We have sent you an email! Please check your inbox for the reminder email to reset your password.');
 
 				}
 
