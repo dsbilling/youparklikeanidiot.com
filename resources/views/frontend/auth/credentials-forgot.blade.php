@@ -17,6 +17,10 @@
 
 	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 
+	@foreach($errors->all() as $message)
+		<p class="text-danger">{{ $message }}</p>
+	@endforeach
+
 	<button class="btn btn-secondary btn-block mt-3" type="submit"><i class="fas fa-paper-plane"></i> Send e-post</button>
 
 	<p class="mt-5 text-muted">
