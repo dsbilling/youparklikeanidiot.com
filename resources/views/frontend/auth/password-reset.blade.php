@@ -39,6 +39,10 @@
 		<input type="password" class="form-control" style="border-top-right-radius:0;" name="password_confirmation" id="password_confirmation" placeholder="Passord igjen" required>
 	</div>
 
+	@foreach($errors->all() as $message)
+		<p class="text-danger">{{ $message }}</p>
+	@endforeach
+
 	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 	
 	<button class="btn btn-success btn-block mt-3" type="submit"><i class="fas fa-check"></i> Fullfør Passord Reset</button>
