@@ -48,7 +48,7 @@ class AuthController extends Controller {
 		}
 	}
 
-	public function getCredentialsForgot() {
+	public function getForgotCredentials() {
 		return view('auth.credentials-forgot');
 	}
 
@@ -265,7 +265,7 @@ class AuthController extends Controller {
 
 			$login 			= $request->input('login');
 			$credentials 	= ['login' => $login];
-			$user = Sentinel::findByCredentials($credentials);
+			$user 			= Sentinel::findByCredentials($credentials);
 
 			if ($user == null) {
 				return Redirect::route('account-credentials-forgot')
@@ -309,7 +309,7 @@ class AuthController extends Controller {
 
 					Mail::send('emails.auth.forgot-password', 
 						array(
-							'link' => \URL::route('account-recover', $reminder_code),
+							'link' => \URL::route('account-password-reset', $reminder_code),
 							'firstname' => $user->firstname,
 							'username' => $user->username,
 						), function($message) use ($user) {
@@ -374,8 +374,8 @@ class AuthController extends Controller {
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$email 	= $request->input('email');
-			$checkuser = User::where('email', '=', $email)->first();
+			$email 		= $request->input('email');
+			$checkuser 	= User::where('email', '=', $email)->first();
 
 			if($checkuser == null) {
 				return Redirect::route('account-resendverification')
@@ -397,7 +397,7 @@ class AuthController extends Controller {
 								->with('message', 'Activation has already been completed.');
 					} else {
 
-						Mail::send('emails.auth.activate', array('link' => URL::route('account-activate', $activation->code), 'firstname' => $checkuser->firstname), function($message) use ($checkuser) {
+						Mail::send('emails.auth.activate', array('link' => \URL::route('account-activate', $activation->code), 'firstname' => $checkuser->firstname), function($message) use ($checkuser) {
 							$message->to($checkuser->email, $checkuser->firstname)->subject('Activate your account');
 						});
 
