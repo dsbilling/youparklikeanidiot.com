@@ -29,6 +29,7 @@
 				<h3 class="masthead-brand"><a href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a></h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link @if(Request::is('/')){{'active'}} @endif" href="{{ url('/') }}">Hjem</a>
+					<a class="nav-link @if(Request::is('news')){{'active'}} @endif" href="{{ route('news') }}">Nyheter</a>
 					@foreach(Page::forMenu() as $page)
 						<a class="nav-link @if(Request::is($page->slug)){{'active'}} @endif" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a>
 					@endforeach

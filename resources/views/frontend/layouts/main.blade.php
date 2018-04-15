@@ -25,6 +25,7 @@
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item @if(Request::is('/')){{'active'}} @endif"><a class="nav-link" href="{{ url('/') }}">Hjem</a></li>
+					<li class="nav-item @if(Request::is('news')){{'active'}} @endif"><a class="nav-link" href="{{ route('news') }}">Nyheter</a></li>
 					@foreach(Page::forMenu() as $page)
 						<li class="nav-item @if(Request::is($page->slug)){{'active'}} @endif"><a class="nav-link" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a></li>
 					@endforeach
