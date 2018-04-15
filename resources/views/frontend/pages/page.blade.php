@@ -3,14 +3,15 @@
 
 @section('content')
 
-<div class="container">
-  <div class="row">
-    <div class="col s12">
-      <h1 class="post-title">{{ $title }}</h1>
+<h1 class="display-4 mt-4 mb-4">{{ $title }}</h1>
 
-      {!! $content !!}
-    </div>
-  </div>
-</div>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{ route('home') }}">Hjem</a></li>
+		<li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+	</ol>
+</nav>
+
+{!! $content !!}
 
 @endsection
