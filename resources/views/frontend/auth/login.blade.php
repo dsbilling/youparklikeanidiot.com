@@ -28,6 +28,10 @@
 			<input type="checkbox" value="remember"> Husk meg
 		</label>
 	</div>
+
+	@foreach($errors->all() as $message)
+		<p class="text-danger">{{ $message }}</p>
+	@endforeach
 	
 	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 	
