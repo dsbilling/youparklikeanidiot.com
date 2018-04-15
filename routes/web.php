@@ -182,11 +182,11 @@ Route::group([
 	], function() {
 		Route::get('/credentials/forgot', [
 			'as' => 'account-credentials-forgot' ,
-			'uses' => 'Member\AuthController@getCredentialsPassword'
+			'uses' => 'Member\AuthController@getCredentialsForgot'
 		]);
 		Route::post('/credentials/forgot', [
 			'as' => 'account-credentials-forgot-post' ,
-			'uses' => 'Member\AuthController@postCredentialsPassword'
+			'uses' => 'Member\AuthController@postCredentialsForgot'
 		]);
 		Route::get('/password/reset/{code}', [
 			'as' => 'account-password-reset' ,
