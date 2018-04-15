@@ -192,7 +192,7 @@ Route::group([
 			'as' => 'account-password-reset' ,
 			'uses' => 'Member\AuthController@getResetPassword'
 		]);
-		Route::post('/password/reset/{code}', [
+		Route::post('/password/reset', [
 			'as' => 'account-password-reset-post' ,
 			'uses' => 'Member\AuthController@postResetPassword'
 		]);
@@ -216,7 +216,7 @@ Route::group([
 			'as' => 'account-activate',
 			'uses' => 'Member\AuthController@getActivate'
 		]);
-		Route::post('/activate/{activation_code}', [
+		Route::post('/activate', [
 			'as' => 'account-activate-post',
 			'uses' => 'Member\AuthController@postActivate'
 		]);
