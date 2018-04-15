@@ -25,7 +25,7 @@
 
 	<div class="checkbox mt-3 mb-3">
 		<label>
-			<input type="checkbox" value="remember-me"> Husk meg
+			<input type="checkbox" value="remember"> Husk meg
 		</label>
 	</div>
 	
