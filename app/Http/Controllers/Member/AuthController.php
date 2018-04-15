@@ -4,6 +4,10 @@ use DPSEI\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 
 use DPSEI\Http\Requests\Auth\ActivateRequest;
 use DPSEI\Http\Requests\Auth\ForgotCredentialsRequest;
@@ -26,7 +30,7 @@ class AuthController extends Controller {
 	}
 
 	public function getLogout() {
-		\Sentinel::logout();
+		Sentinel::logout();
 		return Redirect::route('home')
 						->with('messagetype', 'success')
 						->with('message', 'You have now been successfully been logged out!');
@@ -64,19 +68,19 @@ class AuthController extends Controller {
 
 	public function postRegister(RegisterRequest $request) {
 
-		if(!Setting::get('LOGIN_ENABLED')) {
+		if(!\Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-register')
 						->with('messagetype', 'warning')
 						->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$email 				= Request::get('email');
-			$firstname	 		= Request::get('firstname');
-			$lastname 			= Request::get('lastname');
-			$username 			= Request::get('username');
-			$password 			= Request::get('password');
+			$email 				= $request->input('email');
+			$firstname	 		= $request->input('firstname');
+			$lastname 			= $request->input('lastname');
+			$username 			= $request->input('username');
+			$password 			= $request->input('password');
 
-			$originalDate 		= Request::input('birthdate');
+			$originalDate 		= $request->input('birthdate');
 			$birthdate 			= date_format(date_create_from_format('d/m/Y', $originalDate), 'Y-m-d'); //strtotime fucks the date up so this is the solution
 
 			$referral			= Session::get('referral');
@@ -145,14 +149,14 @@ class AuthController extends Controller {
 
 	public function postActivate(ActivateRequest $request) {
 
-		if(!Setting::get('LOGIN_ENABLED')) {
+		if(!\Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-activate')
 						->with('messagetype', 'warning')
 						->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$username 			= Request::input('username');
-			$activation_code	= Request::input('activation_code');
+			$username 			= $request->input('username');
+			$activation_code	= $request->input('activation_code');
 			$credentials 		= ['login' => $username];
 			$user 				= Sentinel::findByCredentials($credentials);
 
@@ -168,7 +172,7 @@ class AuthController extends Controller {
 						->with('messagetype', 'warning')
 						->with('message', 'Could not find activation code.');
 				} else {
-					if (Activation::complete($user, $activation_code)) {
+					if (\Activation::complete($user, $activation_code)) {
 						return Redirect::route('account-login')
 							->with('messagetype', 'success')
 							->with('message', 'Your account has been activated. You can now login!');
@@ -185,11 +189,11 @@ class AuthController extends Controller {
 
 	public function postLogin(LoginRequest $request) {
 
-		$username 		= Request::input('username');
-		$password 		= Request::input('password');
-		$remember 		= Request::input('remember');
+		$login 			= $request->input('login');
+		$password 		= $request->input('password');
+		$remember 		= $request->input('remember');
 
-		$credentials 	= ['login' => $username, 'password' => $password];
+		$credentials 	= ['login' => $login, 'password' => $password];
 		$user = Sentinel::findByCredentials($credentials);
 
 		if ($user == null) {
@@ -214,7 +218,7 @@ class AuthController extends Controller {
 			} elseif ($active === true) {
 
 				try {
-					if(!Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
+					if(!\Setting::get('LOGIN_ENABLED') && !$user->hasAccess(['admin'])) {
 						return Redirect::route('account-login')
 										->with('messagetype', 'warning')
 										->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
@@ -226,7 +230,7 @@ class AuthController extends Controller {
 											->with('messagetype', 'warning')
 											->with('message', 'Could not log you in. Please try again.');
 						} else {
-							return Redirect::route('account-dashboard');
+							return Redirect::route('dashboard');
 						}
 
 					} else {
@@ -254,13 +258,13 @@ class AuthController extends Controller {
 
 	public function postForgotCredentials(ForgotCredentialsRequest $request) {
 
-		if(!Setting::get('LOGIN_ENABLED')) {
+		if(!\Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-credentials-forgot')
 							->with('messagetype', 'warning')
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$login 			= Request::input('login');
+			$login 			= $request->input('login');
 			$credentials 	= ['login' => $login];
 			$user = Sentinel::findByCredentials($credentials);
 
@@ -333,15 +337,15 @@ class AuthController extends Controller {
 
 	public function postResetPassword(ResetPasswordRequest $request) {
 
-		if(!Setting::get('LOGIN_ENABLED')) {
+		if(!\Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-recover')
 							->with('messagetype', 'warning')
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$login 				= Request::input('login');
-			$password 			= Request::input('password');
-			$resetpassword_code	= Request::input('resetpassword_code');
+			$login 				= $request->input('login');
+			$password			= $request->input('password');
+			$resetpassword_code	= $request->input('resetpassword_code');
 			$credentials 		= ['login' => $login];
 			$user 				= Sentinel::findByCredentials($credentials);
 
@@ -365,13 +369,13 @@ class AuthController extends Controller {
 
 	public function postResendVerification(ResendVerificationRequest $request) {
 
-		if(!Setting::get('LOGIN_ENABLED')) {
+		if(!\Setting::get('LOGIN_ENABLED')) {
 			return Redirect::route('account-resendverification')
 							->with('messagetype', 'warning')
 							->with('message', 'Login and registration has been disabled at this moment. Please check back later!');
 		} else {
 
-			$email 	= Request::input('email');
+			$email 	= $request->input('email');
 			$checkuser = User::where('email', '=', $email)->first();
 
 			if($checkuser == null) {
@@ -389,7 +393,7 @@ class AuthController extends Controller {
 								->with('message', 'Your account is already activated or we couldn\'t find any uncompleted activations.');
 				} else {
 					if ($activation->completed == true) {
-					    return Redirect::route('account-resendverification')
+						return Redirect::route('account-resendverification')
 								->with('messagetype', 'warning')
 								->with('message', 'Activation has already been completed.');
 					} else {
