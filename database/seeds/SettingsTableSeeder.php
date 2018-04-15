@@ -21,7 +21,7 @@ class SettingsTableSeeder extends Seeder {
 		Setting::set('MAIL_DEBUG_EMAIL_NAME', 'Daniel Billing / Infihex');
 
 		Setting::set('WEB_PROTOCOL', 'http');
-		Setting::set('WEB_DOMAIN', 'dpsei.dev');
+		Setting::set('WEB_DOMAIN', 'dpsei.io');
 		Setting::set('WEB_PORT', 80);
 		Setting::set('WEB_NAME', 'duparkerersomenidiot.no');
 		Setting::set('WEB_LOGO', '/images/lanms.png');
