@@ -128,7 +128,7 @@ class AuthController extends Controller {
 							->with('messagetype', 'warning')
 							->with('message', 'Something went wrong while trying to send you an email.');
 					} else {
-						return Redirect::route('account-register')
+						return Redirect::route('account-login')
 							->with('messagetype', 'success')
 							->with('message', 'Your account has been registered!');
 					}
