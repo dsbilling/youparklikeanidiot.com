@@ -70,7 +70,9 @@
 				<div class="col-6 col-md text-right">
 					<p>
 						<small>
-							<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a> by <a href="https://infihex.com/" target="_blank">Infihex</a>
+							<a href="{{ Setting::get('APP_URL') }}" target="_blank">Report a bug</a>
+							&middot;
+							<a href="{{ Setting::get('APP_URL') }}" target="_blank">{{ Setting::get('APP_NAME') . ' ' . Setting::get('APP_VERSION') . ' ' . Setting::get('APP_VERSION_TYPE') }}</a>
 							@if(Config::get('app.debug'))
 								<b>&middot; <span class="text-danger">DEBUG MODE</span></b>
 							@endif
