@@ -40,9 +40,7 @@
 						<li class="nav-item dropdown" style="margin-left: 1rem;">
 							<a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}</a>
 							<div class="dropdown-menu" aria-labelledby="userMenu">
-								<a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+								<a class="dropdown-item" href="{{ route('account') }}">Account</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('logout') }}"><span class="fa fa-sign-out-alt"></span> Logg ut</a>
 							</div>

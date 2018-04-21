@@ -37,11 +37,11 @@
 					</ul>
 				@else
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" href="{{ route('account') }}"><em>Go to Dashboard  <span class="fa fa-arrow-right"></span></em></a></li>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#">Something else here</a>
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ route('account') }}">Account</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ route('logout') }}"><span class="fa fa-sign-out-alt"></span> Logg ut</a>
 						</div>
 					</li>
 				@endif
