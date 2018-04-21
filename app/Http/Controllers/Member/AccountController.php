@@ -20,19 +20,6 @@ use DPSEI\News;
 
 class AccountController extends Controller {
 
-	public function getDashboard() {
-		$authuser = Sentinel::getUser();
-		$onlinestatus = User::getOnlineStatus($authuser->id);
-		$userarray = $authuser->toArray();
-		$userarray['onlinestatus'] = $onlinestatus;
-
-		$news = News::isPublished()->get()->take(2);
-
-		return view('dashboard')
-					->with($userarray)
-					->withNews($news);
-	}
-
 	public function getAccount() {
 		return view('account.index');
 	}

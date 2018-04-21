@@ -229,7 +229,7 @@ class AuthController extends Controller {
 											->with('messagetype', 'warning')
 											->with('message', 'Could not log you in. Please try again.');
 						} else {
-							return Redirect::route('dashboard');
+							return Redirect::route('account');
 						}
 
 					} else {
