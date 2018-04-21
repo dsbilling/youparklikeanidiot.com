@@ -20,7 +20,7 @@
 
 	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
 		<div class="container">
-			<a class="navbar-brand" href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a>
+			<a class="navbar-brand mb-0 h1" href="{{ url('/') }}">{{ Setting::get('WEB_NAME') }}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbar">
 				<ul class="navbar-nav mr-auto">
@@ -29,22 +29,22 @@
 					@foreach(Page::forMenu() as $page)
 						<li class="nav-item @if(Request::is($page->slug)){{'active'}} @endif"><a class="nav-link" href="{{ route('page', $page->slug) }}">{{ $page->title }}</a></li>
 					@endforeach
-				</ul>
-				@if(Sentinel::Guest())
-					<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-						<li class="nav-item"><a class="nav-link" href="{{ route('account-login') }}">Innlogging</a></li>
-						<li class="nav-item"><a class="nav-link" href="{{ route('account-register') }}">Registrer</a></li>
-					</ul>
-				@else
-					<li class="nav-item dropdown">
+					@if(Sentinel::Guest())
+						<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+							<li class="nav-item"><a class="nav-link" href="{{ route('account-login') }}">Innlogging</a></li>
+							<li class="nav-item"><a class="nav-link" href="{{ route('account-register') }}">Registrer</a></li>
+						</ul>
+					@else
+						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ \Sentinel::getUser()->firstname.' '.\Sentinel::getUser()->lastname }}</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="{{ route('account') }}">Account</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="{{ route('logout') }}"><span class="fa fa-sign-out-alt"></span> Logg ut</a>
-						</div>
-					</li>
-				@endif
+							</div>
+						</li>
+					@endif
+				</ul>
 			</div>
 		</div>
 	</nav>
