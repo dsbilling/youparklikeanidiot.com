@@ -122,6 +122,33 @@
 
 	@yield('javascript')
 
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+	<style type="text/css">
+		.cc-message { text-align: left; text-shadow: none; }
+	</style>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+	<script>
+		window.addEventListener("load", function(){
+		window.cookieconsent.initialise({
+		  "palette": {
+		    "popup": {
+		      "background": "#ffffff",
+		      "text": "#333333"
+		    },
+		    "button": {
+		      "background": "#444444",
+		      "text": "#ffffff"
+		    }
+		  },
+		  "content": {
+		    "message": "This website uses cookies to ensure you get the best experience on our website. Do you accept this?",
+		    "dismiss": "I ACCEPT",
+		    "link": "Learn more",
+		    "href": "{{ url('/privacy') }}"
+		  }
+		})});
+	</script>
+
 	@if(Setting::get('GOOGLE_ANALYTICS_TRACKING_ID'))
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
