@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    2.1.2
+ * @version    2.1.4
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2018, Cartalyst LLC
@@ -124,5 +124,19 @@ class Account extends Api
     public function all(array $parameters = [])
     {
         return $this->_get('accounts', $parameters);
+    }
+
+    /**
+     * Creates a login link.
+     *
+     * @param  string  $accountId
+     * @param  string|null  $redirectUrl
+     * @return array
+     */
+    public function createLoginLink($accountId, $redirectUrl = null)
+    {
+        return $this->_post("accounts/{$accountId}/login_links", [
+            'redirect_url' => $redirectUrl,
+        ]);
     }
 }

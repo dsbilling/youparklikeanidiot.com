@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Stripe
- * @version    2.1.2
+ * @version    2.1.4
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2018, Cartalyst LLC
@@ -54,5 +54,31 @@ class Sources extends Api
     public function update($sourceId, array $parameters = [])
     {
         return $this->_post("sources/{$sourceId}", $parameters);
+    }
+
+    /**
+     * Attaches the given source to the customer.
+     *
+     * @param  string  $customerId
+     * @param  string  $sourceId
+     * @return array
+     */
+    public function attach($customerId, $sourceId)
+    {
+        return $this->_post("customers/{$customerId}/sources", [
+            'source' => $sourceId,
+        ]);
+    }
+
+    /**
+     * Detaches the given source from the customer.
+     *
+     * @param  string  $customerId
+     * @param  string  $sourceId
+     * @return array
+     */
+    public function detach($customerId, $sourceId)
+    {
+        return $this->_delete("customers/{$customerId}/sources/{$sourceId}");
     }
 }
