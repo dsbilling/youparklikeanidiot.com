@@ -4,6 +4,7 @@ use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler {
 
@@ -52,6 +53,13 @@ class Handler extends ExceptionHandler {
 		{
 			return view('errors.404');
 		}
+
+		if ($exception instanceof TokenMismatchException) {
+            //Redirect to login form if session expires
+            return redirect()->back()
+			            ->with('messagetype', 'error')
+						->with('message', 'Validation Token has expired. Please try again!');
+        }
 
 		// Convert all non-http exceptions to a proper 500 http exception
         // if we don't do this exceptions are shown as a default template
