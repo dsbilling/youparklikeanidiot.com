@@ -78,6 +78,7 @@
                     {{ session('status') }}
                 </div>
             @endif
+            {{ Breadcrumbs::render() }}
             @yield('content')
         </div>
     </main>
