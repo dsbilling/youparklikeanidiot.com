@@ -50,3 +50,8 @@ Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showRes
 Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::resource('parking', 'SubmissionController');
+Route::resource('licenseplate', 'LicensePlateController');
+Route::resource('type', 'TypeController');
+Route::resource('image', 'ImageController');
