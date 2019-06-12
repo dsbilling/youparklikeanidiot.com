@@ -4,11 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
             <h3 class="m-auto">Søk ditt regnr her:</h3>
             <form class="form-inline">
                 <i class="fas fa-search" aria-hidden="true"></i>
