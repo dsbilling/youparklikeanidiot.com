@@ -37,4 +37,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The submissions that belong to the model.
+     */
+    public function submissions()
+    {
+        return $this->belongsTo('DPSEI\Submission');
+    }
+
 }
