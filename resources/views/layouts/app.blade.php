@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('css')
 </head>
 <body class="d-flex flex-column h-100">
     <header>
@@ -96,5 +98,8 @@
             </p>
         </div>
     </footer>
+
+    @yield('javascript')
+
 </body>
 </html>
