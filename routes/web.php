@@ -38,10 +38,15 @@ Route::post('loggut', 'Auth\LoginController@logout')->name('logout');
 Route::get('registrer', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('registrer', 'Auth\RegisterController@register');
 
+// Verification Routes...
+Route::get('epost/sendny', 'Auth\VerificationController@resend')->name('verification.resend');
+Route::get('epost/verifiser', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('epost/verifiser/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+
 // Password Reset Routes...
-Route::get('passord/tilbakestill', 'Auth\ForgotPasswordController@showLinkRequestForm');
-Route::post('passord/epost', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showResetForm');
-Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset');
+Route::get('passord/tilbakestill', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('passord/epost', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/', 'HomeController@index')->name('home');
