@@ -10,6 +10,12 @@ Breadcrumbs::for('register', function ($trail) {
     $trail->push('Registrer', route('register'));
 });
 
+// Error 404
+Breadcrumbs::for('errors.404', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Page Not Found');
+});
+
 Breadcrumbs::macro('pageTitle', function () {
     $title = ($breadcrumb = Breadcrumbs::current()) ? "{$breadcrumb->title} – " : '';
 
