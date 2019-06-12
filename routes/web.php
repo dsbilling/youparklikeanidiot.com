@@ -44,4 +44,4 @@ Route::post('passord/epost', 'Auth\ForgotPasswordController@sendResetLinkEmail')
 Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset');
 
-Route::get('/', 'HomeController@index')->name('dashboard')->middleware('verified');
+Route::get('/', 'HomeController@index')->name('home');

@@ -1,10 +1,5 @@
 <?php
 
-// Home
-Breadcrumbs::for('home', function ($trail) {
-    $trail->push('Hjem', route('dashboard'));
-});
-
 Breadcrumbs::for('login', function ($trail) {
     $trail->parent('home');
     $trail->push('Logg Inn', route('login'));
