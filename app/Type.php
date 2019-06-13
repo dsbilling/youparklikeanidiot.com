@@ -14,7 +14,7 @@ class Type extends Model
      * @var array
      */
     protected $fillable = [
-        
+        'title',
     ];
 
     /**
