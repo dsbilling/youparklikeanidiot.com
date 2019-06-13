@@ -19,6 +19,7 @@ class CreateSubmissionsTable extends Migration
 
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
+            $table->longText('description');
 
             $table->integer('licence_plate_id');
             $table->integer('user_id');

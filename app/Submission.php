@@ -14,7 +14,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'longtitude', 'latitude', 'licenceplate_id', 'user_id',
+        'longtitude', 'latitude', 'description', 'licenceplate_id', 'user_id',
     ];
 
     /**
