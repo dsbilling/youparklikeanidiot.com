@@ -14,7 +14,7 @@ class SubmissionController extends Controller
      */
     public function index()
     {
-        dd(Submission::all());
+        return view('submission.index')->withSubmissions(Submission::all());
     }
 
     /**
