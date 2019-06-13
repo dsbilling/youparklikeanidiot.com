@@ -31,29 +31,29 @@ Breadcrumbs::macro('pageTitle', function () {
     return $title . config('app.name');
 });
 
-Breadcrumbs::macro('resource', function ($name, $title) {
+Breadcrumbs::macro('resource', function ($route, $title) {
     // Home > Name
-    Breadcrumbs::for($name.".index", function ($trail) use ($name, $title) {
+    Breadcrumbs::for($route.".index", function ($trail) use ($route, $title) {
         $trail->parent('home');
-        $trail->push($title, route($name.".index"));
+        $trail->push($title, route($route.".index"));
     });
 
     // Home > Name > New
-    Breadcrumbs::for($name.".create", function ($trail) use ($name) {
-        $trail->parent($name.".index");
-        $trail->push('Opprett', route($name.".create"));
+    Breadcrumbs::for($route.".create", function ($trail) use ($route) {
+        $trail->parent($route.".index");
+        $trail->push('Opprett', route($route.".create"));
     });
 
     // Home > Name > Post 123
-    Breadcrumbs::for($name.".show", function ($trail, $id) use ($name) {
-        $trail->parent($name.".index");
-        $trail->push($id, route($name.".show", $id));
+    Breadcrumbs::for($route.".show", function ($trail, $id) use ($route) {
+        $trail->parent($route.".index");
+        $trail->push($id, route($route.".show", $id));
     });
 
     // Home > Name > Post 123 > Edit
-    Breadcrumbs::for($name.".edit", function ($trail, $id) use ($name) {
-        $trail->parent($name.".show", $id);
-        $trail->push('Rediger', route($name."edit", $id));
+    Breadcrumbs::for($route.".edit", function ($trail, $id) use ($route) {
+        $trail->parent($route.".show", $id);
+        $trail->push('Rediger', route($route."edit", $id));
     });
 });
 
