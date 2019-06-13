@@ -2,7 +2,7 @@
 
 @section('css')
     <style type="text/css">
-        #map { width:100%; min-height: 300px }
+        #map { width:100%; min-height: 325px }
     </style>
 @endsection
 
@@ -23,9 +23,9 @@
             <div class="card">
                 <div class="card-header">{{ __('Info') }}</div>
                 <div class="card-body">
+                    <p>{{ __('Kommentar:') }}<br>{{ $description }}</p>
                     <p>{{ __('Parkering skjedde:') }} {{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</p>
-                    <p>{{ __('Send inn av:') }} {{ $user['username'] }}</p>
-                    <p>{{ __('Lagt inn:') }} {{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</p>
+                    <p>{{ __('Send inn av:') }} {{ $user['username'] }} {{ __('for') }} {{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</p>
                 </div>
             </div>
         </div>
