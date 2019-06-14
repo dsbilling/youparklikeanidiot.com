@@ -19,7 +19,8 @@ class SubmissionTableSeeder extends Seeder
             'longitude' => 59.4863,
             'licence_plate_id' => 1,
             'user_id' => 1,
-            'parked_at' => \Carbon\Carbon::now(),
+            'parked_at' => \Carbon\Carbon::now()->addDays(-5),
+            'created_at' => \Carbon\Carbon::now(),
         ]);
     }
 }
