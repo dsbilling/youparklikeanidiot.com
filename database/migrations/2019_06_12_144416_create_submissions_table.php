@@ -21,8 +21,8 @@ class CreateSubmissionsTable extends Migration
             $table->decimal('longitude', 9, 6);
             $table->longText('description')->nullable();
 
-            $table->integer('licence_plate_id');
-            $table->integer('user_id');
+            $table->integer('licence_plate_id')->nullable();
+            $table->integer('user_id')->nullable();
 
             $table->dateTime('parked_at');
 
