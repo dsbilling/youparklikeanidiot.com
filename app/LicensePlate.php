@@ -14,7 +14,7 @@ class LicensePlate extends Model
      * @var array
      */
     protected $fillable = [
-        
+        'registration',
     ];
 
     /**

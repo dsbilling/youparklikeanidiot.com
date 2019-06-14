@@ -16,6 +16,7 @@ class CreateLicensePlatesTable extends Migration
         Schema::create('license_plates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
+            $table->string('registration');
             $table->timestamps();
         });
     }
