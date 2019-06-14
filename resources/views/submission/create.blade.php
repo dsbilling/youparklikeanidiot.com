@@ -8,7 +8,7 @@
             color: #fff;
             position: absolute;
             bottom: 40px;
-            left: 10px;
+            left: 20px;
             padding:5px 10px;
             margin: 0;
             font-size: 11px;
@@ -17,17 +17,29 @@
             display: none;
         }
     </style>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
 @endsection
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('parking.store') }}">
                 <div class="form-group row">
-                    <label for="licenseplate" class="col-md-4 col-form-label text-md-right">{{ __('License Plate') }}</label>
-                    <div class="col-md-6">
-                        <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}">
+                    <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
+                    <div class="col-6">
+                        <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA 12345">
                         @if ($errors->has('licenseplate'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('licenseplate') }}</strong>
@@ -37,8 +49,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
-                    <div class="col-md-6">
+                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('Kommentar') }}<br><small class="text-muted">{{ __('Valgfritt') }}</small></label>
+                    <div class="col-6">
                         <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
                         @if ($errors->has('description'))
                             <span class="invalid-feedback" role="alert">
@@ -49,22 +61,32 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Velg lokasjon') }}</label>
-                    <div class="col-md-6">
+                    <label for="location" class="col-4 col-form-label text-md-right">{{ __('Velg lokasjon') }}</label>
+                    <div class="col-6">
                         <div id="map"></div>
                         <pre id="coordinates" class="coordinates"></pre>
-                        @if ($errors->has('location'))
+                        <input type="text" name="longitude">
+                        <input type="text" name="latitude">
+                        @if ($errors->has('longitude'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('location') }}</strong>
+                                <strong>{{ $errors->first('longitude') }}</strong>
+                            </span>
+                        @endif
+                        @if ($errors->has('latitude'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('latitude') }}</strong>
                             </span>
                         @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Last opp bilde') }}</label>
-                    <div class="col-md-6">
-                        <p>* insert image stuff *</p>
+                    <label for="image" class="col-4 col-form-label text-md-right">{{ __('Last opp bilde') }}</label>
+                    <div class="col-6">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
                         @if ($errors->has('image'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('image') }}</strong>
@@ -73,10 +95,30 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="image" class="col-4 col-form-label text-md-right">{{ __('Velg parkerings feil') }}</label>
+                    <div class="col-6">
+                        @foreach(\DPSEI\Type::orderBy('title', 'asc')->get() as $type)
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type->id }}">
+                                <label class="form-check-label">{{ $type->title }}</label>
+                            </div>
+                        @endforeach
+                        @if ($errors->has('types'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('types') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <hr>
 
                 <div class="form-group row">
-                    <button class="btn btn-success btn-block col-md-3">{{ _('Lagre') }}</button>
+                    <div class="col-2 ml-auto">
+                        {{ csrf_field() }}
+                        <button class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i> {{ _('Send inn') }}</button>
+                    </div>
                 </div>
                 
             </form>
@@ -86,35 +128,61 @@
 @endsection
 
 @section('javascript')
-<script>
-    mapboxgl.accessToken = '{{ env('MAPBOX_ACCESS_TOKEN') }}';
-    var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [0.0, 0.0], // starting position
-        zoom: 3 // starting zoom
-    });
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
+    <script>
+        mapboxgl.accessToken = '{{ env('MAPBOX_ACCESS_TOKEN') }}';
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [10.40, 59.61], // starting position
+            zoom: 3 // starting zoom
+        });
 
-    var marker = new mapboxgl.Marker({
-        draggable: true
-    })
-    .setLngLat([0, 0])
-    .addTo(map);
-     
-    function onDragEnd() {
-        var lngLat = marker.getLngLat();
-        coordinates.style.display = 'block';
-        coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-    }
-     
-    marker.on('dragend', onDragEnd);
-     
-    // Add geolocate control to the map.
-    map.addControl(new mapboxgl.GeolocateControl({
-        positionOptions: {
-            enableHighAccuracy: true
-        },
-        trackUserLocation: true
-    }));
-</script>
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+        .setLngLat([10.40, 59.61])
+        .addTo(map);
+         
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML = 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+            $('input[name=longitude]').val(lngLat.lng);
+            $('input[name=latitude]').val(lngLat.lat);
+        }
+         
+        marker.on('dragend', onDragEnd);
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+         
+        // Add geolocate control to the map.
+        map.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: false
+            },
+            trackUserLocation: true
+        }));
+
+        var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+            accessToken: mapboxgl.accessToken, // Set the access token
+            mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            marker: false, // Do not use the default marker style
+        });
+        map.addControl(geocoder, 'top-left');
+
+        geocoder.on('result', function(e) {
+            var coord = e.result.center;
+            marker.setLngLat([coord[0], coord[1]]);
+            onDragEnd();
+        });
+
+    </script>
+    <script type="text/javascript">
+        $('.custom-file-input').on('change', function() { 
+            let fileName = $(this).val().split('\\').pop(); 
+            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+        });
+    </script>
 @endsection
