@@ -14,7 +14,7 @@ class SubmissionController extends Controller
      */
     public function index()
     {
-        return view('submission.index')->withSubmissions(Submission::all());
+        return view('submission.index')->withSubmissions(Submission::paginate(20));
     }
 
     /**
