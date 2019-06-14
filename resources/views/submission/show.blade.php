@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Info') }}</div>
                 <div class="card-body">
-                    <p>{{ __('Kommentar:') }}<br>{{ $description }}</p>
+                    @if($description)<p>{{ __('Kommentar:') }}<br>{{ $description }}</p>@endif
                     <p>{{ __('Parkering skjedde:') }} {{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</p>
                     <p>{{ __('Send inn av:') }} {{ $user['username'] }} {{ __('for') }} {{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</p>
                 </div>
