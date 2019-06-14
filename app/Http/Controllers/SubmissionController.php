@@ -2,8 +2,13 @@
 
 namespace DPSEI\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DPSEI\LicensePlate;
 use DPSEI\Submission;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class SubmissionController extends Controller
 {
@@ -35,7 +40,33 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        
+        Validator::make($request->all(), [
+            'licenseplate' => 'required|alpha_num',
+            'description' => 'nullable',
+            'latitude' => 'required|between:0,99.99',
+            'longitude' => 'required|between:0,99.99',
+            'types' => 'array',
+        ])->validate();
+
+        $registration = $request->licenseplate;
+        $lp = LicensePlate::where('registration', $registration)->first();
+
+        if(!$lp) {
+            $lp = LicensePlate::create(['registration' => $registration]);
+        }
+
+        $submission = Submission::create([
+            'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'license_plate_id' => $lp->id,
+            'user_id' => Auth::id(),
+            'parked_at' => Carbon::now(),
+        ]);
+        $submission->types()->attach($request->input('types'));
+
+        return Redirect::route('parking.show', $submission->uuid);
     }
 
     /**
