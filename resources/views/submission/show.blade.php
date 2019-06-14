@@ -61,6 +61,9 @@
             center: [{{ $longitude }}, {{ $latitude }}]
         });
 
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+
         map.on("load", function () {
           /* Image: An image is loaded and added to the map. */
           map.loadImage("{{ asset('image/map-marker.png') }}", function(error, image) {
