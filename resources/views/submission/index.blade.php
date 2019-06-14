@@ -14,10 +14,12 @@
                 </thead>
                 <tbody>
                     @foreach($submissions as $submission)
-                        <td><a href="{{ route('parking.show', $submission->uuid) }}">{{ $submission->uuid }}</a></td>
-                        <td>{{ $submission->latitude }}, {{ $submission->longitude }}</td>
-                        <td>{{ \Carbon\Carbon::parse($submission->parked_at)->diffForHumans() }}</td>
-                        <td>{{ \Carbon\Carbon::parse($submission->created_at)->diffForHumans() }}</td>
+                        <tr>
+                            <td><a href="{{ route('parking.show', $submission->uuid) }}">{{ $submission->uuid }}</a></td>
+                            <td>{{ $submission->latitude }}, {{ $submission->longitude }}</td>
+                            <td>{{ \Carbon\Carbon::parse($submission->parked_at)->diffForHumans() }}</td>
+                            <td>{{ \Carbon\Carbon::parse($submission->created_at)->diffForHumans() }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
