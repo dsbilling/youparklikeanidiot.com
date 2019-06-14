@@ -58,7 +58,7 @@
             container: "map",
             style: "mapbox://styles/mapbox/satellite-streets-v11",
             zoom: 15,
-            center: [{{ $latitude }}, {{ $longitude }}]
+            center: [{{ $longitude }}, {{ $latitude }}]
         });
 
         map.on("load", function () {
@@ -81,7 +81,7 @@
                         properties: {},
                         geometry: {
                           type: "Point",
-                          coordinates: [{{ $latitude }}, {{ $longitude }}]
+                          coordinates: [{{ $longitude }}, {{ $latitude }}]
                         }
                       }
                     ]
