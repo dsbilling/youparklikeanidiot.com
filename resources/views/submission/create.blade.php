@@ -3,6 +3,7 @@
 @section('css')
     <style type="text/css">
         #map { width:100%; min-height: 325px }
+        #map.is-invalid { border: #e3342f 2px solid; }
         .coordinates {
             background: rgba(0,0,0,0.5);
             color: #fff;
@@ -63,7 +64,7 @@
                 <div class="form-group row">
                     <label for="location" class="col-4 col-form-label text-md-right">{{ __('Velg lokasjon') }}</label>
                     <div class="col-6">
-                        <div id="map"></div>
+                        <div id="map" class="{{ $errors->has('longitude') ? ' is-invalid' : '' }} {{ $errors->has('latitude') ? ' is-invalid' : '' }}"></div>
                         <pre id="coordinates" class="coordinates"></pre>
                         <input type="text" name="longitude" hidden>
                         <input type="text" name="latitude" hidden>
