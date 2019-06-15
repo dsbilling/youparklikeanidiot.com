@@ -101,7 +101,7 @@
                     <div class="col-6">
                         @foreach(\DPSEI\Type::orderBy('title', 'asc')->get() as $type)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type->id }}">
+                                <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
                                 <label class="form-check-label">{{ $type->title }}</label>
                             </div>
                         @endforeach
