@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('parking.create') }}" class="btn btn-success mb-2"><i class="fas fa-plus"></i> {{ __('Opprett') }}</a>
             <table class="table table-striped table-bordered">
                 <thead>
                     <th>UUID</th>
