@@ -56,7 +56,7 @@ class SubmissionController extends Controller
             'description' => 'nullable',
             'latitude' => 'required|between:0,99.99',
             'longitude' => 'required|between:0,99.99',
-            'types' => 'array',
+            'types' => 'required|array',
         ])->validate();
 
         $registration = $request->licenseplate;
