@@ -65,8 +65,8 @@
                     <div class="col-6">
                         <div id="map"></div>
                         <pre id="coordinates" class="coordinates"></pre>
-                        <input type="text" name="longitude">
-                        <input type="text" name="latitude">
+                        <input type="text" name="longitude" hidden>
+                        <input type="text" name="latitude" hidden>
                         @if ($errors->has('longitude'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('longitude') }}</strong>
