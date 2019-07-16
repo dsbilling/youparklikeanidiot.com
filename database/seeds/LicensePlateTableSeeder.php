@@ -15,6 +15,7 @@ class LicensePlateTableSeeder extends Seeder
     {
         DB::table('license_plates')->insert([
             'uuid' => Str::uuid(4),
+            'registration' => strtoupper(Str::random(2)).rand(10000, 99999),
         ]);
     }
 }
