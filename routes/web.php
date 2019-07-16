@@ -55,3 +55,4 @@ Route::resource('parking', 'SubmissionController');
 Route::resource('licenseplate', 'LicensePlateController');
 Route::resource('type', 'TypeController');
 Route::resource('image', 'ImageController');
+Route::resource('user', 'UserController');
