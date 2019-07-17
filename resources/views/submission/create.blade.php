@@ -129,6 +129,18 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('Kommentar') }}<br><small class="text-muted">{{ __('Valgfritt') }}</small></label>
+                    <div class="col-6">
+                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
+                        @if ($errors->has('description'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('description') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
                 <hr>
 
                 <div class="form-group row">
