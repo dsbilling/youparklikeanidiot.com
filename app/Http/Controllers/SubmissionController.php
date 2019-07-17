@@ -3,6 +3,7 @@
 namespace DPSEI\Http\Controllers;
 
 use Carbon\Carbon;
+use DPSEI\Image;
 use DPSEI\LicensePlate;
 use DPSEI\Submission;
 use Illuminate\Http\Request;
@@ -57,6 +58,7 @@ class SubmissionController extends Controller
             'latitude' => 'required|between:0,99.99',
             'longitude' => 'required|between:0,99.99',
             'types' => 'required|array',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ])->validate();
 
         $registration = $request->licenseplate;
@@ -75,6 +77,15 @@ class SubmissionController extends Controller
             'parked_at' => Carbon::now(),
         ]);
         $submission->types()->attach($request->input('types'));
+
+        foreach($request->images as $file) {
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $submission->id."-".time().'-'.rand().".".$extension;
+            $folderpath  = 'image/submissions/';
+            $file->move($folderpath, $fileName);
+            $image = Image::create(['path' => $folderpath.$fileName]);
+            $submission->images()->attach($image);
+        }
 
         return Redirect::route('parking.show', $submission->uuid);
     }

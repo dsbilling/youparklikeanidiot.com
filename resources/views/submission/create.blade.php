@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('parking.store') }}">
+            <form method="post" action="{{ route('parking.store') }}" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
                     <div class="col-6">
@@ -82,15 +82,19 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="image" class="col-4 col-form-label text-md-right">{{ __('Last opp bilde') }}</label>
+                    <label for="images" class="col-4 col-form-label text-md-right">{{ __('Last opp bilde') }}</label>
                     <div class="col-6">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="images[]" accept=".png, .jpg, .jpeg" multiple>
+                                <label class="custom-file-label" for="customFile">{{ __('Velg fil') }}</label>
+                            </div>
                         </div>
-                        @if ($errors->has('image'))
+
+                        @if ($errors->has('images'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('image') }}</strong>
+                                <strong>{{ $errors->first('images') }}</strong>
                             </span>
                         @endif
                     </div>
@@ -182,8 +186,13 @@
     </script>
     <script type="text/javascript">
         $('.custom-file-input').on('change', function() { 
-            let fileName = $(this).val().split('\\').pop(); 
-            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+            var fileList = document.getElementById("customFile").files;
+            if(fileList.length > 1) {
+                $(this).next('.custom-file-label').addClass("selected").html(fileList.length+" filer");
+            } else {
+                let fileName = $(this).val().split('\\').pop(); 
+                $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+            }
         });
     </script>
 @endsection
