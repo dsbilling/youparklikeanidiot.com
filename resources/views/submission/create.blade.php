@@ -40,7 +40,7 @@
                 <div class="form-group row">
                     <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
                     <div class="col-6">
-                        <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA 12345">
+                        <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
                         @if ($errors->has('licenseplate'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('licenseplate') }}</strong>
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="image" class="col-4 col-form-label text-md-right">{{ __('Velg parkerings feil') }}</label>
+                    <label for="types" class="col-4 col-form-label text-md-right">{{ __('Velg parkerings feil') }}</label>
                     <div class="col-6">
                         @foreach(\DPSEI\Type::orderBy('title', 'asc')->get() as $type)
                             <div class="form-check form-check-inline">
