@@ -13,11 +13,11 @@ class ImageTableSeeder extends Seeder
     {
         DB::table('images')->insert([
             'uuid' => Str::uuid(4),
-            'path' => '/image/parking/parkering.jpg',
+            'path' => '/image/submissions/parkering.jpg',
         ]);
         DB::table('images')->insert([
             'uuid' => Str::uuid(4),
-            'path' => '/image/parking/parkering2.jpg',
+            'path' => '/image/submissions/parkering2.jpg',
         ]);
         DB::table('image_submission')->insert([
             'image_id' => 1,
