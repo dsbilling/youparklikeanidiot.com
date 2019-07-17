@@ -11,8 +11,6 @@ npm-debug.log
 yarn-error.log
 duparkerersomenidiot.sublime-project
 duparkerersomenidiot.sublime-workspace
-/public/image/submission/*.png
-/public/image/submission/*.jpg
-/public/image/submission/*.jpeg
-!/public/image/submission/parkering.jpg
-!/public/image/submission/parkering2.jpg
+public/image/submissions
+!public/image/submission/parkering.jpg
+!public/image/submission/parkering2.jpg
