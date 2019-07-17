@@ -51,13 +51,15 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         Validator::make($request->all(), [
             'licenseplate' => 'required|alpha_num',
             'description' => 'nullable',
             'latitude' => 'required|between:0,99.99',
             'longitude' => 'required|between:0,99.99',
             'types' => 'required|array',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
             'images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ])->validate();
 
@@ -68,13 +70,15 @@ class SubmissionController extends Controller
             $lp = LicensePlate::create(['registration' => $registration]);
         }
 
+        $datetime = Carbon::parse($request->input('date').' '.$request->input('time'));
+
         $submission = Submission::create([
             'description' => $request->description,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'license_plate_id' => $lp->id,
             'user_id' => Auth::id(),
-            'parked_at' => Carbon::now(),
+            'parked_at' => $datetime,
         ]);
         $submission->types()->attach($request->input('types'));
 

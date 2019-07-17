@@ -50,12 +50,24 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('Kommentar') }}<br><small class="text-muted">{{ __('Valgfritt') }}</small></label>
+                    <label for="date" class="col-4 col-form-label text-md-right">{{ __('Tid ved parkering') }}</label>
                     <div class="col-6">
-                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
-                        @if ($errors->has('description'))
+                        <div class="row">
+                            <div class="col-6">
+                                <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}">
+                            </div>
+                            <div class="col-6">
+                                <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" name="time" value="{{ old('time') }}">
+                            </div>
+                        </div>
+                        @if ($errors->has('date'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('description') }}</strong>
+                                <strong>{{ $errors->first('date') }}</strong>
+                            </span>
+                        @endif
+                        @if ($errors->has('time'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('time') }}</strong>
                             </span>
                         @endif
                     </div>
