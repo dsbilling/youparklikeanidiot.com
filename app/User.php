@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function submissions()
     {
-        return $this->belongsTo('DPSEI\Submission');
+        return $this->hasMany('DPSEI\Submission');
     }
 
 }
