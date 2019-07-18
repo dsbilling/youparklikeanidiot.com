@@ -30,7 +30,7 @@ class SubmissionController extends Controller
      */
     public function index()
     {
-        return view('submission.index')->withSubmissions(Submission::orderBy('parked_at', 'desc')->paginate(20));
+        return view('submission.index')->withSubmissions(Submission::orderBy('created_at', 'desc')->paginate(20));
     }
 
     /**
