@@ -26,7 +26,7 @@
                 <div class="bg-light p-4 d-flex justify-content-end text-center">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
-                            <h5 class="font-weight-bold mb-0 d-block">0</h5><small class="text-muted">{{ __('Submissions') }}</small>
+                            <h5 class="font-weight-bold mb-0 d-block">{{ count($submissions) }}</h5><small class="text-muted">{{ __('Submissions') }}</small>
                         </li>
                     </ul>
                 </div>
