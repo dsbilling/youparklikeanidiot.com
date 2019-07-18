@@ -15,9 +15,9 @@
             <div class="bg-white shadow rounded overflow-hidden">
                 <div class="px-4 pt-0 pb-4 bg-dark">
                     <div class="media align-items-end profile-header">
-                        <div class="profile mr-3"><img src="https://via.placeholder.com/130" alt="{{ $name }}" width="130" class="rounded mb-2 img-thumbnail">@if(Auth::id() === $id)<a href="#" class="btn btn-dark btn-sm btn-block">{{ __('Edit profile') }}</a>@endif</div>
+                        <div class="profile mr-3"><img src="https://via.placeholder.com/130" alt="{{ $username }}" width="130" class="rounded mb-2 img-thumbnail">{{--@if(Auth::id() === $id)<a href="#" class="btn btn-dark btn-sm btn-block">{{ __('Edit profile') }}</a>@endif--}}</div>
                         <div class="media-body mb-5 text-white">
-                            <h4 class="mt-0 mb-0">{{ $name }}</h4>
+                            <h4 class="mt-0 mb-0">{{ $username }}</h4>
                             <p class="small mb-4">{{--<i class="fa fa-map-marker mr-2"></i>Oslo, Norway--}}</p>
                         </div>
                     </div>
