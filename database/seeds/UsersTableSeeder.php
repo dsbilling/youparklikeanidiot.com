@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Support\Str;
+use DPSEI\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -22,5 +25,13 @@ class UsersTableSeeder extends Seeder
             'email' => $faker->unique()->safeEmail,
             'password' => bcrypt('12345678'),
         ]);
+
+        $role = Role::create(['name' => 'write']);
+        $permission = Permission::create(['name' => 'edit articles']);
+
+        $role->givePermissionTo($permission);
+
+        $user = User::find(1)->first();
+        $user->assignRole('write');
     }
 }
