@@ -58,3 +58,4 @@ Breadcrumbs::macro('resource', function ($route, $title) {
 });
 
 Breadcrumbs::resource('parking', 'Parkeringer');
+Breadcrumbs::resource('page', 'Informasjon');

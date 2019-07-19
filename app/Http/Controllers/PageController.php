@@ -2,7 +2,12 @@
 
 namespace DPSEI\Http\Controllers;
 
+use DPSEI\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -23,7 +28,8 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        abort_unless(Auth::user()->hasRole('write'), 403);
+        return view('page.create');
     }
 
     /**
@@ -34,20 +40,36 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort_unless(Auth::user()->hasRole('write'), 403);
+
+        Validator::make($request->all(), [
+            'title' => 'required',
+            'content' => 'required',
+        ])->validate();
+
+        $page               = new Page;
+        $page->title        = $request->get('title');
+        $page->slug         = Str::slug($request->get('title'), '');
+        $page->content      = $request->get('content');
+        $page->editor_id    = Auth::id();
+        $page->author_id    = Auth::id();
+
+        if ($page->save()) {
+            return Redirect::route('page.show', $page->slug);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $page = Page::where('slug', $id)->first();
+        $page = Page::where('slug', $slug)->first();
         abort_unless($page, 404);
-        return view('main.page')->withPage($page);
+        return view('page.show', $page);
     }
 
     /**
@@ -58,7 +80,15 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort_unless(Auth::user()->hasRole('write'), 403);
+        $page               = Page::find($id);
+        $page->title        = $request->get('title');
+        $page->content      = $request->get('content');
+        $page->slug         = Str::slug($request->get('title'), '');
+        $page->editor_id    = Auth::id();
+        if ($page->save()) {
+            return Redirect::route('page.show', $slug);
+        }
     }
 
     /**
@@ -70,7 +100,7 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort_unless(Auth::user()->hasRole('write'), 403);
     }
 
     /**
@@ -81,6 +111,6 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort_unless(Auth::user()->hasRole('write'), 403);
     }
 }

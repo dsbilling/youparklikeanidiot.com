@@ -56,3 +56,14 @@ Route::resource('licenseplate', 'LicensePlateController');
 Route::resource('type', 'TypeController');
 Route::resource('image', 'ImageController');
 Route::resource('user', 'UserController');
+Route::resource('info', 'PageController', [
+    'names' => [
+        'index' => 'page.index',
+        'create' => 'page.create',
+        'store' => 'page.store',
+        'show' => 'page.show',
+        'edit' => 'page.edit',
+        'uptdate' => 'page.update',
+        'destroy' => 'page.destroy',
+    ]
+]);
