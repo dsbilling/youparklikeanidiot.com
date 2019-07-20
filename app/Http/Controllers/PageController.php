@@ -75,42 +75,55 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         abort_unless(Auth::user()->hasRole('write'), 403);
-        $page               = Page::find($id);
-        $page->title        = $request->get('title');
-        $page->content      = $request->get('content');
-        $page->slug         = Str::slug($request->get('title'), '');
-        $page->editor_id    = Auth::id();
-        if ($page->save()) {
-            return Redirect::route('page.show', $slug);
-        }
+        $page = Page::where('slug', $slug)->first();
+        return view('page.edit', $page);
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         abort_unless(Auth::user()->hasRole('write'), 403);
+
+        Validator::make($request->all(), [
+            'title' => 'required',
+            'content' => 'required',
+        ])->validate();
+        
+        $page               = Page::where('slug', $slug)->first();
+        $page->title        = $request->get('title');
+        $page->content      = $request->get('content');
+        $page->slug         = Str::slug($request->get('title'), '');
+        $page->editor_id    = Auth::id();
+        if ($page->save()) {
+            return Redirect::route('page.show', $slug)->with('message', 'Page updated!')->with('messagetype', 'success');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
         abort_unless(Auth::user()->hasRole('write'), 403);
+        $page = Page::where('slug', $slug)->first();
+        $page->delete();
+        return Redirect::route('home')->with('message', 'Page deleted!')->with('messagetype', 'success');
+
     }
 }

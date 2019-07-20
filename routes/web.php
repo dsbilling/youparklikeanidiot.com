@@ -63,7 +63,7 @@ Route::resource('info', 'PageController', [
         'store' => 'page.store',
         'show' => 'page.show',
         'edit' => 'page.edit',
-        'uptdate' => 'page.update',
+        'update' => 'page.update',
         'destroy' => 'page.destroy',
     ]
 ]);

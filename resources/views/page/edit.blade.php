@@ -19,12 +19,12 @@
                 </div>
             @endif
 
-            <form method="post" action="{{ route('page.store') }}">
+            <form method="post" action="{{ route('page.update', $slug) }}">
 
                 <div class="form-group row">
                     <label for="title" class="col-2 col-form-label text-md-right">{{ __('Tittel') }}</label>
                     <div class="col-10">
-                        <input id="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}">
+                        <input id="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ $title ?? old('title') }}">
                         @if ($errors->has('title'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('title') }}</strong>
@@ -50,6 +50,7 @@
 
                 <div class="form-group row">
                     <div class="col-2 ml-auto">
+                    	@method('PATCH')
                         @csrf
                         <button class="btn btn-success btn-block"><i class="fas fa-save"></i> {{ _('Lagre') }}</button>
                     </div>
@@ -70,7 +71,7 @@
             height: 250
         });
 
-        var markupStr = "{{ old('content') }}";
+        var markupStr = "{{ $content ?? old('content') }}";
         $('#summernote').summernote('code', markupStr);
 
         $('#summernote').on('summernote.change', function(we, e) {

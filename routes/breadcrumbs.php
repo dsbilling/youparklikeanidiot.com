@@ -53,7 +53,7 @@ Breadcrumbs::macro('resource', function ($route, $title) {
     // Home > Name > Post 123 > Edit
     Breadcrumbs::for($route.".edit", function ($trail, $id) use ($route) {
         $trail->parent($route.".show", $id);
-        $trail->push('Rediger', route($route."edit", $id));
+        $trail->push('Rediger', route($route.".edit", $id));
     });
 });
 
