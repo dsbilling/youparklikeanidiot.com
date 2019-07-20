@@ -106,9 +106,18 @@
     </header>
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
+            @if (session('message'))
+                <div class="alert alert-{{ session('messagetype') ?? 'info' }}">
+                    @if(session('messagetype') == 'info')
+                        <i class="fas fa-info mr-2" aria-hidden="true"></i>
+                    @elseif(session('messagetype') == 'warning')
+                        <i class="fas fa-exclamation mr-2" aria-hidden="true"></i>
+                    @elseif(session('messagetype') == 'danger')
+                        <i class="fas fa-frown mr-2" aria-hidden="true"></i>
+                    @elseif(session('messagetype') == 'success')
+                        <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
+                    @endif
+                    {{ session('message') }}
                 </div>
             @endif
             {{ Breadcrumbs::render() }}
