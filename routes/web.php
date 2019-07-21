@@ -23,19 +23,7 @@ if (Config::get('app.debug')) {
         return redirect('/')->with('status', 'DB has been reset.');
     });
     Route::get('/test', function () {
-        #App::abort(404);
-        $obj = new \stdClass();
-        $obj->name = 'Daniel Billing';
-        $obj->email = 'post@dsbilling.no';
-        $obj->message = 'Denne nettsiden liker jeg. Kan jeg komme med noen forslag?';
-        #return new DPSEI\Mail\Feedback($obj);
-        try {
-            Mail::to(env('MAIL_FEEDBACK'))->send(new DPSEI\Mail\Feedback($obj));
-            return "Success";
-        } catch (Exception $ex) {
-            // Debug via $ex->getMessage();
-            return $ex->getMessage();
-        }
+        App::abort(404);
     });
 }
 /*
@@ -62,6 +50,7 @@ Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showRes
 Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('feedback', 'FeedbackController@store')->name('feedback');
 
 Route::resource('parking', 'SubmissionController');
 Route::resource('licenseplate', 'LicensePlateController');

@@ -128,7 +128,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small></p>
+                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <a href="javascript:;" onclick="jQuery('#feedback').modal('show', {backdrop: 'static'});" class="text-info"><i class="far fa-comment-dots mr-1"></i>Send feedback</a></p>
                 </div>
                 <div class="col-6 text-right">
                     <p>
@@ -158,6 +158,67 @@
             ga('send', 'pageview');
         </script>
     @endif
+
+<div class="modal fade" id="feedback" data-backdrop="static">
+    <div class="modal-dialog">
+        <form method="post" action="{{ route('feedback') }}" class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Feedback</strong></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>All tilbakemelding er verdsatt, takk for at du tar tiden din til dette!</p>
+                <div class="form-group row">
+                    <label for="name" class="col-2 col-form-label text-md-right">{{ __('Navn') }}</label>
+                    <div class="col-10">
+                        @if(Auth::check())
+                            <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ Auth::user()->name }}" readonly="">
+                        @else
+                            <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
+                        @endif
+                        @if ($errors->has('name'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-2 col-form-label text-md-right">{{ __('Epost') }}</label>
+                    <div class="col-10">
+                        @if(Auth::check())
+                            <input id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" readonly="">
+                        @else
+                            <input id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+                        @endif
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="message" class="col-2 col-form-label text-md-right">{{ __('Melding') }}</label>
+                    <div class="col-10">
+                        <textarea id="message" class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message">{{ old('message') }}</textarea> 
+                        @if ($errors->has('message'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('message') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @csrf
+                <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane mr-2"></i>Send</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
