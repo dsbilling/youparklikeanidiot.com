@@ -47,10 +47,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::is('parking')){{'active'}} @endif" href="{{ route('parking.index') }}"><i class="fas fa-car mr-1"></i>{{ __('Parkeringer') }}</a>
+                            <a class="nav-link @if(Request::is('parkering')){{'active'}} @endif" href="{{ route('parkering.index') }}"><i class="fas fa-parking mr-1"></i>{{ __('Parkeringer') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::is('parking/create')){{'active'}} @endif" href="{{ route('parking.create') }}"><i class="fas fa-plus mr-1"></i>{{ __('Send inn') }}</a>
+                            <a class="nav-link @if(Request::is('parkering/create')){{'active'}} @endif" href="{{ route('parkering.create') }}"><i class="fas fa-plus mr-1"></i>{{ __('Send inn') }}</a>
                         </li>
                     </ul>
 

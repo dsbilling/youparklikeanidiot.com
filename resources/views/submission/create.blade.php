@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form method="post" action="{{ route('parking.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('parkering.store') }}" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
                     <div class="col-6">
