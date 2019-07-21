@@ -51,6 +51,7 @@ Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset')->name(
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('tilbakemelding', 'FeedbackController@store')->name('feedback');
+Route::resource('sok', 'SearchController');
 
 Route::resource('parkering', 'SubmissionController');
 Route::resource('bilskilt', 'LicensePlateController');

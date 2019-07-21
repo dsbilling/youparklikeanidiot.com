@@ -57,6 +57,11 @@
                         <li class="nav-item">
                             <a class="nav-link @if(Request::is('parkering/create')){{'active'}} @endif" href="{{ route('parkering.create') }}"><i class="fas fa-plus mr-1"></i>{{ __('Send inn') }}</a>
                         </li>
+                        <form class="form-inline ml-3 my-2 my-lg-0" method="post" action="{{ route('sok.store') }}">
+                            <input class="form-control mr-sm-2{{ $errors->has('search') ? ' is-invalid' : '' }}" type="search" placeholder="{{ $errors->first('search') ?? 'Søk' }}" aria-label="Søk" name="search">
+                            @csrf
+                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search mr-1"></i>Søk</button>
+                        </form>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
