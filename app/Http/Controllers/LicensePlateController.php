@@ -2,6 +2,7 @@
 
 namespace DPSEI\Http\Controllers;
 
+use DPSEI\LicensePlate;
 use Illuminate\Http\Request;
 
 class LicensePlateController extends Controller
@@ -45,7 +46,8 @@ class LicensePlateController extends Controller
      */
     public function show($id)
     {
-        //
+        $licenseplate = LicensePlate::where('uuid', $id)->orWhere('registration', $id)->with('submissions')->first();
+        return view('licenseplate.show')->with('licenseplate', $licenseplate);
     }
 
     /**
