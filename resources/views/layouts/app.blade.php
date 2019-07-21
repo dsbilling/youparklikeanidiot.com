@@ -224,5 +224,13 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    
+    jQuery( document ).ready(function( $ ) {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>
+
 </body>
 </html>
