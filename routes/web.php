@@ -50,23 +50,21 @@ Route::get('passord/tilbakestill/{token}', 'Auth\ResetPasswordController@showRes
 Route::post('passord/tilbakestill', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::post('feedback', 'FeedbackController@store')->name('feedback');
-Route::group(['middleware' => 'verified'], function() {
-    Route::resource('parking', 'SubmissionController');
-    Route::resource('licenseplate', 'LicensePlateController');
-    Route::resource('type', 'TypeController');
-    Route::resource('image', 'ImageController');
-    Route::resource('user', 'UserController');
-    Route::resource('info', 'PageController', [
-        'names' => [
-            'index' => 'page.index',
-            'create' => 'page.create',
-            'store' => 'page.store',
-            'show' => 'page.show',
-            'edit' => 'page.edit',
-            'update' => 'page.update',
-            'destroy' => 'page.destroy',
-        ]
-    ]);
-});
+Route::post('tilbakemelding', 'FeedbackController@store')->name('feedback');
 
+Route::resource('parkering', 'SubmissionController');
+Route::resource('bilskilt', 'LicensePlateController');
+Route::resource('type', 'TypeController');
+Route::resource('bilde', 'ImageController');
+Route::resource('bruker', 'UserController');
+Route::resource('info', 'PageController', [
+    'names' => [
+        'index' => 'page.index',
+        'create' => 'page.create',
+        'store' => 'page.store',
+        'show' => 'page.show',
+        'edit' => 'page.edit',
+        'update' => 'page.update',
+        'destroy' => 'page.destroy',
+    ]
+]);

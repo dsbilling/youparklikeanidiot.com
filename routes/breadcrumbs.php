@@ -57,5 +57,6 @@ Breadcrumbs::macro('resource', function ($route, $title) {
     });
 });
 
-Breadcrumbs::resource('parking', 'Parkeringer');
-Breadcrumbs::resource('page', 'Informasjon');
+Breadcrumbs::resource('parkering', 'Parkeringer');
+Breadcrumbs::resource('info', 'Informasjon');
+Breadcrumbs::resource('sok', 'Søk');
