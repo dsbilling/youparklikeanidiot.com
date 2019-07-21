@@ -22,7 +22,7 @@ class LicensePlate extends Model
      */
     public function submissions()
     {
-        return $this->belongsToMany('DPSEI\Submission');
+        return $this->hasMany('DPSEI\Submission');
     }
 
 }
