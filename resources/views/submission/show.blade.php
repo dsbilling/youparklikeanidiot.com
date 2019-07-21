@@ -31,7 +31,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Info') }}</div>
                 <div class="card-body">
-                    <p>{{ __('Regnr:') }} {{ $licenseplate['registration'] }}</p>
+                    <p>{{ __('Regnr:') }} <a href="{{ route('bilskilt.show', $licenseplate['registration']) }}">{{ $licenseplate['registration'] }}</a></p>
                     @if($description)<p>{{ __('Kommentar:') }}<br>{{ $description }}</p>@endif
                     <p>{{ __('Parkering skjedde:') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
                     <p class="mb-0">{{ __('Send inn av:') }} <a href="{{ route('bruker.show', $user['username']) }}">{{ $user['username'] }}</a> {{ __('for') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($created_at) }}">{{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</a></p>
