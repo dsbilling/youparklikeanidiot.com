@@ -3,8 +3,10 @@
 namespace DPSEI;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\SearchResult;
+use Spatie\Searchable\Searchable;
 
-class LicensePlate extends Model
+class LicensePlate extends Model implements Searchable
 {
     use \BinaryCabin\LaravelUUID\Traits\HasUUID;
 
@@ -24,5 +26,19 @@ class LicensePlate extends Model
     {
         return $this->hasMany('DPSEI\Submission');
     }
+
+    /**
+    * Make the model searchable
+    **/
+    public function getSearchResult(): SearchResult
+     {
+        $url = route('licenseplate.show', $this->registration);
+     
+         return new \Spatie\Searchable\SearchResult(
+            $this,
+            $this->registration,
+            $url
+         );
+     }
 
 }
