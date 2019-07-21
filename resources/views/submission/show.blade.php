@@ -33,8 +33,8 @@
                 <div class="card-body">
                     <p>{{ __('Regnr:') }} {{ $licenseplate['registration'] }}</p>
                     @if($description)<p>{{ __('Kommentar:') }}<br>{{ $description }}</p>@endif
-                    <p>{{ __('Parkering skjedde:') }} {{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</p>
-                    <p class="mb-0">{{ __('Send inn av:') }} <a href="{{ route('user.show', $user['username']) }}">{{ $user['username'] }}</a> {{ __('for') }} {{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</p>
+                    <p>{{ __('Parkering skjedde:') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
+                    <p class="mb-0">{{ __('Send inn av:') }} <a href="{{ route('bruker.show', $user['username']) }}">{{ $user['username'] }}</a> {{ __('for') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($created_at) }}">{{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</a></p>
                 </div>
             </div>
         </div>
