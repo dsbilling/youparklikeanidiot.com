@@ -60,3 +60,4 @@ Breadcrumbs::macro('resource', function ($route, $title) {
 Breadcrumbs::resource('parkering', 'Parkeringer');
 Breadcrumbs::resource('info', 'Informasjon');
 Breadcrumbs::resource('sok', 'Søk');
+Breadcrumbs::resource('bilskilt', 'Bilskilt');
