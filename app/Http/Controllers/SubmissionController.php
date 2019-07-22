@@ -91,7 +91,7 @@ class SubmissionController extends Controller
             $submission->images()->attach($image);
         }
 
-        return Redirect::route('parking.show', $submission->uuid);
+        return Redirect::route('parkering.show', $submission->uuid);
     }
 
     /**
