@@ -88,7 +88,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->username) }}"><i class="fas fa-user"></i> {{ __('Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ route('bruker.show', Auth::user()->username) }}"><i class="fas fa-user"></i> {{ __('Profile') }}</a>
                                     @if(Auth::user()->hasRole('write'))
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('page.create') }}"><i class="fas fa-plus"></i> {{ __('Create Page') }}</a>
