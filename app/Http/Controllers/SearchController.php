@@ -42,7 +42,7 @@ class SearchController extends Controller
         Validator::make($request->all(), [
             'search' => 'required|string',
         ])->validate();
-        return Redirect::route('search.show', $request->input('search'));
+        return Redirect::route('sok.show', $request->input('search'));
     }
 
     /**
