@@ -49,11 +49,18 @@
                         <li class="nav-item">
                             <a class="nav-link @if(Request::is('parkering')){{'active'}} @endif" href="{{ route('parkering.index') }}"><i class="fas fa-parking mr-1"></i>{{ __('Parkeringer') }}</a>
                         </li>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            @foreach(DPSEI\Page::all() as $page)
-                                <a class="dropdown-item" href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a>
-                            @endforeach
-                        </div>
+                        @if(DPSEI\Page::all()->count()>0)
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fas fa-info-circle mr-1"></i>{{ __('Informasjon') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @foreach(DPSEI\Page::all() as $page)
+                                        <a class="dropdown-item" href="{{ route('page.show', $page->slug) }}">{{ $page->title }}</a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link @if(Request::is('parkering/create')){{'active'}} @endif" href="{{ route('parkering.create') }}"><i class="fas fa-plus mr-1"></i>{{ __('Send inn') }}</a>
                         </li>
@@ -66,11 +73,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fas fa-info-circle mr-1"></i>{{ __('Informasjon') }} <span class="caret"></span>
-                            </a>
-                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
