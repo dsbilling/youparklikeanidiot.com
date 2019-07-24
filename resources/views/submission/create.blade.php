@@ -78,8 +78,8 @@
                     <div class="col-6">
                         <div id="map" class="{{ $errors->has('longitude') ? ' is-invalid' : '' }} {{ $errors->has('latitude') ? ' is-invalid' : '' }}"></div>
                         <pre id="coordinates" class="coordinates"></pre>
-                        <input type="text" name="longitude" hidden>
-                        <input type="text" name="latitude" hidden>
+                        <input type="text" name="longitude" hidden value="{{ old('longitude') }}">
+                        <input type="text" name="latitude" hidden value="{{ old('latitude') }}">
                         @if ($errors->has('longitude'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('longitude') }}</strong>
@@ -163,16 +163,16 @@
         var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [10.40, 59.61], // starting position
+            center: [{{ old('longitude') ?? 10.40 }}, {{ old('latitude') ?? 59.61 }}], // starting position
             zoom: 3 // starting zoom
         });
 
         var marker = new mapboxgl.Marker({
             draggable: true
         })
-        .setLngLat([10.40, 59.61])
+        .setLngLat([{{ old('longitude') ?? 10.40 }}, {{ old('latitude') ?? 59.61 }}])
         .addTo(map);
-         
+
         function onDragEnd() {
             var lngLat = marker.getLngLat();
             coordinates.style.display = 'block';
@@ -180,6 +180,8 @@
             $('input[name=longitude]').val(lngLat.lng);
             $('input[name=latitude]').val(lngLat.lat);
         }
+
+        onDragEnd();
          
         marker.on('dragend', onDragEnd);
 
