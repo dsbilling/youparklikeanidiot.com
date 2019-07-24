@@ -54,7 +54,7 @@
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6">
-                                <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}">
+                                <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}"  max="{{ Carbon\Carbon::now()->toDateString() }}">
                             </div>
                             <div class="col-6">
                                 <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" name="time" value="{{ old('time') }}">

@@ -58,7 +58,7 @@ class SubmissionController extends Controller
             'latitude' => 'required|between:0,99.99',
             'longitude' => 'required|between:0,99.99',
             'types' => 'required|array',
-            'date' => 'required|date',
+            'date' => 'required|date_format:Y-m-d|before:today',
             'time' => 'required|date_format:H:i',
             'images' => 'required',
             'images.*' => 'required|image|mimes:jpeg,png,jpg|max:5120'
