@@ -27,6 +27,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
 
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -232,6 +235,29 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#237afc"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#237afc"
+        }
+      },
+      "theme": "classic",
+      "position": "bottom-right",
+      "content": {
+        "message": "Denne nettsiden bruker informasjonskapsler for å sikre at du får den beste opplevelsen på vår hjemmeside.",
+        "dismiss": "Skjønner!",
+        "link": "Mer info",
+        "href": "{{ env('APP_URL') }}/privacypolicy"
+      }
+    });
 </script>
 
 </body>
