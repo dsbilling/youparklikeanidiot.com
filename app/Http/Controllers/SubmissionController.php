@@ -60,7 +60,7 @@ class SubmissionController extends Controller
             'types' => 'required|array',
             'date' => 'required|date',
             'time' => 'required|date_format:H:i',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg|max:5120'
+            'images' => 'required|image|mimes:jpeg,png,jpg|max:5120'
         ])->validate();
 
         $registration = $request->licenseplate;
