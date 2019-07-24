@@ -181,7 +181,9 @@
             $('input[name=latitude]').val(lngLat.lat);
         }
 
-        onDragEnd();
+        @if(old('longitude') && old('latitude'))
+            onDragEnd();
+        @endif
          
         marker.on('dragend', onDragEnd);
 
