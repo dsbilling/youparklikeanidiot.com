@@ -34,7 +34,7 @@ Breadcrumbs::for('user.show', function ($trail, $user) {
 // Error 404
 Breadcrumbs::for('errors.404', function ($trail) {
     $trail->parent('home');
-    $trail->push(__('errors.404'));
+    $trail->push(__('error.404.title'));
 });
 
 Breadcrumbs::macro('pageTitle', function () {
