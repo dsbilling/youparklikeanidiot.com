@@ -9,7 +9,7 @@
 	<p class="lead">
 		<a href="{{ asset('pdf/duparkerersomenidiot_no.pdf') }}" class="btn btn-success"><i class="fas fa-download"></i> Last ned PDF</a>
 		<small><em> ~ eller ~ </em></small>
-		<a href="{{ route('parkering.index') }}" class="btn btn-info"><i class="fas fa-parking"></i> Se feilparkerte biler</a>
+		<a href="{{ route('parking.index') }}" class="btn btn-info"><i class="fas fa-parking"></i> Se feilparkerte biler</a>
 	</p>
 </div>
 @endsection

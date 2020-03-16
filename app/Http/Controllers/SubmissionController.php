@@ -51,7 +51,6 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-
         Validator::make($request->all(), [
             'licenseplate' => 'required|alpha_num',
             'description' => 'nullable',
@@ -67,7 +66,7 @@ class SubmissionController extends Controller
         $registration = $request->licenseplate;
         $lp = LicensePlate::where('registration', $registration)->first();
 
-        if(!$lp) {
+        if (!$lp) {
             $lp = LicensePlate::create(['registration' => $registration]);
         }
 
@@ -83,7 +82,7 @@ class SubmissionController extends Controller
         ]);
         $submission->types()->attach($request->input('types'));
 
-        foreach($request->images as $file) {
+        foreach ($request->images as $file) {
             $extension = $file->getClientOriginalExtension();
             $fileName = $submission->id."-".time().'-'.rand().".".$extension;
             $folderpath  = 'image/submissions/';
@@ -92,7 +91,7 @@ class SubmissionController extends Controller
             $submission->images()->attach($image);
         }
 
-        return Redirect::route('parkering.show', $submission->uuid);
+        return Redirect::route('parking.show', $submission->uuid);
     }
 
     /**

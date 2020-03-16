@@ -2,23 +2,39 @@
 
 // Home
 Breadcrumbs::for('home', function ($trail) {
-     $trail->push('Hjem', route('home'));
+     $trail->push(__('global.home'), route('home'));
 });
 
-Breadcrumbs::for('login', function ($trail) {
+Breadcrumbs::for('signin', function ($trail) {
     $trail->parent('home');
-    $trail->push('Logg Inn', route('login'));
+    $trail->push(__('auth.signin.title'), route('login'));
 });
 
-Breadcrumbs::for('register', function ($trail) {
+Breadcrumbs::for('signup', function ($trail) {
     $trail->parent('home');
-    $trail->push('Registrer', route('register'));
+    $trail->push(__('auth.signup.title'), route('register'));
+});
+
+Breadcrumbs::for('password.reset', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('auth.password.reset.title'), route('password.email'));
+});
+
+Breadcrumbs::for('password.request', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('auth.password.reset.title'), route('password.email'));
+});
+
+Breadcrumbs::for('user.show', function ($trail, $user) {
+    $trail->parent('home');
+    $trail->push(__('user.title'));
+    $trail->push($user, route('user.show', $user));
 });
 
 // Error 404
 Breadcrumbs::for('errors.404', function ($trail) {
     $trail->parent('home');
-    $trail->push('Page Not Found');
+    $trail->push(__('errors.404'));
 });
 
 Breadcrumbs::macro('pageTitle', function () {
@@ -28,7 +44,7 @@ Breadcrumbs::macro('pageTitle', function () {
         $title .= "$page – ";
     }
 
-    return $title . config('app.name');
+    return $title . request()->getHttpHost();
 });
 
 Breadcrumbs::macro('resource', function ($route, $title) {
@@ -57,7 +73,7 @@ Breadcrumbs::macro('resource', function ($route, $title) {
     });
 });
 
-Breadcrumbs::resource('parkering', 'Parkeringer');
-Breadcrumbs::resource('info', 'Informasjon');
-Breadcrumbs::resource('sok', 'Søk');
-Breadcrumbs::resource('bilskilt', 'Bilskilt');
+Breadcrumbs::resource(__('parking.uri'), __('parking.title'));
+Breadcrumbs::resource(__('info.uri'), __('info.title'));
+Breadcrumbs::resource(__('search.uri'), __('search.title'));
+Breadcrumbs::resource(__('licenseplate.uri'), __('licenseplate.title'));
