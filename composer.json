@@ -14,6 +14,12 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "anlutro/l4-settings": "^0.4.7",
+        "cartalyst/sentinel": "2.0.*",
+        "cartalyst/stripe": "~2.0",
+        "cartalyst/stripe-laravel": "10.0.*",
+        "igaster/laravel-theme": "^2.0",
+        "propaganistas/laravel-phone": "^4.1",
         "sentry/sentry-laravel": "^1.0",
         "spatie/laravel-permission": "^2.37",
         "spatie/laravel-searchable": "^1.2"
@@ -43,8 +49,7 @@
         },
         "classmap": [
             "database/seeds",
-            "database/factories",
-            "database/migrations"
+            "database/factories"
         ]
     },
     "autoload-dev": {
