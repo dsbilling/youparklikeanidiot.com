@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         $user = User::where('username', $id)->with('submissions')->first();
         abort_unless($user, 404);
-        return view('users.show', $user);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
