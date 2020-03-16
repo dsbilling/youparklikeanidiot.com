@@ -4,7 +4,13 @@
 
 .navbar-brand {
 	margin-right: 1rem;
-}.profile-card-1 {
+}
+
+.form-group {
+	margin: 1rem 0;
+}
+
+.profile-card-1 {
 	position: relative;
 	float: left;
 	overflow: hidden;
