@@ -366,7 +366,7 @@ Route::group([
 							'uses' => 'Admin\SettingsController@update'
 						]);
 				});
-		});
+});
 
 });
 
