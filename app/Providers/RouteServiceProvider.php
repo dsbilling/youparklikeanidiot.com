@@ -37,6 +37,10 @@ class RouteServiceProvider extends ServiceProvider
             $locale = $urls[$host];
             App::setLocale($locale);
             Carbon::setLocale($locale);
+            Route::resourceVerbs([
+                'create' => __('uri.create'),
+                'edit' => __('uri.create'),
+            ]);
         }
 
         parent::boot();
