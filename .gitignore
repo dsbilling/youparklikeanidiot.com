@@ -10,4 +10,8 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+duparkerersomenidiot.no.sublime-project
 duparkerersomenidiot.no.sublime-workspace
+public/image/submissions
+!public/image/submission/parkering.jpg
+!public/image/submission/parkering2.jpg

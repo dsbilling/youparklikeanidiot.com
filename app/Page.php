@@ -1,32 +1,40 @@
-<?php namespace DPSEI;
+<?php
+
+namespace DPSEI;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Page extends Model {
+class Page extends Model
+{
+    use \BinaryCabin\LaravelUUID\Traits\HasUUID, SoftDeletes;
 
-	use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
-	protected $dates = ['deleted_at'];
-	protected $table = 'pages';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+    ];
 
-	protected $fillable = [
-		'title',
-		'slug',
-		'content',
-		'active'
-	];
+    /**
+     * A user that belong to the model.
+     */
+    public function author()
+    {
+        return $this->hasOne('DPSEI\User');
+    }
 
-	function author() {
-		return $this->hasOne('User', 'id', 'author_id');
-	}
-
-	function editor() {
-		return $this->hasOne('User', 'id', 'editor_id');
-	}
-
-	function scopeForMenu($query) {
-		return $this->where('active', '=', 1)->where('showinmenu', '=', 1)->get();
-	}
-
+    /**
+     * A user that belong to the model.
+     */
+    public function editor()
+    {
+        return $this->hasOne('DPSEI\User');
+    }
 }

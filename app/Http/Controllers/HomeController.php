@@ -1,17 +1,28 @@
-<?php namespace DPSEI\Http\Controllers;
+<?php
 
-use DPSEI\Page;
-use DPSEI\News;
+namespace DPSEI\Http\Controllers;
 
-class HomeController extends Controller {
+use Illuminate\Http\Request;
 
-	public function index()
-	{
-		$news = News::isPublished()->get()->take(3);
-		$pagesinmenu = Page::where('active', '=', 1)->where('showinmenu', '=', 1)->get(); // This needs to be included in all the frontend pages
-		return view('home')
-				  ->withNews($news)
-					->with('pagesinmenu', $pagesinmenu);
-	}
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('auth');
+    }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
+    }
 }
