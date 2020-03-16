@@ -57,7 +57,7 @@ Breadcrumbs::macro('resource', function ($route, $title) {
     // Home > Name > New
     Breadcrumbs::for($route.".create", function ($trail) use ($route) {
         $trail->parent($route.".index");
-        $trail->push('Opprett', route($route.".create"));
+        $trail->push(ucfirst(__('uri.create')), route($route.".create"));
     });
 
     // Home > Name > Post 123
@@ -69,7 +69,7 @@ Breadcrumbs::macro('resource', function ($route, $title) {
     // Home > Name > Post 123 > Edit
     Breadcrumbs::for($route.".edit", function ($trail, $id) use ($route) {
         $trail->parent($route.".show", $id);
-        $trail->push('Rediger', route($route.".edit", $id));
+        $trail->push(ucfirst(__('uri.edit')), route($route.".edit", $id));
     });
 });
 
