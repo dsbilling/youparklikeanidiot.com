@@ -2,6 +2,7 @@
 
 namespace DPSEI\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Facades\App;
 
@@ -23,9 +24,11 @@ class DomainLanguageMiddleware
             'no' => 'nb',
             'com' => 'en'
         ];
+        $locale = $tlds[$tld];
 
         if (array_key_exists($tld, $tlds)) {
-            App::setLocale($tlds[$tld]);
+            App::setLocale($locale);
+            Carbon::setLocale($locale);
         }
 
         return $next($request);
