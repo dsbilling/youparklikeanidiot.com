@@ -104,8 +104,8 @@
                     <div class="col-6">
                         @foreach(\DPSEI\Type::orderBy('title', 'asc')->get() as $type)
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="types[]" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
-                                <label class="custom-control-label">{{ $type->title }}</label>
+                                <input type="checkbox" class="custom-control-input" name="types[]" id="type-{{ $type->id }}" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
+                                <label class="custom-control-label" for="type-{{ $type->id }}">{{ $type->title }}</label>
                             </div>
                         @endforeach
                         @if ($errors->has('types'))
