@@ -87,3 +87,7 @@
 	color:#2E3434;
 	text-decoration:none;
 }
+
+.country-select .country-list {
+	z-index: 3 !important;
+}

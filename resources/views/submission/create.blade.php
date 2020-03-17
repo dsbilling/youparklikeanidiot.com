@@ -1,26 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-    <style type="text/css">
-        #map { width:100%; min-height: 325px }
-        #map.is-invalid { border: #e3342f 2px solid; }
-        .coordinates {
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            padding:5px 10px;
-            margin: 0;
-            font-size: 11px;
-            line-height: 18px;
-            border-radius: 3px;
-            display: none;
-        }
-    </style>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -40,7 +19,15 @@
                 <div class="form-group row">
                     <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
                     <div class="col-6">
-                        <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" id="country" class="form-control">
+                                <input type="hidden" id="country_code" name="licenseplate_country" value="{{ old('licenseplate_country') }}">
+                            </div>
+                            <div class="col-6">
+                                <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
+                            </div>
+                        </div>
                         @if ($errors->has('licenseplate'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('licenseplate') }}</strong>
@@ -156,7 +143,38 @@
 </div>
 @endsection
 
+@section('css')
+    <link href="{{ asset('css/countrySelect.css') }}" rel="stylesheet" />
+
+    <style type="text/css">
+        #map { width:100%; min-height: 325px }
+        #map.is-invalid { border: #e3342f 2px solid; }
+        .coordinates {
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            padding:5px 10px;
+            margin: 0;
+            font-size: 11px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+        }
+    </style>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
+@endsection
+
 @section('javascript')
+    <script src="{{ asset('js/countrySelect.js') }}"></script>
+    <script>
+        $("#country").countrySelect();
+        @if(old('licenseplate_country'))
+            $("#country").countrySelect("selectCountry", "{{ old('licenseplate_country') }}");
+        @endif
+    </script> 
+
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
     <script>
         mapboxgl.accessToken = '{{ env('MAPBOX_ACCESS_TOKEN') }}';
