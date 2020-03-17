@@ -86,7 +86,7 @@
 
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile" name="images[]" accept=".png, .jpg, .jpeg" multiple>
+                                <input type="file" class="custom-file-input" id="customFile" name="images[]" accept=".png, .jpg, .jpeg" multiple lang="{{ app()->getLocale() }}">
                                 <label class="custom-file-label" for="customFile">{{ __('Velg fil') }}</label>
                             </div>
                         </div>
@@ -103,9 +103,9 @@
                     <label for="types" class="col-4 col-form-label text-md-right">{{ __('Velg parkerings feil') }}</label>
                     <div class="col-6">
                         @foreach(\DPSEI\Type::orderBy('title', 'asc')->get() as $type)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
-                                <label class="form-check-label">{{ $type->title }}</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="types[]" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
+                                <label class="custom-control-label">{{ $type->title }}</label>
                             </div>
                         @endforeach
                         @if ($errors->has('types'))
