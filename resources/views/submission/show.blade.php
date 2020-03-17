@@ -17,7 +17,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mt-3 mb-3" id="map"></div>
+            <div class="mt-3 mb-3" id="map">@if(!env('MAPBOX_ACCESS_TOKEN'))<p class="text-danger">Failed to load map.</p>@endif</div>
         </div>
         <div class="col-md-4">
             <div class="card mb-4">
@@ -29,12 +29,12 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">{{ __('Info') }}</div>
+                <div class="card-header">{{ __('info.title') }}</div>
                 <div class="card-body">
-                    <p>{{ __('Regnr:') }} <a href="{{ route('bilskilt.show', $licenseplate['registration']) }}">{{ $licenseplate['registration'] }}</a></p>
+                    <p>{{ __('Regnr:') }} <a href="{{ route('licenseplate.show', $licenseplate['uuid']) }}">{{ $licenseplate['registration'] }}</a></p>
                     @if($description)<p>{{ __('Kommentar:') }}<br>{{ $description }}</p>@endif
                     <p>{{ __('Parkering skjedde:') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
-                    <p class="mb-0">{{ __('Send inn av:') }} <a href="{{ route('bruker.show', $user['username']) }}">{{ $user['username'] }}</a> {{ __('for') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($created_at) }}">{{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</a></p>
+                    <p class="mb-0">{{ __('Send inn av:') }} <a href="{{ route('user.show', $user['username']) }}">{{ $user['username'] }}</a> {{ __('for') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($created_at) }}">{{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</a></p>
                 </div>
             </div>
         </div>
@@ -51,52 +51,54 @@
             });
         });
     </script>
-    <script>
-        mapboxgl.accessToken = "{{ env('MAPBOX_ACCESS_TOKEN') }}";
-         
-        /* Map: This represents the map on the page. */
-        var map = new mapboxgl.Map({
-            container: "map",
-            style: "mapbox://styles/mapbox/satellite-streets-v11",
-            zoom: 15,
-            center: [{{ $longitude }}, {{ $latitude }}]
-        });
-
-        // Add zoom and rotation controls to the map.
-        map.addControl(new mapboxgl.NavigationControl());
-
-        map.on("load", function () {
-          /* Image: An image is loaded and added to the map. */
-          map.loadImage("{{ asset('image/map-marker.png') }}", function(error, image) {
-              if (error) throw error;
-              map.addImage("custom-marker", image);
-              /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
-              map.addLayer({
-                id: "markers",
-                type: "symbol",
-                /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
-                source: {
-                  type: "geojson",
-                  data: {
-                    type: 'FeatureCollection',
-                    features: [
-                      {
-                        type: 'Feature',
-                        properties: {},
-                        geometry: {
-                          type: "Point",
-                          coordinates: [{{ $longitude }}, {{ $latitude }}]
-                        }
-                      }
-                    ]
-                  }
-                },
-                layout: {
-                  "icon-image": "custom-marker",
-                  "icon-size": 0.1,
-                }
-              });
+    @if(env('MAPBOX_ACCESS_TOKEN'))
+        <script>
+            mapboxgl.accessToken = "{{ env('MAPBOX_ACCESS_TOKEN') }}";
+             
+            /* Map: This represents the map on the page. */
+            var map = new mapboxgl.Map({
+                container: "map",
+                style: "mapbox://styles/mapbox/satellite-streets-v11",
+                zoom: 15,
+                center: [{{ $longitude }}, {{ $latitude }}]
             });
-        });
-    </script>
+
+            // Add zoom and rotation controls to the map.
+            map.addControl(new mapboxgl.NavigationControl());
+
+            map.on("load", function () {
+              /* Image: An image is loaded and added to the map. */
+              map.loadImage("{{ asset('image/map-marker.png') }}", function(error, image) {
+                  if (error) throw error;
+                  map.addImage("custom-marker", image);
+                  /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+                  map.addLayer({
+                    id: "markers",
+                    type: "symbol",
+                    /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+                    source: {
+                      type: "geojson",
+                      data: {
+                        type: 'FeatureCollection',
+                        features: [
+                          {
+                            type: 'Feature',
+                            properties: {},
+                            geometry: {
+                              type: "Point",
+                              coordinates: [{{ $longitude }}, {{ $latitude }}]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    layout: {
+                      "icon-image": "custom-marker",
+                      "icon-size": 0.1,
+                    }
+                  });
+                });
+            });
+        </script>
+    @endif
 @endsection

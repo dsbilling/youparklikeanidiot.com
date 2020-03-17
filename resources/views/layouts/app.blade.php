@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Mapbox -->
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js"></script>
-    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
 
     <!-- Lightbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
@@ -51,12 +51,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::is('parkering')){{'active'}} @endif" href="{{ route('parkering.index') }}"><i class="fas fa-parking mr-1"></i>{{ __('Parkeringer') }}</a>
+                            <a class="nav-link @if(Request::is('parkering')){{'active'}} @endif" href="{{ route('parking.index') }}"><i class="fas fa-parking mr-1"></i>{{ __('parking.title') }}</a>
                         </li>
                         @if(DPSEI\Page::all()->count()>0)
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fas fa-info-circle mr-1"></i>{{ __('Informasjon') }} <span class="caret"></span>
+                                    <i class="fas fa-info-circle mr-1"></i>{{ __('global.information') }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @foreach(DPSEI\Page::all() as $page)
@@ -66,12 +66,12 @@
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link @if(Request::is('parkering/create')){{'active'}} @endif" href="{{ route('parkering.create') }}"><i class="fas fa-plus mr-1"></i>{{ __('Send inn') }}</a>
+                            <a class="nav-link @if(Request::is('parkering/create')){{'active'}} @endif" href="{{ route('parking.create') }}"><i class="fas fa-plus mr-1"></i>{{ __('global.submit') }}</a>
                         </li>
-                        <form class="form-inline ml-3 my-2 my-lg-0" method="post" action="{{ route('sok.store') }}">
-                            <input class="form-control mr-sm-2{{ $errors->has('search') ? ' is-invalid' : '' }}" type="search" placeholder="{{ $errors->first('search') ?? 'Søk' }}" aria-label="Søk" name="search">
+                        <form class="form-inline ml-3 my-2 my-lg-0" method="post" action="{{ route('search.store') }}">
+                            <input class="form-control mr-sm-2{{ $errors->has('search') ? ' is-invalid' : '' }}" type="search" placeholder="{{ $errors->first('search') ?? __('global.search') }}" aria-label="{{ __('global.search') }}" name="search">
                             @csrf
-                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search mr-1"></i>Søk</button>
+                            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search mr-1"></i>{{ __('global.search') }}</button>
                         </form>
                     </ul>
 
@@ -80,11 +80,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt mr-1"></i>{{ __('Logg inn') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt mr-1"></i>{{ __('auth.signin.title') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus mr-1"></i>{{ __('Registrer') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus mr-1"></i>{{ __('auth.signup.title') }}</a>
                                 </li>
                             @endif
                         @else
@@ -94,14 +94,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('bruker.show', Auth::user()->username) }}"><i class="fas fa-user"></i> {{ __('Profile') }}</a>
+                                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->username) }}"><i class="fas fa-user"></i> {{ __('user.profile') }}</a>
                                     @if(Auth::user()->hasRole('write'))
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('page.create') }}"><i class="fas fa-plus"></i> {{ __('Create Page') }}</a>
                                         <div class="dropdown-divider"></div>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt"></i> {{ __('Logg ut') }}
+                                        <i class="fas fa-sign-out-alt"></i> {{ __('auth.signout.title') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -138,11 +138,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fa fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <a href="javascript:;" onclick="jQuery('#feedback').modal('show', {backdrop: 'static'});" class="text-info"><i class="far fa-comment-dots mr-1"></i>Send feedback</a></p>
+                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="jQuery('#feedback').modal('show', {backdrop: 'static'});" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('global.sendfeedback') }}</a></p>
                 </div>
                 <div class="col-6 text-right">
                     <p>
-                        v0.1.0 &middot; Utviklet med <span class="text-danger">&#10084;</span> av <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        v0.1.0 &middot; {!! __('global.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))
                             <p>
                                 <b><span class="text-danger">{{ mb_strtoupper(__('Debug Mode')) }}</span></b>

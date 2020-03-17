@@ -17,7 +17,7 @@
                 <tbody>
                     @foreach($licenseplate->submissions as $submission)
                         <tr>
-                            <td><a href="{{ route('parkering.show', $submission->uuid) }}">{{ $licenseplate->registration }}</a></td>
+                            <td><a href="{{ route('parking.show', $submission->uuid) }}">{{ $licenseplate->registration }}</a></td>
                             <td>
                                 @foreach($submission->types as $type)
                                     <span class="pr-2"><i class="fas fa-check pr-1"></i>{{ $type['title'] }}</span>

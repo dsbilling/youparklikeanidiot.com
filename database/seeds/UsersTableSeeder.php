@@ -19,7 +19,15 @@ class UsersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         DB::table('users')->insert([
-        	'uuid' => Str::uuid(4),
+            'uuid' => Str::uuid(4),
+            'name' => $faker->name,
+            'username' => $faker->userName,
+            'email' => $faker->unique()->safeEmail,
+            'password' => bcrypt('12345678'),
+        ]);
+
+        DB::table('users')->insert([
+            'uuid' => Str::uuid(4),
             'name' => $faker->name,
             'username' => $faker->userName,
             'email' => $faker->unique()->safeEmail,
