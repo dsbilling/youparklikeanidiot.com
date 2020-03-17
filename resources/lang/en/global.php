@@ -15,4 +15,6 @@ return [
     'confirm' => 'Confirm',
     'sendemail' => 'Send Email',
 
+    'or' => 'or',
+
 ];
