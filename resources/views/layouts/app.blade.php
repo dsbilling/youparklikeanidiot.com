@@ -142,11 +142,13 @@
                 </div>
                 <div class="col-6 text-right">
                     <p>
-                        v0.1.0 &middot; {!! __('global.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        {{ Setting::get('APP_VERSION') }} &middot; {!! __('global.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))
                             <p>
-                                <b><span class="text-danger">{{ mb_strtoupper(__('Debug Mode')) }}</span></b>
-                                <b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('Reset db and settings')) }}</a></b>
+                                <b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
+                                @if(Setting::get('APP_SHOW_RESETDB'))
+                                    <b>&middot; <a href="/resetdb" class="text-danger">{{ mb_strtoupper(__('footer.resetdbandsettings')) }}</a></b>
+                                @endif
                             </p>
                         @endif
                     </p>
