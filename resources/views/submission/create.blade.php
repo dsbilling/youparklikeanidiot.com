@@ -169,10 +169,10 @@
 @section('javascript')
     <script src="{{ asset('js/countrySelect.js') }}"></script>
     <script>
-        $("#country").countrySelect();
-        @if(old('licenseplate_country'))
-            $("#country").countrySelect("selectCountry", "{{ old('licenseplate_country') }}");
-        @endif
+        $("#country").countrySelect({
+            selectCountry: "{{ old('licenseplate_country') }}",
+            preferredCountries: [],
+        });
     </script> 
 
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
