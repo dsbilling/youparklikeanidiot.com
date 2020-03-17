@@ -5,8 +5,6 @@ return [
     'home' => 'Home',
     'search' => 'Search',
     'submit' => 'Submit',
-    'sendfeedback' => 'Send Feedback',
-    'developedwith' => 'Developed with <span class="text-danger">&#10084;</span> by',
 
     'name' => 'Name',
     'username' => 'Username',
