@@ -5,12 +5,12 @@ Breadcrumbs::for('home', function ($trail) {
      $trail->push(__('global.home'), route('home'));
 });
 
-Breadcrumbs::for('signin', function ($trail) {
+Breadcrumbs::for('login', function ($trail) {
     $trail->parent('home');
     $trail->push(__('auth.signin.title'), route('login'));
 });
 
-Breadcrumbs::for('signup', function ($trail) {
+Breadcrumbs::for('register', function ($trail) {
     $trail->parent('home');
     $trail->push(__('auth.signup.title'), route('register'));
 });
@@ -73,7 +73,7 @@ Breadcrumbs::macro('resource', function ($route, $title) {
     });
 });
 
-Breadcrumbs::resource(__('parking.uri'), __('parking.title'));
-Breadcrumbs::resource(__('info.uri'), __('info.title'));
-Breadcrumbs::resource(__('search.uri'), __('search.title'));
-Breadcrumbs::resource(__('licenseplate.uri'), __('licenseplate.title'));
+Breadcrumbs::resource('parking', __('parking.title'));
+Breadcrumbs::resource('info', __('info.title'));
+Breadcrumbs::resource('search', __('search.title'));
+Breadcrumbs::resource('licenseplate', __('licenseplate.title'));
