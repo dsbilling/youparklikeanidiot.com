@@ -40,7 +40,7 @@ class RefreshSettings extends Command
     {
         // Add new settings
         if (!Setting::has('APP_SHOW_RESETDB')) {
-            Setting::set('APP_SHOW_RESETDB', 0);
+            Setting::set('APP_SHOW_RESETDB', (env('APP_DEBUG') ? 1 : 0));
             $this->info('Added APP_SHOW_RESETDB setting.');
         }
     }
