@@ -141,11 +141,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="jQuery('#feedback').modal('show', {backdrop: 'static'});" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('global.sendfeedback') }}</a></p>
+                    <p>&copy; 2019-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="jQuery('#feedback').modal('show', {backdrop: 'static'});" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.sendfeedback') }}</a></p>
                 </div>
                 <div class="col-6 text-right">
                     <p>
-                        {{ Setting::get('APP_VERSION') }} &middot; {!! __('global.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        {{ Setting::get('APP_VERSION') }} &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))
                             <p>
                                 <b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
