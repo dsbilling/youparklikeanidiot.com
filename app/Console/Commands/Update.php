@@ -45,12 +45,8 @@ class Update extends Command
 
         $this->info('Migrating...');
         Artisan::call('migrate --force');
-        /*$this->info('Refreshing permissions...');
-        Artisan::call('lanms:refreshpermissions');
-        $this->info('Refreshing info descriptions...');
-        Artisan::call('lanms:refreshinfo');*/
         $this->info('Refreshing settings...');
-        Artisan::call('lanms:refreshsettings');
+        Artisan::call('dpsei:refreshsettings');
         $this->info('Updating version...');
         if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
