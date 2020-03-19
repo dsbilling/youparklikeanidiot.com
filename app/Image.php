@@ -15,6 +15,7 @@ class Image extends Model
      */
     protected $fillable = [
         'path',
+        'submission_id'
     ];
 
     /**
@@ -22,7 +23,7 @@ class Image extends Model
      */
     public function submissions()
     {
-        return $this->belongsToMany('DPSEI\Submission');
+        return $this->hasOne('DPSEI\Submission');
     }
     
 }

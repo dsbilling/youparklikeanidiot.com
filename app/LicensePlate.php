@@ -25,7 +25,7 @@ class LicensePlate extends Model implements Searchable
      */
     public function submissions()
     {
-        return $this->hasMany('DPSEI\Submission');
+        return $this->hasMany('DPSEI\Submission', 'licenseplate_id');
     }
 
     /**
