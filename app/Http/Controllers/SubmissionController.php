@@ -52,6 +52,7 @@ class SubmissionController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
+            'country_code' => 'required',
             'licenseplate' => 'required|alpha_num',
             'description' => 'nullable',
             'latitude' => 'required|between:0,99.99',
@@ -63,11 +64,15 @@ class SubmissionController extends Controller
             'images.*' => 'required|image|mimes:jpeg,png,jpg|max:5120'
         ])->validate();
 
+        $country_code = $request->country_code;
         $registration = $request->licenseplate;
-        $lp = LicensePlate::where('registration', $registration)->first();
+        $lp = LicensePlate::where('registration', $registration)->where('country_code', $country_code)->first();
 
         if (!$lp) {
-            $lp = LicensePlate::create(['registration' => $registration]);
+            $lp = LicensePlate::create([
+                'country_code' => $country_code,
+                'registration' => $registration
+            ]);
         }
 
         $datetime = Carbon::parse($request->input('date').' '.$request->input('time'));

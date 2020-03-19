@@ -21,18 +21,24 @@
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" id="country" class="form-control">
-                                <input type="hidden" id="country_code" name="licenseplate_country" value="{{ old('licenseplate_country') }}">
+                                <input type="text" id="country" class="form-control{{ $errors->has('country_code') ? ' is-invalid' : '' }}">
+                                <input type="hidden" id="country_code" name="country_code" value="{{ old('country_code') }}">
+                                @if ($errors->has('country_code'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('country_code') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-6">
                                 <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
+                                @if ($errors->has('licenseplate'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('licenseplate') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                        @if ($errors->has('licenseplate'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('licenseplate') }}</strong>
-                            </span>
-                        @endif
+                        
                     </div>
                 </div>
 
