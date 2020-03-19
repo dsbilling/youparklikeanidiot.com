@@ -6,6 +6,7 @@
         <div class="col-md-12 mb-5">
             <table class="table table-striped table-bordered">
                 <thead>
+                    <th>Land</th>
                     <th>Skilt</th>
                     <th>Parkeringsfeil</th>
                     <th>Lokasjon</th>
@@ -15,6 +16,7 @@
                 <tbody>
                     @foreach($submissions as $submission)
                         <tr>
+                            <td>{{ $submission->licenseplate->country_code }}</td>
                             <td><a href="{{ route('parking.show', $submission->uuid) }}">{{ $submission->licenseplate->registration }}</a></td>
                             <td>
                                 @foreach($submission->types as $type)
