@@ -167,6 +167,13 @@
 @endsection
 
 @section('javascript')
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
+
     <script src="{{ asset('js/countrySelect.js') }}"></script>
     <script>
         $("#country").countrySelect({
