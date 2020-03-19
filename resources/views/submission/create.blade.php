@@ -180,6 +180,13 @@
             selectCountry: "{{ old('licenseplate_country') }}",
             preferredCountries: [],
         });
+        $(document).ready(function () {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                $("#country").countrySelect("selectCountry", countryCode);
+                console.log(countryCode);
+            });
+        })
     </script> 
 
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
