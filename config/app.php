@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        anlutro\LaravelSettings\ServiceProvider::class,
 
         /*
          * Application Service Providers...
