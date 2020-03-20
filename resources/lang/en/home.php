@@ -7,6 +7,6 @@ return [
     <p class="lead"><em>Perhaps</em> you are one of them? Press the button below to see if you find one of your cars, or search for your licenseplate. <em>Perhaps</em> you want to show the people another idiot? Sign up and upload a photo and some info about the parking.</p>
     <p class="lead">Do you want to show the <em><a href=":url">idiot</a></em> that they have parked wrong? If so; you can download the PDF to print and place on the windshield.</p>',
     'downloadpdf' => 'Download PDF',
-    'seeparkings' => 'See wrongly parked cars',
+    'seeparkings' => 'Show wrongly parked cars',
 
 ];

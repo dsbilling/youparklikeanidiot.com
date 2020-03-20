@@ -14,4 +14,6 @@ return [
     'confirm' => 'Bekreft',
     'sendemail' => 'Send E-post',
 
+    'or' => 'eller',
+
 ];
