@@ -42,6 +42,7 @@ class FeedbackController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             'message' => 'required|string',
+            'g-recaptcha-response' => 'recaptcha',
         ])->validate();
 
         try {

@@ -38,6 +38,9 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     @yield('css')
+
+    <!-- ReCaptcha -->
+    {!! htmlScriptTagJsApi() !!}
 </head>
 <body class="d-flex flex-column h-100">
     <header>
@@ -141,7 +144,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <p>&copy; 2019-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="jQuery('#feedback').modal('show', {backdrop: 'static'});" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.sendfeedback') }}</a></p>
+                    <p>&copy; 2019-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.sendfeedback') }}</a></p>
                 </div>
                 <div class="col-6 text-right">
                     <p>
@@ -173,7 +176,13 @@
             ga('send', 'pageview');
         </script>
     @endif
-
+<script type="text/javascript">
+    @if($errors->has('name') || $errors->has('email') || $errors->has('message') || $errors->has('g-recaptcha-response'))
+        $( document ).ready(function() {
+            $('#feedback').modal('show', {backdrop: 'static'});
+        });
+    @endif
+</script>
 <div class="modal fade" id="feedback" data-backdrop="static">
     <div class="modal-dialog">
         <form method="post" action="{{ route('feedback') }}" class="modal-content">
@@ -222,6 +231,18 @@
                         @if ($errors->has('message'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('message') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                        <input id="g-recaptcha-response" type="hidden" class="form-control{{ $errors->has('g-recaptcha-response') ? ' is-invalid' : '' }}">
+                        {!! htmlFormSnippet() !!}
+                        @if ($errors->has('g-recaptcha-response'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                             </span>
                         @endif
                     </div>
