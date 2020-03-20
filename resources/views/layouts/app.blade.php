@@ -144,7 +144,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <p>&copy; 2019-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.sendfeedback') }}</a></p>
+                    <p>&copy; 2019-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
                 </div>
                 <div class="col-6 text-right">
                     <p>
@@ -187,16 +187,16 @@
     <div class="modal-dialog">
         <form method="post" action="{{ route('feedback') }}" class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><strong>Feedback</strong></h4>
+                <h4 class="modal-title"><strong>{{ __('footer.feedback.title') }}</strong></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>All tilbakemelding er verdsatt, takk for at du tar tiden din til dette!</p>
+                <p>{{ __('footer.feedback.description') }}</p>
                 <div class="form-group row">
-                    <label for="name" class="col-2 col-form-label text-md-right">{{ __('Navn') }}</label>
-                    <div class="col-10">
+                    <label for="name" class="col-3 col-form-label text-right">{{ __('global.name') }}</label>
+                    <div class="col-9">
                         @if(Auth::check())
                             <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ Auth::user()->name }}" readonly="">
                         @else
@@ -210,8 +210,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email" class="col-2 col-form-label text-md-right">{{ __('Epost') }}</label>
-                    <div class="col-10">
+                    <label for="email" class="col-3 col-form-label text-right">{{ __('global.email') }}</label>
+                    <div class="col-9">
                         @if(Auth::check())
                             <input id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" readonly="">
                         @else
@@ -225,8 +225,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="message" class="col-2 col-form-label text-md-right">{{ __('Melding') }}</label>
-                    <div class="col-10">
+                    <label for="message" class="col-3 col-form-label text-right">{{ __('global.message') }}</label>
+                    <div class="col-9">
                         <textarea id="message" class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message">{{ old('message') }}</textarea> 
                         @if ($errors->has('message'))
                             <span class="invalid-feedback" role="alert">
@@ -236,8 +236,8 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-2"></div>
-                    <div class="col-10">
+                    <div class="col-3"></div>
+                    <div class="col-9">
                         <input id="g-recaptcha-response" type="hidden" class="form-control{{ $errors->has('g-recaptcha-response') ? ' is-invalid' : '' }}">
                         {!! htmlFormSnippet() !!}
                         @if ($errors->has('g-recaptcha-response'))
@@ -250,7 +250,7 @@
             </div>
             <div class="modal-footer">
                 @csrf
-                <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane mr-2"></i>Send</button>
+                <button type="submit" class="btn btn-info"><i class="fas fa-paper-plane mr-2"></i>{{ __('global.sendemail') }}</button>
             </div>
         </form>
     </div>

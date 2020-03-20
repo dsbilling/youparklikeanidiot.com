@@ -9,6 +9,7 @@ return [
     'name' => 'Name',
     'username' => 'Username',
     'email' => 'Email',
+    'message' => 'Message',
     'password' => 'Password',
     'confirm' => 'Confirm',
     'sendemail' => 'Send Email',
