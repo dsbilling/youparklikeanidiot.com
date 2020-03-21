@@ -16,4 +16,6 @@ return [
 
     'or' => 'or',
 
+    'maintenance' => 'We are upgrading the system. We\'ll be right back.',
+
 ];

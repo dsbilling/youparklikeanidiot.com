@@ -16,4 +16,6 @@ return [
 
     'or' => 'eller',
 
+    'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
+
 ];
