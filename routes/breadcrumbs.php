@@ -31,12 +31,6 @@ Breadcrumbs::for('user.show', function ($trail, $user) {
     $trail->push($user, route('user.show', $user));
 });
 
-// Error 404
-Breadcrumbs::for('errors.404', function ($trail) {
-    $trail->parent('home');
-    $trail->push(__('error.404.title'));
-});
-
 Breadcrumbs::macro('pageTitle', function () {
     $title = ($breadcrumb = Breadcrumbs::current()) ? "{$breadcrumb->title} – " : '';
 
