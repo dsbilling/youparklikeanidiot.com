@@ -17,6 +17,7 @@
 if (Config::get('app.debug')) {
     Route::get('/resetdb', function () {
         \Session::forget('laravel_session');
+        Artisan::call('cache:clear');
         Artisan::call('migrate:reset');
         Artisan::call('dpsei:update');
         Artisan::call('db:seed');
