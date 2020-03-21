@@ -81,7 +81,7 @@ class SubmissionController extends Controller
             'description' => $request->description,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
-            'license_plate_id' => $lp->id,
+            'licenseplate_id' => $lp->id,
             'user_id' => Auth::id(),
             'parked_at' => $datetime,
         ]);

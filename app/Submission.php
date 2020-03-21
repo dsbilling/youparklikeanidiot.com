@@ -52,7 +52,7 @@ class Submission extends Model
      */
     public function images()
     {
-        return $this->hasMany('DPSEI\Image');
+        return $this->belongsToMany('DPSEI\Image');
     }
 
     /**
