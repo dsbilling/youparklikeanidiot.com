@@ -1,5 +1,6 @@
 <?php
 
+use DPSEI\Image;
 use DPSEI\LicensePlate;
 use DPSEI\Submission;
 use DPSEI\Type;
@@ -20,6 +21,8 @@ class UsersTableSeeder extends Seeder
             $submissions = factory(Submission::class, 10)->create()->each(function ($submission) {
                 $types = Type::all()->random(3);
                 $submission->types()->attach($types);
+                $images = factory(Image::class, 3)->create();
+                $submission->images()->attach($images);
             });
             $user->submissions()->saveMany($submissions);
         });
