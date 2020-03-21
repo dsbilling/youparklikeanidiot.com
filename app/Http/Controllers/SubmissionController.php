@@ -53,7 +53,7 @@ class SubmissionController extends Controller
     {
         Validator::make($request->all(), [
             'country_code' => 'required',
-            'licenseplate' => 'required|alpha_num',
+            'licenseplate' => 'required|alpha_num|max:20',
             'description' => 'nullable',
             'latitude' => 'required|between:0,99.99',
             'longitude' => 'required|between:0,99.99',
