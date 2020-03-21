@@ -178,7 +178,7 @@
         </script>
     @endif
 <script type="text/javascript">
-    @if($errors->has('name') || $errors->has('email') || $errors->has('message') || $errors->has('g-recaptcha-response'))
+    @if($errors->has('feedback_name') || $errors->has('feedback_email') || $errors->has('feedback_message') || $errors->has('g-recaptcha-response'))
         $( document ).ready(function() {
             $('#feedback').modal('show', {backdrop: 'static'});
         });
@@ -196,42 +196,42 @@
             <div class="modal-body">
                 <p>{{ __('footer.feedback.description') }}</p>
                 <div class="form-group row">
-                    <label for="name" class="col-3 col-form-label text-right">{{ __('global.name') }}</label>
+                    <label for="feedback_name" class="col-3 col-form-label text-right">{{ __('global.name') }}</label>
                     <div class="col-9">
                         @if(Auth::check())
-                            <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ Auth::user()->name }}" readonly="">
+                            <input id="feedback_name" class="form-control{{ $errors->has('feedback_name') ? ' is-invalid' : '' }}" name="feedback_name" value="{{ Auth::user()->name }}" readonly="">
                         @else
-                            <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
+                            <input id="feedback_name" class="form-control{{ $errors->has('feedback_name') ? ' is-invalid' : '' }}" name="feedback_name" value="{{ old('feedback_name') }}">
                         @endif
-                        @if ($errors->has('name'))
+                        @if ($errors->has('feedback_name'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
+                                <strong>{{ $errors->first('feedback_name') }}</strong>
                             </span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email" class="col-3 col-form-label text-right">{{ __('global.email') }}</label>
+                    <label for="feedback_email" class="col-3 col-form-label text-right">{{ __('global.email') }}</label>
                     <div class="col-9">
                         @if(Auth::check())
-                            <input id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" readonly="">
+                            <input id="feedback_email" class="form-control{{ $errors->has('feedback_email') ? ' is-invalid' : '' }}" name="feedback_email" value="{{ Auth::user()->email }}" readonly="">
                         @else
-                            <input id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+                            <input id="feedback_email" class="form-control{{ $errors->has('feedback_email') ? ' is-invalid' : '' }}" name="feedback_email" value="{{ old('feedback_email') }}">
                         @endif
-                        @if ($errors->has('email'))
+                        @if ($errors->has('feedback_email'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('feedback_email') }}</strong>
                             </span>
                         @endif
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="message" class="col-3 col-form-label text-right">{{ __('global.message') }}</label>
+                    <label for="feedback_message" class="col-3 col-form-label text-right">{{ __('global.message') }}</label>
                     <div class="col-9">
-                        <textarea id="message" class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message">{{ old('message') }}</textarea> 
-                        @if ($errors->has('message'))
+                        <textarea id="feedback_message" class="form-control{{ $errors->has('feedback_message') ? ' is-invalid' : '' }}" name="feedback_message">{{ old('feedback_message') }}</textarea> 
+                        @if ($errors->has('feedback_message'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('message') }}</strong>
+                                <strong>{{ $errors->first('feedback_message') }}</strong>
                             </span>
                         @endif
                     </div>
