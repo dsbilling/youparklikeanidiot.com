@@ -18,7 +18,6 @@ class CreateImagesTable extends Migration
             $table->uuid('uuid');
 
             $table->string('path');
-            $table->integer('submission_id')->nullable();
 
             $table->timestamps();
         });
