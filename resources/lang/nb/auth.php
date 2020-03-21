@@ -2,10 +2,8 @@
 
 return [
 
-    'alert' => array(
-        'failed' => 'Disse legitimasjon samsvarer ikke med våre registre.',
-        'throttle' => 'For mange påloggingsforsøk. Vennligst prøv igjen om :seconds sekunder.',
-    ),
+    'failed' => 'Denne legitimasjonen samsvarer ikke med våre registre.',
+    'throttle' => 'For mange påloggingsforsøk. Vennligst prøv igjen om :seconds sekunder.',
 
     'signout' => array(
         'title' => 'Logg ut',
