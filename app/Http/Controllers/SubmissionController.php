@@ -119,7 +119,7 @@ class SubmissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -131,7 +131,7 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -142,6 +142,6 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }

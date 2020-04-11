@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -45,7 +45,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -92,6 +92,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }
