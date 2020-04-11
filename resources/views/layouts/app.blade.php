@@ -272,10 +272,10 @@
           "theme": "classic",
           "position": "bottom-right",
           "content": {
-            "message": "Denne nettsiden bruker informasjonskapsler for å sikre at du får den beste opplevelsen på vår hjemmeside.",
-            "dismiss": "Skjønner!",
-            "link": "Mer info",
-            "href": "{{ env('APP_URL') }}/privacypolicy"
+            "message": "{{ __('global.cookie.message') }}",
+            "dismiss": "{{ __('global.cookie.dissmiss') }}",
+            "link": "{{ __('global.cookie.link') }}",
+            "href": "{{ request()->getSchemeAndHttpHost() }}/info/privacypolicy"
           }
         });
     </script>

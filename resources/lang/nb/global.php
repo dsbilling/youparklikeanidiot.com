@@ -20,4 +20,10 @@ return [
 
     'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
 
+    'cookie' => [
+        'message' => 'Denne nettsiden bruker informasjonskapsler for å sikre at du får den beste opplevelsen på vår hjemmeside.',
+        'link' => 'Mer info finner du her!',
+        'dismiss' => 'Skjønner!',
+    ],
+
 ];

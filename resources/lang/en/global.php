@@ -20,4 +20,10 @@ return [
 
     'maintenance' => 'We are upgrading the system. We\'ll be right back.',
 
+    'cookie' => [
+        'message' => 'This website uses cookies to ensure you have the best experience on our website.',
+        'link' => 'More info can be found here!',
+        'dissmiss' => 'Got it!',
+    ],
+
 ];
