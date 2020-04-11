@@ -1,11 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-    <style type="text/css">
-        #map { width:100%; min-height: 325px }
-    </style>
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row">

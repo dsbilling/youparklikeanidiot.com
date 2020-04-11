@@ -91,3 +91,5 @@
 .country-select .country-list {
 	z-index: 3 !important;
 }
+
+#map { width:100%; min-height: 325px }
