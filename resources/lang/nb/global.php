@@ -5,6 +5,7 @@ return [
     'home' => 'Hjem',
     'search' => 'Søk',
     'submit' => 'Send inn',
+    'savechanges' => 'Lagre endringer',
 
     'name' => 'Navn',
     'username' => 'Brukernavn',
@@ -17,6 +18,8 @@ return [
 
     'or' => 'eller',
     'optional' => 'Valgfritt',
+    'new' => 'Nytt',
+    'current' => 'Nåværende',
 
     'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
 
