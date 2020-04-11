@@ -102,6 +102,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.show', Auth::user()->uuid) }}"><i class="fas fa-user"></i> {{ __('user.profile') }}</a>
+                                    <a class="dropdown-item" href="{{ route('account.password.change') }}"><i class="fas fa-asterisk"></i> {{ __('account.password.change.title') }}</a>
+                                    <div class="dropdown-divider"></div>
                                     @if(Auth::user()->hasRole('write'))
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('page.create') }}"><i class="fas fa-plus"></i> {{ __('Create Page') }}</a>
@@ -123,21 +125,27 @@
     </header>
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            @if (session('message'))
-                <div class="alert alert-{{ session('messagetype') ?? 'info' }}">
-                    @if(session('messagetype') == 'info')
-                        <i class="fas fa-info mr-2" aria-hidden="true"></i>
-                    @elseif(session('messagetype') == 'warning')
-                        <i class="fas fa-exclamation mr-2" aria-hidden="true"></i>
-                    @elseif(session('messagetype') == 'danger')
-                        <i class="fas fa-frown mr-2" aria-hidden="true"></i>
-                    @elseif(session('messagetype') == 'success')
-                        <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
-                    @endif
-                    {{ session('message') }}
+            {{ Breadcrumbs::render() }}
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <i class="fas fa-frown mr-2" aria-hidden="true"></i> {{ session('error') }}
                 </div>
             @endif
-            {{ Breadcrumbs::render() }}
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle mr-2" aria-hidden="true"></i> {{ session('success') }}
+                </div>
+            @endif
+            @if (session('info'))
+                <div class="alert alert-info">
+                    <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ session('info') }}
+                </div>
+            @endif
+            @if (session('warning'))
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {{ session('warning') }}
+                </div>
+            @endif
             @yield('content')
         </div>
     </main>
