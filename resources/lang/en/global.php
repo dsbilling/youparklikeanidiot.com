@@ -13,6 +13,7 @@ return [
     'password' => 'Password',
     'confirm' => 'Confirm',
     'sendemail' => 'Send Email',
+    'choosefile' => 'Choose File',
 
     'or' => 'or',
     'optional' => 'Optional',

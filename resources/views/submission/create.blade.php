@@ -93,7 +93,7 @@
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile" name="images[]" accept=".png, .jpg, .jpeg" multiple lang="{{ app()->getLocale() }}">
-                                <label class="custom-file-label" for="customFile">{{ __('Velg fil') }}</label>
+                                <label class="custom-file-label" for="customFile">{{ __('global.choosefile') }}</label>
                             </div>
                         </div>
 

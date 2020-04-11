@@ -13,6 +13,7 @@ return [
     'password' => 'Passord',
     'confirm' => 'Bekreft',
     'sendemail' => 'Send E-post',
+    'choosefile' => 'Velg fil',
 
     'or' => 'eller',
     'optional' => 'Valgfritt',
