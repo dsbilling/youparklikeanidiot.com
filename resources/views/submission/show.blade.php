@@ -28,7 +28,7 @@
                     <p>{{ __('parking.country') }}: <span class="flag-icon flag-icon-{{ strtolower($licenseplate['country_code']) }}"></span> @if(Countries::where('cca2', strtoupper($licenseplate['country_code']))->first()){!! Countries::where('cca2', strtoupper($licenseplate['country_code']))->first()->name->common !!}@endif</p>
                     <p>{{ __('parking.licenseplate') }}: <a href="{{ route('licenseplate.show', $licenseplate['uuid']) }}">{{ $licenseplate['registration'] }}</a></p>
                     <p>{{ __('parking.parked') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
-                    <p>{!! __('parking.sent_in', ['url' => route('user.show', $user['username']), 'name' => $user['username'], 'created_at' => \Carbon\Carbon::parse($created_at), 'human_time' => \Carbon\Carbon::parse($created_at)->diffForHumans()]) !!}</p>
+                    <p>{!! __('parking.sent_in', ['url' => route('user.show', $user['uuid']), 'name' => $user['username'], 'created_at' => \Carbon\Carbon::parse($created_at), 'human_time' => \Carbon\Carbon::parse($created_at)->diffForHumans()]) !!}</p>
                     @if($description)<p class="mb-0">{{ __('parking.comment') }}:<br>{{ $description }}</p>@endif
                 </div>
             </div>
