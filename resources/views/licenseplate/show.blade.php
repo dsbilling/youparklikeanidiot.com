@@ -27,6 +27,7 @@
                             <td>
                                 {{ $submission->latitude }}, {{ $submission->longitude }}
                             </td>
+                            <td>{{ $submission->images->count() }}</td>
                             <td>{{ \Carbon\Carbon::parse($submission->parked_at)->diffForHumans() }}</td>
                             <td>{{ \Carbon\Carbon::parse($submission->created_at)->diffForHumans() }}</td>
                         </tr>
