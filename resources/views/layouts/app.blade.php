@@ -177,108 +177,108 @@
             ga('send', 'pageview');
         </script>
     @endif
-<script type="text/javascript">
-    @if($errors->has('feedback_name') || $errors->has('feedback_email') || $errors->has('feedback_message') || $errors->has('g-recaptcha-response'))
-        $( document ).ready(function() {
-            $('#feedback').modal('show', {backdrop: 'static'});
-        });
-    @endif
-</script>
-<div class="modal fade" id="feedback" data-backdrop="static">
-    <div class="modal-dialog">
-        <form method="post" action="{{ route('feedback') }}" class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title"><strong>{{ __('footer.feedback.title') }}</strong></h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>{{ __('footer.feedback.description') }}</p>
-                <div class="form-group row">
-                    <label for="feedback_name" class="col-3 col-form-label text-right">{{ __('global.name') }}</label>
-                    <div class="col-9">
-                        @if(Auth::check())
-                            <input id="feedback_name" class="form-control{{ $errors->has('feedback_name') ? ' is-invalid' : '' }}" name="feedback_name" value="{{ Auth::user()->name }}" readonly="">
-                        @else
-                            <input id="feedback_name" class="form-control{{ $errors->has('feedback_name') ? ' is-invalid' : '' }}" name="feedback_name" value="{{ old('feedback_name') }}">
-                        @endif
-                        @if ($errors->has('feedback_name'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('feedback_name') }}</strong>
-                            </span>
-                        @endif
+    <script type="text/javascript">
+        @if($errors->has('feedback_name') || $errors->has('feedback_email') || $errors->has('feedback_message') || $errors->has('g-recaptcha-response'))
+            $( document ).ready(function() {
+                $('#feedback').modal('show', {backdrop: 'static'});
+            });
+        @endif
+    </script>
+    <div class="modal fade" id="feedback" data-backdrop="static">
+        <div class="modal-dialog">
+            <form method="post" action="{{ route('feedback') }}" class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>{{ __('footer.feedback.title') }}</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ __('footer.feedback.description') }}</p>
+                    <div class="form-group row">
+                        <label for="feedback_name" class="col-3 col-form-label text-right">{{ __('global.name') }}</label>
+                        <div class="col-9">
+                            @if(Auth::check())
+                                <input id="feedback_name" class="form-control{{ $errors->has('feedback_name') ? ' is-invalid' : '' }}" name="feedback_name" value="{{ Auth::user()->name }}" readonly="">
+                            @else
+                                <input id="feedback_name" class="form-control{{ $errors->has('feedback_name') ? ' is-invalid' : '' }}" name="feedback_name" value="{{ old('feedback_name') }}">
+                            @endif
+                            @if ($errors->has('feedback_name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('feedback_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="feedback_email" class="col-3 col-form-label text-right">{{ __('global.email') }}</label>
+                        <div class="col-9">
+                            @if(Auth::check())
+                                <input id="feedback_email" class="form-control{{ $errors->has('feedback_email') ? ' is-invalid' : '' }}" name="feedback_email" value="{{ Auth::user()->email }}" readonly="">
+                            @else
+                                <input id="feedback_email" class="form-control{{ $errors->has('feedback_email') ? ' is-invalid' : '' }}" name="feedback_email" value="{{ old('feedback_email') }}">
+                            @endif
+                            @if ($errors->has('feedback_email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('feedback_email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="feedback_message" class="col-3 col-form-label text-right">{{ __('global.message') }}</label>
+                        <div class="col-9">
+                            <textarea id="feedback_message" class="form-control{{ $errors->has('feedback_message') ? ' is-invalid' : '' }}" name="feedback_message">{{ old('feedback_message') }}</textarea> 
+                            @if ($errors->has('feedback_message'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('feedback_message') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3"></div>
+                        <div class="col-9">
+                            <input id="g-recaptcha-response" type="hidden" class="form-control{{ $errors->has('g-recaptcha-response') ? ' is-invalid' : '' }}">
+                            {!! htmlFormSnippet() !!}
+                            @if ($errors->has('g-recaptcha-response'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="feedback_email" class="col-3 col-form-label text-right">{{ __('global.email') }}</label>
-                    <div class="col-9">
-                        @if(Auth::check())
-                            <input id="feedback_email" class="form-control{{ $errors->has('feedback_email') ? ' is-invalid' : '' }}" name="feedback_email" value="{{ Auth::user()->email }}" readonly="">
-                        @else
-                            <input id="feedback_email" class="form-control{{ $errors->has('feedback_email') ? ' is-invalid' : '' }}" name="feedback_email" value="{{ old('feedback_email') }}">
-                        @endif
-                        @if ($errors->has('feedback_email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('feedback_email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+                <div class="modal-footer">
+                    @csrf
+                    <button type="submit" class="btn btn-info"><i class="fas fa-paper-plane mr-2"></i>{{ __('global.sendemail') }}</button>
                 </div>
-                <div class="form-group row">
-                    <label for="feedback_message" class="col-3 col-form-label text-right">{{ __('global.message') }}</label>
-                    <div class="col-9">
-                        <textarea id="feedback_message" class="form-control{{ $errors->has('feedback_message') ? ' is-invalid' : '' }}" name="feedback_message">{{ old('feedback_message') }}</textarea> 
-                        @if ($errors->has('feedback_message'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('feedback_message') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-3"></div>
-                    <div class="col-9">
-                        <input id="g-recaptcha-response" type="hidden" class="form-control{{ $errors->has('g-recaptcha-response') ? ' is-invalid' : '' }}">
-                        {!! htmlFormSnippet() !!}
-                        @if ($errors->has('g-recaptcha-response'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                @csrf
-                <button type="submit" class="btn btn-info"><i class="fas fa-paper-plane mr-2"></i>{{ __('global.sendemail') }}</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-<script>
-    window.cookieconsent.initialise({
-      "palette": {
-        "popup": {
-          "background": "#237afc"
-        },
-        "button": {
-          "background": "#fff",
-          "text": "#237afc"
-        }
-      },
-      "theme": "classic",
-      "position": "bottom-right",
-      "content": {
-        "message": "Denne nettsiden bruker informasjonskapsler for å sikre at du får den beste opplevelsen på vår hjemmeside.",
-        "dismiss": "Skjønner!",
-        "link": "Mer info",
-        "href": "{{ env('APP_URL') }}/privacypolicy"
-      }
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#237afc"
+            },
+            "button": {
+              "background": "#fff",
+              "text": "#237afc"
+            }
+          },
+          "theme": "classic",
+          "position": "bottom-right",
+          "content": {
+            "message": "Denne nettsiden bruker informasjonskapsler for å sikre at du får den beste opplevelsen på vår hjemmeside.",
+            "dismiss": "Skjønner!",
+            "link": "Mer info",
+            "href": "{{ env('APP_URL') }}/privacypolicy"
+          }
+        });
+    </script>
 
 </body>
 </html>
