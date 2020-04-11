@@ -6,13 +6,13 @@
         <div class="col-md-12 mb-5">
             <table class="table table-striped table-bordered">
                 <thead>
-                    <th>Land</th>
-                    <th>Skilt</th>
-                    <th>Parkeringsfeil</th>
-                    <th>Lokasjon</th>
-                    <th>Bilder</th>
-                    <th>Parkert</th>
-                    <th>Sendt inn</th>
+                    <th>{{ __('parking.country') }}</th>
+                    <th>{{ __('parking.licenseplate') }}</th>
+                    <th>{{ __('parking.parkingerror') }}</th>
+                    <th>{{ __('parking.location') }}</th>
+                    <th>{{ __('parking.images') }}</th>
+                    <th>{{ __('parking.parked_at') }}</th>
+                    <th>{{ __('parking.created_at') }}</th>
                 </thead>
                 <tbody>
                     @foreach($submissions as $submission)

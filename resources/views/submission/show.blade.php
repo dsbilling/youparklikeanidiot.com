@@ -31,10 +31,11 @@
             <div class="card">
                 <div class="card-header">{{ __('info.title') }}</div>
                 <div class="card-body">
-                    <p>{{ __('Regnr:') }} <a href="{{ route('licenseplate.show', $licenseplate['uuid']) }}">{{ $licenseplate['registration'] }}</a></p>
-                    @if($description)<p>{{ __('Kommentar:') }}<br>{{ $description }}</p>@endif
-                    <p>{{ __('Parkering skjedde:') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
-                    <p class="mb-0">{{ __('Send inn av:') }} <a href="{{ route('user.show', $user['username']) }}">{{ $user['username'] }}</a> {{ __('for') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($created_at) }}">{{ \Carbon\Carbon::parse($created_at)->diffForHumans() }}</a></p>
+                    <p>{{ __('parking.country') }}: <span class="flag-icon flag-icon-{{ strtolower($licenseplate['country_code']) }}"></span> {!! Countries::where('cca2', $licenseplate['country_code'])->first()->name->common !!}</p>
+                    <p>{{ __('parking.licenseplate') }}: <a href="{{ route('licenseplate.show', $licenseplate['uuid']) }}">{{ $licenseplate['registration'] }}</a></p>
+                    @if($description)<p>{{ __('parking.comment') }}<br>{{ $description }}</p>@endif
+                    <p>{{ __('parking.parked') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
+                    <p class="mb-0">{!! __('parking.sent_in', ['url' => route('user.show', $user['username']), 'name' => $user['username'], 'created_at' => \Carbon\Carbon::parse($created_at), 'human_time' => \Carbon\Carbon::parse($created_at)->diffForHumans()]) !!}</p>
                 </div>
             </div>
         </div>

@@ -4,15 +4,16 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h3><i class="fas fa-car-side mr-1"></i>{{ $licenseplate->registration }}</h3>
+            <h3><span class="flag-icon flag-icon-{{ strtolower($licenseplate->country_code) }}"></span> {!! Countries::where('cca2', $licenseplate->country_code)->first()->name->common !!} &mdash; {{ $licenseplate->registration }}</h3>
             <hr>
             <table class="table table-striped table-bordered">
                 <thead>
-                    <th>Skilt</th>
-                    <th>Parkeringsfeil</th>
-                    <th>Lokasjon</th>
-                    <th>Parkert</th>
-                    <th>Sendt inn</th>
+                    <th>{{ __('parking.licenseplate') }}</th>
+                    <th>{{ __('parking.parkingerror') }}</th>
+                    <th>{{ __('parking.location') }}</th>
+                    <th>{{ __('parking.images') }}</th>
+                    <th>{{ __('parking.parked_at') }}</th>
+                    <th>{{ __('parking.created_at') }}</th>
                 </thead>
                 <tbody>
                     @foreach($licenseplate->submissions as $submission)
