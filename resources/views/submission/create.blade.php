@@ -151,24 +151,6 @@
 
 @section('css')
     <link href="{{ asset('css/countrySelect.css') }}" rel="stylesheet" />
-
-    <style type="text/css">
-        #map { width:100%; min-height: 325px }
-        #map.is-invalid { border: #e3342f 2px solid; }
-        .coordinates {
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            padding:5px 10px;
-            margin: 0;
-            font-size: 11px;
-            line-height: 18px;
-            border-radius: 3px;
-            display: none;
-        }
-    </style>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
 @endsection
 
