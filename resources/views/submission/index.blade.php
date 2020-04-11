@@ -17,7 +17,7 @@
                 <tbody>
                     @foreach($submissions as $submission)
                         <tr>
-                            <td><span class="flag-icon flag-icon-{{ strtolower($submission->licenseplate->country_code) }}"></span> {!! Countries::where('cca2', $submission->licenseplate->country_code)->first()->name->common !!}</td>
+                            <td><span class="flag-icon flag-icon-{{ strtolower($submission->licenseplate->country_code) }}"></span> {!! Countries::where('cca2', strtoupper($submission->licenseplate->country_code))->first()->name->common !!}</td>
                             <td><a href="{{ route('parking.show', $submission->uuid) }}">{{ $submission->licenseplate->registration }}</a></td>
                             <td>
                                 @foreach($submission->types as $type)

@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-header">{{ __('info.title') }}</div>
                 <div class="card-body">
-                    <p>{{ __('parking.country') }}: <span class="flag-icon flag-icon-{{ strtolower($licenseplate['country_code']) }}"></span> {!! Countries::where('cca2', $licenseplate['country_code'])->first()->name->common !!}</p>
+                    <p>{{ __('parking.country') }}: <span class="flag-icon flag-icon-{{ strtolower($licenseplate['country_code']) }}"></span> @if(Countries::where('cca2', strtoupper($licenseplate['country_code']))->first()){!! Countries::where('cca2', strtoupper($licenseplate['country_code']))->first()->name->common !!}@endif</p>
                     <p>{{ __('parking.licenseplate') }}: <a href="{{ route('licenseplate.show', $licenseplate['uuid']) }}">{{ $licenseplate['registration'] }}</a></p>
                     @if($description)<p>{{ __('parking.comment') }}<br>{{ $description }}</p>@endif
                     <p>{{ __('parking.parked') }} <a data-toggle="tooltip" data-placement="top" title="{{ \Carbon\Carbon::parse($parked_at) }}">{{ \Carbon\Carbon::parse($parked_at)->diffForHumans()  }}</a></p>
