@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-4">
             <div class="card mb-4">
-                <div class="card-header">{{ __('Parkerings feil') }}</div>
+                <div class="card-header">{{ __('parking.errortitle') }}</div>
                 <div class="card-body">
                     @foreach($types as $type)
                         <span><i class="fas fa-check pr-1"></i>{{ __('type.'.$type['id']) }}</span><br>

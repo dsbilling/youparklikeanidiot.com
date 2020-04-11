@@ -15,7 +15,7 @@ return [
     'created_at' => 'Sent in',
     'parked' => 'Parked about',
     'sent_in' => 'Sent in by <a href=":url">:name</a> about <a data-toggle="tooltip" data-placement="top" title=":created_at">:human_time</a>',
-
+    'errortitle' => 'Parking Errors',
     'countryandlicenseplate' => 'Country and License Plate',
     'timeofparking' => 'Time of parking',
     'uploadimage' => 'Upload a picture',
