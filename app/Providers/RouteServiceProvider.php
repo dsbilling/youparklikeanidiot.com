@@ -25,16 +25,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
-        $urls = [
-            'dpsei.no' => 'nb',
-            'dpsei.com' => 'en',
+        $tlds = [
+            'io' => 'nb',
+            'no' => 'nb',
+            'com' => 'en',
         ];
         $host = $this->app->request->getHost();
+        $host_split = explode('.', $host);
+        $tld = end($host_split);
 
-        if (array_key_exists($host, $urls)) {
-            $locale = $urls[$host];
+        if (array_key_exists($tld, $tlds)) {
+            $locale = $tlds[$tld];
             App::setLocale($locale);
             Carbon::setLocale($locale);
             Route::resourceVerbs([
