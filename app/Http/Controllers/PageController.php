@@ -18,7 +18,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -83,7 +83,6 @@ class PageController extends Controller
         abort_unless(Auth::user()->hasRole('write'), 403);
         $page = Page::where('slug', $slug)->first();
         return view('page.edit', $page);
-        
     }
 
     /**
@@ -124,6 +123,5 @@ class PageController extends Controller
         $page = Page::where('slug', $slug)->first();
         $page->delete();
         return Redirect::route('home')->with('message', 'Page deleted!')->with('messagetype', 'success');
-
     }
 }

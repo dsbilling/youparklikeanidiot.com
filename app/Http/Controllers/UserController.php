@@ -4,6 +4,7 @@ namespace DPSEI\Http\Controllers;
 
 use DPSEI\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -34,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -45,7 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -56,9 +57,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('username', $id)->with('submissions')->first();
+        $user = User::where('uuid', $id)->with('submissions')->first();
         abort_unless($user, 404);
-        return view('users.show', $user);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
@@ -69,7 +70,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -81,7 +82,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -92,6 +93,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }

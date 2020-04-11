@@ -2,8 +2,10 @@
 
 namespace DPSEI\Providers;
 
-use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,24 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $tlds = [
+            'io' => 'nb',
+            'no' => 'nb',
+            'com' => 'en',
+        ];
+        $host = $this->app->request->getHost();
+        $host_split = explode('.', $host);
+        $tld = end($host_split);
+
+        if (array_key_exists($tld, $tlds)) {
+            $locale = $tlds[$tld];
+            App::setLocale($locale);
+            Carbon::setLocale($locale);
+            Route::resourceVerbs([
+                'create' => __('uri.create'),
+                'edit' => __('uri.create'),
+            ]);
+        }
 
         parent::boot();
     }

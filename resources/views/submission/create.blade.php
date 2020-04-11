@@ -1,26 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-    <style type="text/css">
-        #map { width:100%; min-height: 325px }
-        #map.is-invalid { border: #e3342f 2px solid; }
-        .coordinates {
-            background: rgba(0,0,0,0.5);
-            color: #fff;
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            padding:5px 10px;
-            margin: 0;
-            font-size: 11px;
-            line-height: 18px;
-            border-radius: 3px;
-            display: none;
-        }
-    </style>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -36,21 +15,35 @@
                 </div>
             @endif
 
-            <form method="post" action="{{ route('parkering.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('parking.store') }}" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
+                    <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('parking.countryandlicenseplate') }}</label>
                     <div class="col-6">
-                        <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
-                        @if ($errors->has('licenseplate'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('licenseplate') }}</strong>
-                            </span>
-                        @endif
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" id="country" class="form-control{{ $errors->has('country_code') ? ' is-invalid' : '' }}">
+                                <input type="hidden" id="country_code" name="country_code" value="{{ old('country_code') }}">
+                                @if ($errors->has('country_code'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('country_code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-6">
+                                <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
+                                @if ($errors->has('licenseplate'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('licenseplate') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="date" class="col-4 col-form-label text-md-right">{{ __('Tid ved parkering') }}</label>
+                    <label for="date" class="col-4 col-form-label text-md-right">{{ __('parking.timeofparking') }}</label>
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6">
@@ -74,7 +67,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="location" class="col-4 col-form-label text-md-right">{{ __('Velg lokasjon') }}</label>
+                    <label for="location" class="col-4 col-form-label text-md-right">{{ __('parking.location') }}</label>
                     <div class="col-6">
                         <div id="map" class="{{ $errors->has('longitude') ? ' is-invalid' : '' }} {{ $errors->has('latitude') ? ' is-invalid' : '' }}"></div>
                         <pre id="coordinates" class="coordinates"></pre>
@@ -94,13 +87,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="images" class="col-4 col-form-label text-md-right">{{ __('Last opp bilde') }}</label>
+                    <label for="images" class="col-4 col-form-label text-md-right">{{ __('parking.uploadimage') }}</label>
                     <div class="col-6">
 
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile" name="images[]" accept=".png, .jpg, .jpeg" multiple>
-                                <label class="custom-file-label" for="customFile">{{ __('Velg fil') }}</label>
+                                <input type="file" class="custom-file-input" id="customFile" name="images[]" accept=".png, .jpg, .jpeg" multiple lang="{{ app()->getLocale() }}">
+                                <label class="custom-file-label" for="customFile">{{ __('global.choosefile') }}</label>
                             </div>
                         </div>
 
@@ -113,12 +106,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="types" class="col-4 col-form-label text-md-right">{{ __('Velg parkerings feil') }}</label>
+                    <label for="types" class="col-4 col-form-label text-md-right">{{ __('parking.chooseparkingerror') }}</label>
                     <div class="col-6">
-                        @foreach(\DPSEI\Type::orderBy('title', 'asc')->get() as $type)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="types[]" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
-                                <label class="form-check-label">{{ $type->title }}</label>
+                        @foreach(\DPSEI\Type::orderBy('title', 'desc')->get() as $type)
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="types[]" id="type-{{ $type->id }}" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
+                                <label class="custom-control-label" for="type-{{ $type->id }}">{{ __('type.'.$type->id) }}</label>
                             </div>
                         @endforeach
                         @if ($errors->has('types'))
@@ -130,7 +123,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('Kommentar') }}<br><small class="text-muted">{{ __('Valgfritt') }}</small></label>
+                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('parking.comment') }}<br><small class="text-muted">{{ __('global.optional') }}</small></label>
                     <div class="col-6">
                         <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
                         @if ($errors->has('description'))
@@ -146,7 +139,7 @@
                 <div class="form-group row">
                     <div class="col-2 ml-auto">
                         {{ csrf_field() }}
-                        <button class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i> {{ _('Send inn') }}</button>
+                        <button class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i> {{ __('global.submit') }}</button>
                     </div>
                 </div>
                 
@@ -156,7 +149,34 @@
 </div>
 @endsection
 
+@section('css')
+    <link href="{{ asset('css/countrySelect.css') }}" rel="stylesheet" />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
+@endsection
+
 @section('javascript')
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
+
+    <script src="{{ asset('js/countrySelect.js') }}"></script>
+    <script>
+        $("#country").countrySelect({
+            selectCountry: "{{ old('licenseplate_country') }}",
+            preferredCountries: [],
+        });
+        $(document).ready(function () {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                $("#country").countrySelect("selectCountry", countryCode);
+                console.log(countryCode);
+            });
+        })
+    </script> 
+
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
     <script>
         mapboxgl.accessToken = '{{ env('MAPBOX_ACCESS_TOKEN') }}';

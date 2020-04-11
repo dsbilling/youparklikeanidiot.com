@@ -225,6 +225,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Setting' => anlutro\LaravelSettings\Facade::class,
+        'Countries' => PragmaRX\Countries\Package\Countries::class,
 
     ],
 

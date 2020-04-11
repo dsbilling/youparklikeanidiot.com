@@ -4,37 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63d8435615628e8741cd638eb1a41f73",
+    "content-hash": "9ba7889df4be564ade3dccf0c09efc73",
     "packages": [
         {
             "name": "anlutro/l4-settings",
-            "version": "0.4.9",
+            "version": "v0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anlutro/laravel-settings.git",
-                "reference": "7c7091529cc8e307dd4cf3c66b1d5bdb6bc4444e"
+                "reference": "b4df92f07581ad31fdffa2ebee17029b0767124a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anlutro/laravel-settings/zipball/7c7091529cc8e307dd4cf3c66b1d5bdb6bc4444e",
-                "reference": "7c7091529cc8e307dd4cf3c66b1d5bdb6bc4444e",
+                "url": "https://api.github.com/repos/anlutro/laravel-settings/zipball/b4df92f07581ad31fdffa2ebee17029b0767124a",
+                "reference": "b4df92f07581ad31fdffa2ebee17029b0767124a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": ">=4.1 <6.0",
-                "php": ">=5.3.0"
+                "illuminate/cache": ">=4.1 <8.0",
+                "illuminate/support": ">=4.1 <8.0",
+                "laravel/helpers": ">=1.0.0",
+                "php": ">=5.4.0"
             },
             "require-dev": {
-                "illuminate/database": ">=4.1 <6.0",
-                "illuminate/filesystem": ">=4.1 <6.0",
-                "mockery/mockery": "0.9.*"
+                "laravel/framework": ">=4.1",
+                "mockery/mockery": "^1.2",
+                "phpunit/phpunit": "^8.0"
             },
             "suggest": {
                 "illuminate/database": "Save settings to a database table.",
                 "illuminate/filesystem": "Save settings to a JSON file."
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Setting": "anlutro\\LaravelSettings\\Facade"
+                    },
+                    "providers": [
+                        "anlutro\\LaravelSettings\\ServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
                 "psr-4": {
                     "anlutro\\LaravelSettings\\": "src/"
                 }
@@ -50,7 +65,7 @@
                 }
             ],
             "description": "Persistent settings in Laravel.",
-            "time": "2016-08-24T14:06:54+00:00"
+            "time": "2020-03-05T14:56:48+00:00"
         },
         {
             "name": "binarycabin/laravel-uuid",
@@ -95,85 +110,70 @@
             "time": "2019-03-08T03:06:27+00:00"
         },
         {
-            "name": "cartalyst/sentinel",
-            "version": "v2.0.18",
+            "name": "biscolab/laravel-recaptcha",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/cartalyst/sentinel.git",
-                "reference": "d1e5d6c2afab33134c70eac1962aed769ddc3077"
+                "url": "https://github.com/biscolab/laravel-recaptcha.git",
+                "reference": "9bfe22ffb78efaff005659af68867d1ba52c0a00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/d1e5d6c2afab33134c70eac1962aed769ddc3077",
-                "reference": "d1e5d6c2afab33134c70eac1962aed769ddc3077",
+                "url": "https://api.github.com/repos/biscolab/laravel-recaptcha/zipball/9bfe22ffb78efaff005659af68867d1ba52c0a00",
+                "reference": "9bfe22ffb78efaff005659af68867d1ba52c0a00",
                 "shasum": ""
             },
             "require": {
-                "cartalyst/support": "~1.0||~2.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
+                "laravel/framework": "^5.5|^6.0|^7.0",
+                "php": "^7.1"
             },
             "require-dev": {
-                "illuminate/cookie": "~5.0",
-                "illuminate/database": "~5.0",
-                "illuminate/events": "~5.0",
-                "illuminate/http": "~5.0",
-                "illuminate/session": "~5.0",
-                "ircmaxell/password-compat": "~1.0",
-                "mockery/mockery": "~0.9",
-                "paragonie/random_compat": "^1.4||^2",
-                "phpunit/phpunit": "^4.0||^5.0"
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "6.*|7.*"
             },
             "suggest": {
-                "illuminate/database": "By default, Sentinel utilizes the powerful Illuminate database layer.",
-                "illuminate/events": "To hook into various events across Sentinel, we recommend using Illuminate's event dispatcher.",
-                "ircmaxell/password-compat": "Default hashing uses PHP 5.5 password_* functions, with forward-compatible support.",
-                "symfony/http-foundation": "Required for native implementations."
+                "biscolab/laravel-authlog": "Allows logged-in users management and forced log-out"
             },
             "type": "library",
             "extra": {
-                "component": "package",
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                },
                 "laravel": {
                     "providers": [
-                        "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider"
+                        "Biscolab\\ReCaptcha\\ReCaptchaServiceProvider"
                     ],
                     "aliases": {
-                        "Activation": "Cartalyst\\Sentinel\\Laravel\\Facades\\Activation",
-                        "Reminder": "Cartalyst\\Sentinel\\Laravel\\Facades\\Reminder",
-                        "Sentinel": "Cartalyst\\Sentinel\\Laravel\\Facades\\Sentinel"
+                        "ReCaptcha": "Biscolab\\ReCaptcha\\Facades\\ReCaptcha"
                     }
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Cartalyst\\Sentinel\\": "src/"
-                }
+                    "Biscolab\\ReCaptcha\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Cartalyst LLC",
-                    "email": "help@cartalyst.com",
-                    "homepage": "https://cartalyst.com"
+                    "name": "Roberto Belotti",
+                    "email": "roby.belotti@gmail.com",
+                    "homepage": "https://biscolab.com",
+                    "role": "Developer"
                 }
             ],
-            "description": "PHP 5.4+ Fully-featured Authentication & Authorization System",
+            "description": "Simple and painless Google reCAPTCHA package for Laravel 5, 6 and 7",
+            "homepage": "https://biscolab.com/laravel-recaptcha",
             "keywords": [
-                "auth",
-                "cartalyst",
-                "codeigniter",
-                "fuelphp",
+                "captcha",
                 "laravel",
-                "php",
-                "security"
+                "recaptcha",
+                "validation"
             ],
-            "time": "2019-08-14T20:03:48+00:00"
+            "time": "2020-03-06T23:25:41+00:00"
         },
         {
             "name": "cartalyst/stripe",
@@ -291,62 +291,6 @@
             "time": "2019-03-02T02:39:49+00:00"
         },
         {
-            "name": "cartalyst/support",
-            "version": "v2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cartalyst/support.git",
-                "reference": "9d836aa009270217a6b62ec56d9a5e650947b83b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/support/zipball/9d836aa009270217a6b62ec56d9a5e650947b83b",
-                "reference": "9d836aa009270217a6b62ec56d9a5e650947b83b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.4"
-            },
-            "require-dev": {
-                "illuminate/mail": "~5.0",
-                "illuminate/validation": "~5.0",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "^5.7",
-                "symfony/translation": "~3.2"
-            },
-            "type": "library",
-            "extra": {
-                "component": "package",
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Cartalyst\\Support\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Cartalyst LLC",
-                    "email": "help@cartalyst.com",
-                    "homepage": "https://cartalyst.com"
-                }
-            ],
-            "description": "Support helpers.",
-            "keywords": [
-                "cartalyst",
-                "helper",
-                "laravel",
-                "support"
-            ],
-            "time": "2019-03-02T12:25:09+00:00"
-        },
-        {
             "name": "clue/stream-filter",
             "version": "v1.4.1",
             "source": {
@@ -397,6 +341,70 @@
                 "stream_filter_register"
             ],
             "time": "2019-04-09T12:31:48+00:00"
+        },
+        {
+            "name": "colinodell/json5",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinodell/json5.git",
+                "reference": "8c73e1a5cd933ed0e29fb5d5997f23902bd9804c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinodell/json5/zipball/8c73e1a5cd933ed0e29fb5d5997f23902bd9804c",
+                "reference": "8c73e1a5cd933ed0e29fb5d5997f23902bd9804c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^5.4.8|^7.0"
+            },
+            "require-dev": {
+                "mikehaertl/php-shellcommand": "^1.2.5",
+                "phpunit/phpunit": "^4.8.36|^7.3",
+                "squizlabs/php_codesniffer": "^2.3",
+                "symfony/finder": "^2.8|^3.4|^4.1"
+            },
+            "bin": [
+                "bin/json5"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ColinODell\\Json5\\": "src"
+                },
+                "files": [
+                    "src/global.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "UTF-8 compatible JSON5 parser for PHP",
+            "homepage": "https://github.com/colinodell/json5",
+            "keywords": [
+                "JSON5",
+                "json",
+                "json5_decode",
+                "json_decode"
+            ],
+            "time": "2018-09-20T15:43:07+00:00"
         },
         {
             "name": "davejamesmiller/laravel-breadcrumbs",
@@ -877,16 +885,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "8.11.5",
+            "version": "8.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "095dc721e8a090124b69005b14c1aeec93141c86"
+                "reference": "f15a9cdffd6728abb28184a1c45e84a9919f8b40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/095dc721e8a090124b69005b14c1aeec93141c86",
-                "reference": "095dc721e8a090124b69005b14c1aeec93141c86",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/f15a9cdffd6728abb28184a1c45e84a9919f8b40",
+                "reference": "f15a9cdffd6728abb28184a1c45e84a9919f8b40",
                 "shasum": ""
             },
             "require": {
@@ -941,7 +949,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2020-03-02T09:12:35+00:00"
+            "time": "2020-03-18T21:29:37+00:00"
         },
         {
             "name": "giggsey/locale",
@@ -1232,65 +1240,6 @@
             "time": "2018-07-31T19:32:56+00:00"
         },
         {
-            "name": "igaster/laravel-theme",
-            "version": "v2.0.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/igaster/laravel-theme.git",
-                "reference": "40417ad73eec8d4edf3267df67fe83ab3f244b43"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/igaster/laravel-theme/zipball/40417ad73eec8d4edf3267df67fe83ab3f244b43",
-                "reference": "40417ad73eec8d4edf3267df67fe83ab3f244b43",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0 || ^7.0"
-            },
-            "suggest": {
-                "orchestra/asset": "Use '@css' and '@js' in Blade files"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Igaster\\LaravelTheme\\themeServiceProvider"
-                    ],
-                    "aliases": {
-                        "Theme": "Igaster\\LaravelTheme\\Facades\\Theme"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Igaster\\LaravelTheme\\": "src/",
-                    "Igaster\\LaravelTheme\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Giannis Gasteratos",
-                    "email": "igasteratos@gmail.com"
-                }
-            ],
-            "description": "Laravel 5 Themes: Asset & Views folder per theme. Theme inheritance. Blade integration and more...",
-            "homepage": "https://github.com/Igaster/laravel-theme.git",
-            "keywords": [
-                "assets",
-                "blade",
-                "laravel",
-                "package",
-                "themes",
-                "views"
-            ],
-            "time": "2020-03-09T10:44:08+00:00"
-        },
-        {
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -1578,6 +1527,59 @@
             "time": "2020-02-14T14:29:11+00:00"
         },
         {
+            "name": "laravel/helpers",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/helpers.git",
+                "reference": "1f978fc5dad9f7f906b18242c654252615201de4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/helpers/zipball/1f978fc5dad9f7f906b18242c654252615201de4",
+                "reference": "1f978fc5dad9f7f906b18242c654252615201de4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.8.0|^6.0|^7.0",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Dries Vints",
+                    "email": "dries.vints@gmail.com"
+                }
+            ],
+            "description": "Provides backwards compatibility for helpers in the latest Laravel release.",
+            "keywords": [
+                "helpers",
+                "laravel"
+            ],
+            "time": "2020-03-03T13:52:16+00:00"
+        },
+        {
             "name": "laravel/tinker",
             "version": "v1.0.10",
             "source": {
@@ -1642,16 +1644,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.65",
+            "version": "1.0.66",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8"
+                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
-                "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/021569195e15f8209b1c4bebb78bd66aa4f08c21",
+                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21",
                 "shasum": ""
             },
             "require": {
@@ -1722,7 +1724,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-03-08T18:53:20+00:00"
+            "time": "2020-03-17T18:58:12+00:00"
         },
         {
             "name": "league/iso3166",
@@ -1925,6 +1927,216 @@
                 "time"
             ],
             "time": "2020-03-01T11:11:58+00:00"
+        },
+        {
+            "name": "nette/caching",
+            "version": "v2.5.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/caching.git",
+                "reference": "d93ef446836a5a0ff7ef78d5ffebb7fe043f9953"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/caching/zipball/d93ef446836a5a0ff7ef78d5ffebb7fe043f9953",
+                "reference": "d93ef446836a5a0ff7ef78d5ffebb7fe043f9953",
+                "shasum": ""
+            },
+            "require": {
+                "nette/finder": "^2.2 || ~3.0.0",
+                "nette/utils": "^2.4 || ~3.0.0",
+                "php": ">=5.6.0"
+            },
+            "conflict": {
+                "nette/nette": "<2.2"
+            },
+            "require-dev": {
+                "latte/latte": "^2.4",
+                "nette/di": "^2.4 || ~3.0.0",
+                "nette/tester": "^2.0",
+                "tracy/tracy": "^2.4"
+            },
+            "suggest": {
+                "ext-pdo_sqlite": "to use SQLiteStorage or SQLiteJournal"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "⏱ Nette Caching: library with easy-to-use API and many cache backends.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "cache",
+                "journal",
+                "memcached",
+                "nette",
+                "sqlite"
+            ],
+            "time": "2019-11-19T18:38:13+00:00"
+        },
+        {
+            "name": "nette/finder",
+            "version": "v2.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/finder.git",
+                "reference": "4ad2c298eb8c687dd0e74ae84206a4186eeaed50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/finder/zipball/4ad2c298eb8c687dd0e74ae84206a4186eeaed50",
+                "reference": "4ad2c298eb8c687dd0e74ae84206a4186eeaed50",
+                "shasum": ""
+            },
+            "require": {
+                "nette/utils": "^2.4 || ^3.0",
+                "php": ">=7.1"
+            },
+            "conflict": {
+                "nette/nette": "<2.2"
+            },
+            "require-dev": {
+                "nette/tester": "^2.0",
+                "phpstan/phpstan": "^0.12",
+                "tracy/tracy": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🔍 Nette Finder: find files and directories with an intuitive API.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "filesystem",
+                "glob",
+                "iterator",
+                "nette"
+            ],
+            "time": "2020-01-03T20:35:40+00:00"
+        },
+        {
+            "name": "nette/utils",
+            "version": "v3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/utils.git",
+                "reference": "f1b5ce0fae07f13e066e64f9a8f59e53b8f4982e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/utils/zipball/f1b5ce0fae07f13e066e64f9a8f59e53b8f4982e",
+                "reference": "f1b5ce0fae07f13e066e64f9a8f59e53b8f4982e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "nette/tester": "~2.0",
+                "phpstan/phpstan": "^0.12",
+                "tracy/tracy": "^2.3"
+            },
+            "suggest": {
+                "ext-gd": "to use Image",
+                "ext-iconv": "to use Strings::webalize() and toAscii()",
+                "ext-intl": "to use Strings::webalize(), toAscii(), normalize() and compare()",
+                "ext-json": "to use Nette\\Utils\\Json",
+                "ext-mbstring": "to use Strings::lower() etc...",
+                "ext-tokenizer": "to use Nette\\Utils\\Reflection::getUseStatements()",
+                "ext-xml": "to use Strings::length() etc. when mbstring is not available"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🛠 Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "array",
+                "core",
+                "datetime",
+                "images",
+                "json",
+                "nette",
+                "paginator",
+                "password",
+                "slugify",
+                "string",
+                "unicode",
+                "utf-8",
+                "utility",
+                "validation"
+            ],
+            "time": "2019-12-27T03:47:50+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2611,6 +2823,334 @@
                 "type"
             ],
             "time": "2019-12-15T19:35:24+00:00"
+        },
+        {
+            "name": "pragmarx/coollection",
+            "version": "v0.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/coollection.git",
+                "reference": "e6ef538d366bf58a0d82812789c47d17a8691258"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/coollection/zipball/e6ef538d366bf58a0d82812789c47d17a8691258",
+                "reference": "e6ef538d366bf58a0d82812789c47d17a8691258",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "pragmarx/ia-arr": ">=5.5.33",
+                "pragmarx/ia-collection": ">=5.5.33",
+                "pragmarx/ia-str": ">=5.5.33"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/php-timer": ">=1.0|>=2.0",
+                "phpunit/phpunit": ">=6.0|>=7.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PragmaRX\\Coollection\\Package\\": "src/package",
+                    "PragmaRX\\Coollection\\Tests\\": "tests",
+                    "IlluminateExtracted\\": "src/package/Support/IlluminateExtracted",
+                    "IlluminateExtracted\\Tests\\": "tests/IlluminateExtracted"
+                },
+                "files": [
+                    "src/package/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "homepage": "https://antoniocarlosribeiro.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Laravel Illuminate collection with objectified properties",
+            "homepage": "https://github.com/antonioribeiro/coollection",
+            "keywords": [
+                "collection",
+                "laravel",
+                "pragmarx"
+            ],
+            "time": "2019-09-24T18:55:06+00:00"
+        },
+        {
+            "name": "pragmarx/countries",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/countries.git",
+                "reference": "f815d5f68b86248b7dd67ee7d259f8ffacab2305"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/countries/zipball/f815d5f68b86248b7dd67ee7d259f8ffacab2305",
+                "reference": "f815d5f68b86248b7dd67ee7d259f8ffacab2305",
+                "shasum": ""
+            },
+            "require": {
+                "colinodell/json5": "^1.0",
+                "nette/caching": "^2.5",
+                "php": ">=7.0",
+                "pragmarx/coollection": "^0.7",
+                "psr/simple-cache": "^1.0"
+            },
+            "require-dev": {
+                "gasparesganga/php-shapefile": "^2.4",
+                "phpunit/phpunit": "~6.0|~7.0|~8.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PragmaRX\\Countries\\Package\\": "src/package",
+                    "PragmaRX\\Countries\\Update\\": "src/update"
+                },
+                "files": [
+                    "src/package/Support/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "PHP Countries and Currencies",
+            "keywords": [
+                "borders",
+                "cities",
+                "countries",
+                "currencies",
+                "flag",
+                "geometry",
+                "states",
+                "taxes",
+                "timezones",
+                "topology"
+            ],
+            "time": "2019-09-12T23:43:15+00:00"
+        },
+        {
+            "name": "pragmarx/ia-arr",
+            "version": "v6.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/ia-arr.git",
+                "reference": "91c7096639d40111bf8234cb6db685ede7bdea1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/ia-arr/zipball/91c7096639d40111bf8234cb6db685ede7bdea1f",
+                "reference": "91c7096639d40111bf8234cb6db685ede7bdea1f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "symfony/var-dumper": "~3.3|~4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "nesbot/carbon": "^1.26 || ^2.00",
+                "phpunit/phpunit": "~6.0|~7.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "suggest": {
+                "nesbot/carbon": "Required to use Carbon datetime."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "IlluminateAgnostic\\Arr\\": "src/",
+                    "IlluminateAgnostic\\Arr\\Tests\\": "tests/"
+                },
+                "files": [
+                    "src/Support/helpers.php",
+                    "src/Support/alias.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "homepage": "https://antoniocarlosribeiro.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Laravel Illuminate Agnostic Arr",
+            "homepage": "https://github.com/antonioribeiro/ia-arr",
+            "keywords": [
+                "arr",
+                "array",
+                "helpers",
+                "laravel",
+                "pragmarx"
+            ],
+            "time": "2019-09-12T04:10:21+00:00"
+        },
+        {
+            "name": "pragmarx/ia-collection",
+            "version": "v6.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/ia-collection.git",
+                "reference": "8eb5fd6717ff314bb7b7f74bb00b8793dd54acd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/ia-collection/zipball/8eb5fd6717ff314bb7b7f74bb00b8793dd54acd3",
+                "reference": "8eb5fd6717ff314bb7b7f74bb00b8793dd54acd3",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^1.26 || ^2.00",
+                "php": ">=7.0",
+                "ramsey/uuid": "^3.7",
+                "symfony/var-dumper": "~3.3|~4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "moontoast/math": "^1.1",
+                "phpunit/phpunit": "~6.0|~7.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "IlluminateAgnostic\\Collection\\": "src/",
+                    "IlluminateAgnostic\\Collection\\Tests\\": "tests/"
+                },
+                "files": [
+                    "src/Support/helpers.php",
+                    "src/Support/alias.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "homepage": "https://antoniocarlosribeiro.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Laravel Illuminate Agnostic Collection",
+            "homepage": "https://github.com/antonioribeiro/ia-collection",
+            "keywords": [
+                "collection",
+                "helpers",
+                "laravel",
+                "pragmarx"
+            ],
+            "time": "2019-09-12T04:12:08+00:00"
+        },
+        {
+            "name": "pragmarx/ia-str",
+            "version": "v6.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/ia-str.git",
+                "reference": "85a1dcfc193708532cda0dee65b937fa25f52b9d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/ia-str/zipball/85a1dcfc193708532cda0dee65b937fa25f52b9d",
+                "reference": "85a1dcfc193708532cda0dee65b937fa25f52b9d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "doctrine/inflector": "^1.2",
+                "mockery/mockery": "~1.0",
+                "moontoast/math": "^1.1",
+                "nesbot/carbon": "^1.26 || ^2.00",
+                "phpunit/phpunit": "~6.0|~7.0",
+                "ramsey/uuid": "^3.7",
+                "squizlabs/php_codesniffer": "^2.3",
+                "symfony/var-dumper": "~3.3|~4.0"
+            },
+            "suggest": {
+                "doctrine/inflector": "",
+                "nesbot/carbon": "",
+                "ramsey/uuid": "",
+                "symfony/var-dumper": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "IlluminateAgnostic\\Str\\": "src/",
+                    "IlluminateAgnostic\\Str\\Tests\\": "tests/"
+                },
+                "files": [
+                    "src/Support/helpers.php",
+                    "src/Support/alias.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "homepage": "https://antoniocarlosribeiro.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "Laravel Illuminate Agnostic Str",
+            "homepage": "https://github.com/antonioribeiro/ia-str",
+            "keywords": [
+                "helpers",
+                "laravel",
+                "pragmarx",
+                "str",
+                "string"
+            ],
+            "time": "2019-09-12T03:59:57+00:00"
         },
         {
             "name": "propaganistas/laravel-phone",

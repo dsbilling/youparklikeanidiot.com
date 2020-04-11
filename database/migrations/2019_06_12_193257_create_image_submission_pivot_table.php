@@ -14,11 +14,11 @@ class CreateImageSubmissionPivotTable extends Migration
     public function up()
     {
         Schema::create('image_submission', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('image_id')->index();
             $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
             $table->unsignedBigInteger('submission_id')->index();
             $table->foreign('submission_id')->references('id')->on('submissions')->onDelete('cascade');
-            $table->primary(['image_id', 'submission_id']);
         });
     }
 

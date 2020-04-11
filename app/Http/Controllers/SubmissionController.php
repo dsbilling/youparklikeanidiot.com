@@ -51,9 +51,9 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-
         Validator::make($request->all(), [
-            'licenseplate' => 'required|alpha_num',
+            'country_code' => 'required',
+            'licenseplate' => 'required|alpha_num|max:20',
             'description' => 'nullable',
             'latitude' => 'required|between:0,99.99',
             'longitude' => 'required|between:0,99.99',
@@ -64,11 +64,15 @@ class SubmissionController extends Controller
             'images.*' => 'required|image|mimes:jpeg,png,jpg|max:5120'
         ])->validate();
 
+        $country_code = $request->country_code;
         $registration = $request->licenseplate;
-        $lp = LicensePlate::where('registration', $registration)->first();
+        $lp = LicensePlate::where('registration', $registration)->where('country_code', $country_code)->first();
 
-        if(!$lp) {
-            $lp = LicensePlate::create(['registration' => $registration]);
+        if (!$lp) {
+            $lp = LicensePlate::create([
+                'country_code' => $country_code,
+                'registration' => $registration
+            ]);
         }
 
         $datetime = Carbon::parse($request->input('date').' '.$request->input('time'));
@@ -77,13 +81,13 @@ class SubmissionController extends Controller
             'description' => $request->description,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
-            'license_plate_id' => $lp->id,
+            'licenseplate_id' => $lp->id,
             'user_id' => Auth::id(),
             'parked_at' => $datetime,
         ]);
         $submission->types()->attach($request->input('types'));
 
-        foreach($request->images as $file) {
+        foreach ($request->images as $file) {
             $extension = $file->getClientOriginalExtension();
             $fileName = $submission->id."-".time().'-'.rand().".".$extension;
             $folderpath  = 'image/submissions/';
@@ -92,7 +96,7 @@ class SubmissionController extends Controller
             $submission->images()->attach($image);
         }
 
-        return Redirect::route('parkering.show', $submission->uuid);
+        return Redirect::route('parking.show', $submission->uuid);
     }
 
     /**
@@ -115,7 +119,7 @@ class SubmissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -127,7 +131,7 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -138,6 +142,6 @@ class SubmissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }

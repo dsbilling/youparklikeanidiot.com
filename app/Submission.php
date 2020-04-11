@@ -14,7 +14,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'longitude', 'latitude', 'description', 'license_plate_id', 'user_id', 'parked_at',
+        'longitude', 'latitude', 'description', 'licenseplate_id', 'user_id', 'parked_at',
     ];
 
     /**
@@ -44,7 +44,7 @@ class Submission extends Model
      */
     public function licenseplate()
     {
-        return $this->belongsTo('DPSEI\LicensePlate', 'license_plate_id');
+        return $this->belongsTo('DPSEI\LicensePlate');
     }
 
     /**

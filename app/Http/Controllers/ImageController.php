@@ -3,6 +3,7 @@
 namespace DPSEI\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ImageController extends Controller
 {
@@ -13,7 +14,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -23,7 +24,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -34,7 +35,7 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -45,7 +46,7 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -56,7 +57,7 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -68,7 +69,7 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -79,6 +80,6 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }

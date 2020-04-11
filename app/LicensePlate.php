@@ -16,6 +16,7 @@ class LicensePlate extends Model implements Searchable
      * @var array
      */
     protected $fillable = [
+        'country_code',
         'registration',
     ];
 
@@ -24,21 +25,20 @@ class LicensePlate extends Model implements Searchable
      */
     public function submissions()
     {
-        return $this->hasMany('DPSEI\Submission');
+        return $this->hasMany('DPSEI\Submission', 'licenseplate_id');
     }
 
     /**
     * Make the model searchable
     **/
     public function getSearchResult(): SearchResult
-     {
+    {
         $url = route('licenseplate.show', $this->registration);
      
-         return new \Spatie\Searchable\SearchResult(
+        return new \Spatie\Searchable\SearchResult(
             $this,
             $this->registration,
             $url
          );
-     }
-
+    }
 }

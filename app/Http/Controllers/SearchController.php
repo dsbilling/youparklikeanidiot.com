@@ -18,7 +18,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        return Redirect::route('home');
+        return Redirect::to('/');
     }
 
     /**
@@ -28,7 +28,7 @@ class SearchController extends Controller
      */
     public function create()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -42,7 +42,7 @@ class SearchController extends Controller
         Validator::make($request->all(), [
             'search' => 'required|string',
         ])->validate();
-        return Redirect::route('sok.show', $request->input('search'));
+        return Redirect::route('search.show', $request->input('search'));
     }
 
     /**
@@ -71,7 +71,7 @@ class SearchController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -83,7 +83,7 @@ class SearchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -94,6 +94,6 @@ class SearchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }

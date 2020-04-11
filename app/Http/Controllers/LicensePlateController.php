@@ -4,6 +4,7 @@ namespace DPSEI\Http\Controllers;
 
 use DPSEI\LicensePlate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class LicensePlateController extends Controller
 {
@@ -14,7 +15,7 @@ class LicensePlateController extends Controller
      */
     public function index()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -24,7 +25,7 @@ class LicensePlateController extends Controller
      */
     public function create()
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -35,7 +36,7 @@ class LicensePlateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -58,7 +59,7 @@ class LicensePlateController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -70,7 +71,7 @@ class LicensePlateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Redirect::to('/');
     }
 
     /**
@@ -81,6 +82,6 @@ class LicensePlateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Redirect::to('/');
     }
 }

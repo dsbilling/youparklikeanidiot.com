@@ -70,21 +70,5 @@ class TypeTableSeeder extends Seeder
             'uuid' => Str::uuid(4),
             'title' => 'Annet, se kommentar',
         ]);
-
-        DB::table('submission_type')->insert([
-            'type_id' => 1,
-            'submission_id' => 1,
-        ]);
-
-        DB::table('submission_type')->insert([
-            'type_id' => 2,
-            'submission_id' => 1,
-        ]);
-
-        DB::table('submission_type')->insert([
-            'type_id' => 3,
-            'submission_id' => 1,
-        ]);
-
     }
 }

@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="jumbotron">
-	<h1>Lei av folk som parkerer som en <em><a href="{{ url('/info/omoss') }}">idiot</a></em>?</h1>
-	<p class="lead">Du er ikke alene, det er mange der ute som irriterer seg over slikt. Her kan du finne haugevis med folk som har parkert som en <em><a href="{{ url('/info/omoss') }}">idiot</a></em>.</p>
-	<p class="lead"><em>Kanskje</em> du er en av dem? Trykk på knappen nedenfor og se om du finner en av dine biler. <em>Kanskje</em> du ønsker å vise folket enda en idiot? Registrer deg og last opp bilde samt litt info om feilparkeringen.</p>
-	<p class="lead">Ønsker du å vise <em><a href="{{ url('/info/omoss') }}">idioten</a></em> at de har parkert feil? Da kan du laste ned PDF-en for å printe ut og henge på ruta.</p>
-	<p class="lead">
-		<a href="{{ asset('pdf/duparkerersomenidiot_no.pdf') }}" class="btn btn-success"><i class="fas fa-download"></i> Last ned PDF</a>
-		<small><em> ~ eller ~ </em></small>
-		<a href="{{ route('parkering.index') }}" class="btn btn-info"><i class="fas fa-parking"></i> Se feilparkerte biler</a>
+	<h1 class="display-4">{!! __('home.title', ['url' => url('/info/idiot')]) !!}</h1>
+	<div>
+		{!! __('home.lead', ['url' => url('/info/idiot')]) !!}
+	</div>
+	<p class="mt-5">
+		<a href="{{ asset('pdf/'.str_replace('.', '_', strtolower(app()->request->getHost())).'.pdf') }}" class="btn btn-success"><i class="fas fa-download"></i> {{ __('home.downloadpdf') }}</a>
+		<small class="mx-2"><em> ~ {{ __('global.or') }} ~ </em></small>
+		<a href="{{ route('parking.index') }}" class="btn btn-info"><i class="fas fa-parking"></i> {{ __('home.seeparkings') }}</a>
 	</p>
 </div>
 @endsection
