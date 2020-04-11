@@ -15,6 +15,7 @@ return [
     'sendemail' => 'Send E-post',
 
     'or' => 'eller',
+    'optional' => 'Valgfritt',
 
     'maintenance' => 'Vi oppgraderer systemet. Vi er straks tilbake.',
 

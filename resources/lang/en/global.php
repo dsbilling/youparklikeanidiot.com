@@ -15,6 +15,7 @@ return [
     'sendemail' => 'Send Email',
 
     'or' => 'or',
+    'optional' => 'Optional',
 
     'maintenance' => 'We are upgrading the system. We\'ll be right back.',
 

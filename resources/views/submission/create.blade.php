@@ -17,7 +17,7 @@
 
             <form method="post" action="{{ route('parking.store') }}" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('Skilt') }}</label>
+                    <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('parking.countryandlicenseplate') }}</label>
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="date" class="col-4 col-form-label text-md-right">{{ __('Tid ved parkering') }}</label>
+                    <label for="date" class="col-4 col-form-label text-md-right">{{ __('parking.timeofparking') }}</label>
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6">
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="location" class="col-4 col-form-label text-md-right">{{ __('Velg lokasjon') }}</label>
+                    <label for="location" class="col-4 col-form-label text-md-right">{{ __('parking.location') }}</label>
                     <div class="col-6">
                         <div id="map" class="{{ $errors->has('longitude') ? ' is-invalid' : '' }} {{ $errors->has('latitude') ? ' is-invalid' : '' }}"></div>
                         <pre id="coordinates" class="coordinates"></pre>
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="images" class="col-4 col-form-label text-md-right">{{ __('Last opp bilde') }}</label>
+                    <label for="images" class="col-4 col-form-label text-md-right">{{ __('parking.uploadimage') }}</label>
                     <div class="col-6">
 
                         <div class="input-group">
@@ -106,12 +106,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="types" class="col-4 col-form-label text-md-right">{{ __('Velg parkerings feil') }}</label>
+                    <label for="types" class="col-4 col-form-label text-md-right">{{ __('parking.chooseparkingerror') }}</label>
                     <div class="col-6">
                         @foreach(\DPSEI\Type::orderBy('title', 'desc')->get() as $type)
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="types[]" id="type-{{ $type->id }}" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
-                                <label class="custom-control-label" for="type-{{ $type->id }}">{{ $type->title }}</label>
+                                <label class="custom-control-label" for="type-{{ $type->id }}">{{ __('type.'.$type->id) }}</label>
                             </div>
                         @endforeach
                         @if ($errors->has('types'))
@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('Kommentar') }}<br><small class="text-muted">{{ __('Valgfritt') }}</small></label>
+                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('parking.comment') }}<br><small class="text-muted">{{ __('global.optional') }}</small></label>
                     <div class="col-6">
                         <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
                         @if ($errors->has('description'))
@@ -139,7 +139,7 @@
                 <div class="form-group row">
                     <div class="col-2 ml-auto">
                         {{ csrf_field() }}
-                        <button class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i> {{ _('Send inn') }}</button>
+                        <button class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i> {{ __('global.submit') }}</button>
                     </div>
                 </div>
                 
