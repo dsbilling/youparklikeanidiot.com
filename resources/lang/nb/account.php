@@ -16,4 +16,18 @@ return [
         ),
     ),
 
+    'profile' => array(
+        'change' => array(
+            'title' => 'Rediger profilen din',
+            'uri' => 'konto/redigerprofil',
+            'alert' => array(
+                'notmatching' => 'Ditt nåværende passord samsvarer ikke med passordet du oppga. Vær så snill, prøv på nytt.',
+                'saved' => 'Profilen ble lagret!',
+            ),
+            'confirmpassword' => 'Bekreft endringene med passordet ditt',
+            'anon' => 'Anonymiser profilen min <small class="text-muted">(skjuler brukernavn og navn)</small>',
+        ),
+        'hidden' => 'Skjult profil',
+    ),
+
 ];
