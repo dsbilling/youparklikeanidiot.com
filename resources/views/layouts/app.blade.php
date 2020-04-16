@@ -102,6 +102,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.show', Auth::user()->uuid) }}"><i class="fas fa-user"></i> {{ __('user.profile') }}</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('account.profile.change') }}"><i class="fas fa-user-edit"></i> {{ __('account.profile.change.title') }}</a>
                                     <a class="dropdown-item" href="{{ route('account.password.change') }}"><i class="fas fa-asterisk"></i> {{ __('account.password.change.title') }}</a>
                                     <div class="dropdown-divider"></div>
                                     @if(Auth::user()->hasRole('write'))
