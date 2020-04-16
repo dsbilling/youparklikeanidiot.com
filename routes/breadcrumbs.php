@@ -71,3 +71,19 @@ Breadcrumbs::resource('parking', __('parking.title'));
 Breadcrumbs::resource('info', __('info.title'));
 Breadcrumbs::resource('search', __('search.title'));
 Breadcrumbs::resource('licenseplate', __('licenseplate.title'));
+
+
+Breadcrumbs::for('account', function ($trail) {
+    $trail->parent('home');
+    $trail->push(__('account.title'));
+});
+
+Breadcrumbs::for('account.password.change', function ($trail) {
+    $trail->parent('account');
+    $trail->push(__('account.password.change.title'), route('account.password.change'));
+});
+
+Breadcrumbs::for('account.profile.change', function ($trail) {
+    $trail->parent('account');
+    $trail->push(__('account.profile.change.title'), route('account.profile.change'));
+});

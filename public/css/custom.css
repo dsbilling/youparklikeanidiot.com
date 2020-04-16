@@ -66,31 +66,7 @@
 	font-size: 15px;
 	margin-top:10px;
 }
-.profile-card-1 i {
-	display: inline-block;
-	font-size: 16px;
-	color: #ffffff;
-	text-align: center;
-	border: 1px solid #fff;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
-	border-radius: 50%;
-	margin:0 5px;
-}
-.profile-card-1 .icon-block{
-    float:left;
-    width:100%;
-    margin-top:15px;
-}
-.profile-card-1 .icon-block a{
-    text-decoration:none;
-}
-.profile-card-1 i:hover {
-	background-color:#fff;
-	color:#2E3434;
-	text-decoration:none;
-}
+
 
 .country-select .country-list {
 	z-index: 3 !important;
@@ -110,4 +86,17 @@
     line-height: 18px;
     border-radius: 3px;
     display: none;
+}
+
+.invalid-feedback {
+    display: inherit !important;
+}
+
+.footer-changelog h1 {
+	font-size: 1.5rem;
+	margin-top: 5px;
+}
+
+.footer-changelog h2 {
+	font-size: 1rem;
 }

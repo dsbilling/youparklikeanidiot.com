@@ -130,3 +130,9 @@ Route::resource(__('info.uri'), 'PageController', [
         'destroy' => 'page.destroy',
     ]
 ]);
+
+Route::get(__('account.password.change.uri'), 'Account\ChangePasswordController@create')->name('account.password.change');
+Route::post(__('account.password.change.uri'), 'Account\ChangePasswordController@store')->name('account.password.change.store');
+
+Route::get(__('account.profile.change.uri'), 'Account\ChangeProfileController@create')->name('account.profile.change');
+Route::post(__('account.profile.change.uri'), 'Account\ChangeProfileController@store')->name('account.profile.change.store');

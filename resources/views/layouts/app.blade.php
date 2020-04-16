@@ -102,6 +102,10 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.show', Auth::user()->uuid) }}"><i class="fas fa-user"></i> {{ __('user.profile') }}</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('account.profile.change') }}"><i class="fas fa-user-edit"></i> {{ __('account.profile.change.title') }}</a>
+                                    <a class="dropdown-item" href="{{ route('account.password.change') }}"><i class="fas fa-asterisk"></i> {{ __('account.password.change.title') }}</a>
+                                    <div class="dropdown-divider"></div>
                                     @if(Auth::user()->hasRole('write'))
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('page.create') }}"><i class="fas fa-plus"></i> {{ __('Create Page') }}</a>
@@ -123,21 +127,27 @@
     </header>
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            @if (session('message'))
-                <div class="alert alert-{{ session('messagetype') ?? 'info' }}">
-                    @if(session('messagetype') == 'info')
-                        <i class="fas fa-info mr-2" aria-hidden="true"></i>
-                    @elseif(session('messagetype') == 'warning')
-                        <i class="fas fa-exclamation mr-2" aria-hidden="true"></i>
-                    @elseif(session('messagetype') == 'danger')
-                        <i class="fas fa-frown mr-2" aria-hidden="true"></i>
-                    @elseif(session('messagetype') == 'success')
-                        <i class="fas fa-check-circle mr-2" aria-hidden="true"></i>
-                    @endif
-                    {{ session('message') }}
+            {{ Breadcrumbs::render() }}
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    <i class="fas fa-frown mr-2" aria-hidden="true"></i> {{ session('error') }}
                 </div>
             @endif
-            {{ Breadcrumbs::render() }}
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle mr-2" aria-hidden="true"></i> {{ session('success') }}
+                </div>
+            @endif
+            @if (session('info'))
+                <div class="alert alert-info">
+                    <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ session('info') }}
+                </div>
+            @endif
+            @if (session('warning'))
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {{ session('warning') }}
+                </div>
+            @endif
             @yield('content')
         </div>
     </main>
@@ -145,11 +155,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <p>&copy; 2019-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
+                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
                 </div>
                 <div class="col-6 text-right">
                     <p>
-                        {{ Setting::get('APP_VERSION') }} &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))
                             <p>
                                 <b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
@@ -167,14 +177,13 @@
     @yield('javascript')
 
     @if(env('GOOGLE_ANALYTICS'))
-        <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS') }}"></script>
         <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-            ga('create', '{{ env('GOOGLE_ANALYTICS') }}', 'auto');
-            ga('send', 'pageview');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{ env('GOOGLE_ANALYTICS') }}');
         </script>
     @endif
     <script type="text/javascript">
@@ -254,6 +263,24 @@
                     <button type="submit" class="btn btn-info"><i class="fas fa-paper-plane mr-2"></i>{{ __('global.sendemail') }}</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="changelog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>{{ __('footer.changelog') }}</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="footer-changelog">
+                        @include('layouts.changelog')
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
