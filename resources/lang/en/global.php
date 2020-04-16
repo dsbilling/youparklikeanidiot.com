@@ -5,6 +5,7 @@ return [
     'home' => 'Home',
     'search' => 'Search',
     'submit' => 'Submit',
+    'savechanges' => 'Save Changes',
 
     'name' => 'Name',
     'username' => 'Username',
@@ -17,6 +18,8 @@ return [
 
     'or' => 'or',
     'optional' => 'Optional',
+    'new' => 'New',
+    'current' => 'Current',
 
     'maintenance' => 'We are upgrading the system. We\'ll be right back.',
 
