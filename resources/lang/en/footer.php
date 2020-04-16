@@ -9,5 +9,6 @@ return [
         'title' => 'Send Feedback',
         'description' => 'All feedback is appreciated, thank you for taking the time to do so!',
     ],
+    'changelog' => 'Changelog',
 
 ];

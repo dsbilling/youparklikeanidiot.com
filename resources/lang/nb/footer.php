@@ -9,5 +9,6 @@ return [
         'title' => 'Send tilbakemelding',
         'description' => 'All tilbakemelding er verdsatt, takk for at du tar tiden din til dette!',
     ],
+    'changelog' => 'Changelog',
 
 ];

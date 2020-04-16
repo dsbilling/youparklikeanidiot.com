@@ -91,3 +91,12 @@
 .invalid-feedback {
     display: inherit !important;
 }
+
+.footer-changelog h1 {
+	font-size: 1.5rem;
+	margin-top: 5px;
+}
+
+.footer-changelog h2 {
+	font-size: 1rem;
+}

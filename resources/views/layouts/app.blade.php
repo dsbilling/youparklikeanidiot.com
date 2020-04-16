@@ -159,7 +159,7 @@
                 </div>
                 <div class="col-6 text-right">
                     <p>
-                        {{ Setting::get('APP_VERSION') }} &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
+                        <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))
                             <p>
                                 <b><span class="text-danger">{{ mb_strtoupper(__('footer.debugmode')) }}</span></b>
@@ -263,6 +263,24 @@
                     <button type="submit" class="btn btn-info"><i class="fas fa-paper-plane mr-2"></i>{{ __('global.sendemail') }}</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="changelog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>{{ __('footer.changelog') }}</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="footer-changelog">
+                        @include('layouts.changelog')
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
