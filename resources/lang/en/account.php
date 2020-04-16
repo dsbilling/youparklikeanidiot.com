@@ -16,4 +16,18 @@ return [
         ),
     ),
 
+    'profile' => array(
+        'change' => array(
+            'title' => 'Edit your profile',
+            'uri' => 'account/editprofile',
+            'alert' => array(
+                'notmatching' => 'Your current password does not matches with the password you provided. Please try again.',
+                'saved' => 'Profile was saved!',
+            ),
+            'confirmpassword' => 'Confirm changes with your password',
+            'anon' => 'Anonymize my profile <small class="text-muted">(hides username and name)</small>',
+        ),
+        'hidden' => 'Hidden profile',
+    ),
+
 ];
