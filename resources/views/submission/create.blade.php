@@ -108,7 +108,7 @@
                 <div class="form-group row">
                     <label for="types" class="col-4 col-form-label text-md-right">{{ __('parking.chooseparkingerror') }}</label>
                     <div class="col-6">
-                        @foreach(\DPSEI\Type::orderBy('title', 'desc')->get() as $type)
+                        @foreach(\DPSEI\Type::orderBy('id', 'asc')->get() as $type)
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="types[]" id="type-{{ $type->id }}" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
                                 <label class="custom-control-label" for="type-{{ $type->id }}">{{ __('type.'.$type->id) }}</label>
