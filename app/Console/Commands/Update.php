@@ -47,6 +47,8 @@ class Update extends Command
         Artisan::call('migrate --force');
         $this->info('Refreshing settings...');
         Artisan::call('dpsei:refreshsettings');
+        $this->info('Refreshing types...');
+        Artisan::call('dpsei:refreshtype');
         $this->info('Updating version...');
         if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
