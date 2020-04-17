@@ -54,9 +54,7 @@ class RefreshType extends Command
         ];
 
         foreach ($types as $type) {
-            $found = Type::find([
-                'title' => $type,
-            ]);
+            $found = Type::where('title', $type)->first();
             if (!$found) {
                 $this->info('Did not find "'.$type.'" type, adding.');
                 Type::Create([
