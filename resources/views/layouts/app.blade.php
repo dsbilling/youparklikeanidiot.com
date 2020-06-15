@@ -154,10 +154,10 @@
     <footer class="footer mt-auto py-3 text-light bg-dark">
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <p>
                         <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))
