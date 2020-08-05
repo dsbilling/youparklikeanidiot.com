@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row mb-5">
-        <div class="col-6 mx-auto">
+        <div class="col-12 col-lg-6 mx-auto">
 
 			<form class="card" role="form" method="post" action="{{ route('account.profile.change.store') }}">
 				<h5 class="card-header">{{ trans('account.profile.change.title') }}</h5>
