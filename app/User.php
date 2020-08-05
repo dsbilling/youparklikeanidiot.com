@@ -2,6 +2,7 @@
 
 namespace DPSEI;
 
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,7 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, \BinaryCabin\LaravelUUID\Traits\HasUUID, HasRoles;
+    use Notifiable, HasUUID, HasRoles;
 
     /**
      * The attributes that are mass assignable.
