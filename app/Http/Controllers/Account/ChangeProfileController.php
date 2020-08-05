@@ -38,7 +38,6 @@ class ChangeProfileController extends Controller
     public function store(Request $request)
     {
         if (!(Hash::check($request->get('password'), Auth::user()->password))) {
-            // The passwords matches
             return redirect()->back()->with("error", __('account.password.change.alert.notmatching'));
         }
 
