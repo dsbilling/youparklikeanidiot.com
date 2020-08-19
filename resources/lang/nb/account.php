@@ -30,4 +30,9 @@ return [
         'hidden' => 'Skjult profil',
     ),
 
+    'members' => array(
+        'title' => 'Medlemmer',
+        'uri' => 'konto/medlemmer',
+    ),
+
 ];
