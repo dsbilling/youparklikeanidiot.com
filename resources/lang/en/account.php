@@ -33,6 +33,10 @@ return [
     'members' => array(
         'title' => 'Members',
         'uri' => 'account/members',
+        'name' => 'Name',
+        'username' => 'Username',
+        'submissions' => 'Submissions',
+        'created_at' => 'Joined',
     ),
 
 ];

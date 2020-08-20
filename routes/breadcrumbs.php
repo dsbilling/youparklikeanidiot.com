@@ -87,3 +87,8 @@ Breadcrumbs::for('account.profile.change', function ($trail) {
     $trail->parent('account');
     $trail->push(__('account.profile.change.title'), route('account.profile.change'));
 });
+
+Breadcrumbs::for('account.members', function ($trail) {
+    $trail->parent('account');
+    $trail->push(__('account.members.title'), route('account.members'));
+});
