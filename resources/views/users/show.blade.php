@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row mb-5">
-        <div class="col-6 mx-auto">
+    <div class="row">
+        <div class="col-12 col-lg-6 mx-auto">
 
             <div class="card profile-card-1">
                 <img src="{{ asset('image/parking.jpg') }}" alt="{{ $user->name }}" class="background" />

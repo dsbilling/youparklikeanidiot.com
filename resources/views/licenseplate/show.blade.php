@@ -6,7 +6,7 @@
         <div class="col-12">
             <h3><span class="flag-icon flag-icon-{{ strtolower($licenseplate->country_code) }}"></span> {!! Countries::where('cca2', strtoupper($licenseplate->country_code))->first()->name->common !!} &mdash; {{ $licenseplate->registration }}</h3>
             <hr>
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-responsive">
                 <thead>
                     <th>{{ __('parking.licenseplate') }}</th>
                     <th>{{ __('parking.parkingerror') }}</th>

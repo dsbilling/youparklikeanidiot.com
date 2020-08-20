@@ -136,3 +136,5 @@ Route::post(__('account.password.change.uri'), 'Account\ChangePasswordController
 
 Route::get(__('account.profile.change.uri'), 'Account\ChangeProfileController@create')->name('account.profile.change');
 Route::post(__('account.profile.change.uri'), 'Account\ChangeProfileController@store')->name('account.profile.change.store');
+
+Route::get(__('account.members.uri'), 'Account\MembersController@index')->name('account.members');

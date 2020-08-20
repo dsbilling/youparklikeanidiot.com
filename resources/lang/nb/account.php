@@ -30,4 +30,13 @@ return [
         'hidden' => 'Skjult profil',
     ),
 
+    'members' => array(
+        'title' => 'Medlemmer',
+        'uri' => 'konto/medlemmer',
+        'name' => 'Navn',
+        'username' => 'Brukernavn',
+        'submissions' => 'Innsendinger',
+        'created_at' => 'Ble med',
+    ),
+
 ];

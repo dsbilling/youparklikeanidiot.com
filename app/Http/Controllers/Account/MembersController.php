@@ -2,13 +2,17 @@
 
 namespace DPSEI\Http\Controllers\Account;
 
-use DPSEI\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use DPSEI\Http\Controllers\Controller;
+use DPSEI\User;
 
-class ChangeProfileController extends Controller
+class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,8 @@ class ChangeProfileController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate(10);
+        return view('account.members')->withUsers($users);
     }
 
     /**
@@ -26,7 +31,7 @@ class ChangeProfileController extends Controller
      */
     public function create()
     {
-        return view('account.changeprofile');
+        //
     }
 
     /**
@@ -37,23 +42,7 @@ class ChangeProfileController extends Controller
      */
     public function store(Request $request)
     {
-        if (!(Hash::check($request->get('password'), Auth::user()->password))) {
-            return redirect()->back()->with("error", __('account.password.change.alert.notmatching'));
-        }
-
-        $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['required'],
-        ]);
-
-        //Change profile
-        $user = Auth::user();
-        $user->name = $request->get('name');
-        $user->anon = $request->has('anon');
-        $user->save();
-
-        return redirect()->route('home')
-                        ->with('success', trans('account.profile.change.alert.saved'));
+        //
     }
 
     /**

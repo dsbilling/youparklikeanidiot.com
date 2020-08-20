@@ -103,6 +103,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.show', Auth::user()->uuid) }}"><i class="fas fa-user"></i> {{ __('user.profile') }}</a>
                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ route('account.members') }}"><i class="fas fa-users"></i> {{ __('account.members.title') }}</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('account.profile.change') }}"><i class="fas fa-user-edit"></i> {{ __('account.profile.change.title') }}</a>
                                     <a class="dropdown-item" href="{{ route('account.password.change') }}"><i class="fas fa-asterisk"></i> {{ __('account.password.change.title') }}</a>
                                     <div class="dropdown-divider"></div>
@@ -154,10 +156,10 @@
     <footer class="footer mt-auto py-3 text-light bg-dark">
         <div class="container">
             <div class="row">
-                <div class="col-6">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <p>
                         <a href="javascript:;" onclick="$('#changelog').modal('show', {backdrop: 'static'})" class="text-white">{{ Setting::get('APP_VERSION') }}</a> &middot; {!! __('footer.developedwith') !!} <a href="https://infihex.com/" target="_blank" class="text-info">Infihex</a>
                         @if(Config::get('app.debug'))

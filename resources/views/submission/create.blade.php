@@ -17,10 +17,10 @@
 
             <form method="post" action="{{ route('parking.store') }}" enctype="multipart/form-data">
                 <div class="form-group row">
-                    <label for="licenseplate" class="col-4 col-form-label text-md-right">{{ __('parking.countryandlicenseplate') }}</label>
-                    <div class="col-6">
+                    <label for="licenseplate" class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label text-md-right">{{ __('parking.countryandlicenseplate') }}</label>
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <input type="text" id="country" class="form-control{{ $errors->has('country_code') ? ' is-invalid' : '' }}">
                                 <input type="hidden" id="country_code" name="country_code" value="{{ old('country_code') }}">
                                 @if ($errors->has('country_code'))
@@ -29,7 +29,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <input id="licenseplate" type="text" class="form-control{{ $errors->has('licenseplate') ? ' is-invalid' : '' }}" name="licenseplate" value="{{ old('licenseplate') }}" autofocus placeholder="AA12345">
                                 @if ($errors->has('licenseplate'))
                                     <span class="invalid-feedback" role="alert">
@@ -43,13 +43,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="date" class="col-4 col-form-label text-md-right">{{ __('parking.timeofparking') }}</label>
-                    <div class="col-6">
+                    <label for="date" class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label text-md-right">{{ __('parking.timeofparking') }}</label>
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <input id="date" type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" value="{{ old('date') }}"  max="{{ Carbon\Carbon::now()->toDateString() }}">
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                 <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" name="time" value="{{ old('time') }}">
                             </div>
                         </div>
@@ -67,8 +67,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="location" class="col-4 col-form-label text-md-right">{{ __('parking.location') }}</label>
-                    <div class="col-6">
+                    <label for="location" class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label text-md-right">{{ __('parking.location') }}</label>
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
                         <div id="map" class="{{ $errors->has('longitude') ? ' is-invalid' : '' }} {{ $errors->has('latitude') ? ' is-invalid' : '' }}"></div>
                         <pre id="coordinates" class="coordinates"></pre>
                         <input type="text" name="longitude" hidden value="{{ old('longitude') }}">
@@ -87,8 +87,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="images" class="col-4 col-form-label text-md-right">{{ __('parking.uploadimage') }}</label>
-                    <div class="col-6">
+                    <label for="images" class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label text-md-right">{{ __('parking.uploadimage') }}</label>
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
 
                         <div class="input-group">
                             <div class="custom-file">
@@ -106,8 +106,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="types" class="col-4 col-form-label text-md-right">{{ __('parking.chooseparkingerror') }}</label>
-                    <div class="col-6">
+                    <label for="types" class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label text-md-right">{{ __('parking.chooseparkingerror') }}</label>
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
                         @foreach(\DPSEI\Type::orderBy('id', 'asc')->get() as $type)
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="types[]" id="type-{{ $type->id }}" value="{{ $type->id }}" @if(is_array(old('types')) && in_array($type->id, old('types'))) checked @endif>
@@ -123,8 +123,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="description" class="col-4 col-form-label text-md-right">{{ __('parking.comment') }}<br><small class="text-muted">{{ __('global.optional') }}</small></label>
-                    <div class="col-6">
+                    <label for="description" class="col-sm-12 col-md-4 col-lg-4 col-xl-4 col-form-label text-md-right">{{ __('parking.comment') }}<br><small class="text-muted">{{ __('global.optional') }}</small></label>
+                    <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
                         <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description">{{ old('description') }}</textarea>
                         @if ($errors->has('description'))
                             <span class="invalid-feedback" role="alert">
@@ -137,7 +137,7 @@
                 <hr>
 
                 <div class="form-group row">
-                    <div class="col-2 ml-auto">
+                    <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2 ml-auto">
                         {{ csrf_field() }}
                         <button class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i> {{ __('global.submit') }}</button>
                     </div>

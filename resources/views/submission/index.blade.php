@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mb-5">
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-responsive">
                 <thead>
                     <th>{{ __('parking.country') }}</th>
                     <th>{{ __('parking.licenseplate') }}</th>

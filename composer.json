@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "anlutro/l4-settings": "^0.11.0",
+        "barryvdh/laravel-dompdf": "^0.8.6",
         "binarycabin/laravel-uuid": "^1.0",
         "biscolab/laravel-recaptcha": "^4.1",
         "cartalyst/stripe": "~2.0",
