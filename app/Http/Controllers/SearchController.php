@@ -2,7 +2,7 @@
 
 namespace DPSEI\Http\Controllers;
 
-use DPSEI\LicensePLate;
+use DPSEI\LicensePlate;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -58,7 +58,7 @@ class SearchController extends Controller
             'search' => 'required|string',
         ])->validate();
         $searchResults = (new Search())
-           ->registerModel(LicensePLate::class, 'registration')
+           ->registerModel(LicensePlate::class, 'registration')
            ->search($id);
         return view('search.show')->with('searchResults', $searchResults);
     }
