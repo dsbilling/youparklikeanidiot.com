@@ -20,7 +20,7 @@ class MembersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::whereNotNull('email_verified_at')->paginate(10);
         return view('account.members')->withUsers($users);
     }
 
