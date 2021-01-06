@@ -127,7 +127,7 @@
             </div>
         </nav>
     </header>
-    <main role="main" class="flex-shrink-0">
+    <main role="main" class="flex-shrink-0 pt-3">
         <div class="container">
             {{ Breadcrumbs::render() }}
             @if (session('error'))
@@ -157,7 +157,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                    <p>&copy; {{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
+                    <p>&copy; 2020-{{ \Carbon\Carbon::now()->year }} Infihex &middot; <i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s</small> &middot; <i class="fas fa-language"></i> {{ mb_strtoupper(App::getLocale()) }}</small> &middot; <a href="javascript:;" onclick="$('#feedback').modal('show', {backdrop: 'static'})" class="text-info"><i class="far fa-comment-dots mr-1"></i>{{ __('footer.feedback.title') }}</a></p>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <p>
