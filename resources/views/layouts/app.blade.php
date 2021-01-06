@@ -277,10 +277,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="footer-changelog">
-                        @include('layouts.changelog')
-                    </div>
+                <div class="modal-body footer-changelog">
+                    @include('layouts.changelog')
                 </div>
             </div>
         </div>

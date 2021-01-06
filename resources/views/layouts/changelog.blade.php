@@ -1,4 +1,10 @@
 
+<h1>0.1.5 - 6. January 2021</h1>
+<h2>Improvement</h2>
+<ul>
+    <li>[<a href='https://infihex.atlassian.net/browse/DPSEI-25'>DPSEI-25</a>] - Security Update</li>
+</ul>
+
 <h1>0.1.4 - 2. September 2020</h1>
 <h2>Bug</h2>
 <ul>
@@ -14,8 +20,7 @@
 <ul>
     <li>[<a href='https://infihex.atlassian.net/browse/DPSEI-23'>DPSEI-23</a>] - Update changelog urls</li>
 </ul>
-<h2>Improvement
-</h2>
+<h2>Improvement</h2>
 <ul>
     <li>[<a href='https://infihex.atlassian.net/browse/DPSEI-21'>DPSEI-21</a>] - Improve design for mobile</li>
 </ul>
