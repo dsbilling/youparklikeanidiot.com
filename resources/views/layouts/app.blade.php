@@ -127,7 +127,7 @@
             </div>
         </nav>
     </header>
-    <main role="main" class="flex-shrink-0">
+    <main role="main" class="flex-shrink-0 pt-3">
         <div class="container">
             {{ Breadcrumbs::render() }}
             @if (session('error'))
