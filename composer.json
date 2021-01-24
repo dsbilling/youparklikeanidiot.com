@@ -1,12 +1,13 @@
 {
-    "name": "laravel/laravel",
+    "name": "infihex/youparklikeanidiot.com",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "",
     "keywords": [
-        "framework",
-        "laravel"
+        "website",
+        "laravel",
+        "parking"
     ],
-    "license": "MIT",
+    "license": "gpl-3.0",
     "require": {
         "php": "^7.1.3",
         "anlutro/l4-settings": "^0.11.0",
