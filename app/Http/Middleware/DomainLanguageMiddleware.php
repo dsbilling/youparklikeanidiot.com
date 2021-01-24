@@ -19,10 +19,11 @@ class DomainLanguageMiddleware
     {
         $url_array = explode('.', parse_url($request->url(), PHP_URL_HOST));
         $tld = $url_array[1];
-
+        
         $tlds = [
             'no' => 'nb',
-            'com' => 'en'
+            'com' => 'en',
+            'io' => 'en'
         ];
         $locale = $tlds[$tld];
 

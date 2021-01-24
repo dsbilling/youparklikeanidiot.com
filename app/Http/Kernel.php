@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \DPSEI\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \DPSEI\Http\Middleware\TrustProxies::class,
+        \DPSEI\Http\Middleware\DomainLanguageMiddleware::class,
     ];
 
     /**
