@@ -7,8 +7,8 @@
 </p>
 
 ## Domains
-* youparklikeanidiot.com - English
-* duparkerersomenidiot.no - Norwegian
+* [youparklikeanidiot.com](https://youparklikeanidiot.com) - English
+* [duparkerersomenidiot.no](https://duparkerersomenidiot.no) - Norwegian
 
 ## About
 
