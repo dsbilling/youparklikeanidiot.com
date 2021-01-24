@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \DPSEI\Http\Middleware\TrustProxies::class,
         \DPSEI\Http\Middleware\DomainLanguageMiddleware::class,
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
