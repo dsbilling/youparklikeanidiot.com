@@ -227,6 +227,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Setting' => anlutro\LaravelSettings\Facade::class,
         'Countries' => PragmaRX\Countries\Package\Countries::class,
+        'RateLimiter' => Illuminate\Support\Facades\RateLimiter::class,
 
     ],
 

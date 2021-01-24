@@ -1,12 +1,12 @@
 <?php
 
+namespace Database\Seeders;
+
 use DPSEI\Image;
-use DPSEI\LicensePlate;
 use DPSEI\Submission;
 use DPSEI\Type;
 use DPSEI\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
