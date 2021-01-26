@@ -3,12 +3,13 @@
 
 <p align="center">
 <img src="https://img.shields.io/github/license/Infihex/youparklikeanidiot.com" alt="License">
+    <img src="https://img.shields.io/github/contributors/Infihex/youparklikeanidiot.com" alt="Contributors">
 <img src="https://img.shields.io/github/v/tag/infihex/youparklikeanidiot.com" alt="Release">
 </p>
 
 ## Domains
-* [youparklikeanidiot.com](https://youparklikeanidiot.com) - English
-* [duparkerersomenidiot.no](https://duparkerersomenidiot.no) - Norwegian
+* [youparklikeanidiot.com](https://youparklikeanidiot.com) - English <img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fyouparklikeanidiot.com%2F" alt="youparklikeanidiot.com">
+* [duparkerersomenidiot.no](https://duparkerersomenidiot.no) - Norwegian <img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fduparkerersomenidiot.no%2F" alt="duparkerersomenidiot.no">
 
 ## About
 
