@@ -52,7 +52,7 @@ class RouteServiceProvider extends ServiceProvider
             Carbon::setLocale($locale);
             Route::resourceVerbs([
                 'create' => __('uri.create'),
-                'edit' => __('uri.create'),
+                'edit' => __('uri.edit'),
             ]);
         }
 
